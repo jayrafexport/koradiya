@@ -14,22 +14,22 @@
    site (koradiyagroupimpex.com) purely so the page isn't
    empty while you gather new photography. Since that site was
    compromised, replace these with your own files in
-   assets/images/ as soon as you can.
+   assets/images/ as soon as you can. Until real product
+   photos are added, size cards fall back to generated colour
+   swatches (see assets/css/style.css .pat-0 .. .pat-7) instead
+   of blank placeholders.
    ========================================================= */
 
 window.SITE_MEDIA = {
 
   logo: "assets/logo/logo.png",
 
-  // Homepage hero slider images (rotates automatically).
   heroSlides: [
     "https://www.koradiyagroupimpex.com/wp-content/uploads/2024/01/3.png",
     "https://www.koradiyagroupimpex.com/wp-content/uploads/2024/01/2-1.png"
   ],
 
-  about: {
-    image: "https://www.koradiyagroupimpex.com/wp-content/uploads/2023/07/company.jpg"
-  },
+  aboutImage: "https://www.koradiyagroupimpex.com/wp-content/uploads/2023/07/company.jpg",
 
   homeProductPhotos: [
     "https://www.koradiyagroupimpex.com/wp-content/uploads/2024/01/2-1.png",
@@ -47,7 +47,8 @@ window.SITE_MEDIA = {
     "assets/images/porcelain-tile-3.jpg",
     "assets/images/porcelain-tile-4.jpg",
     "assets/images/porcelain-tile-5.jpg",
-    "assets/images/porcelain-tile-6.jpg"
+    "assets/images/porcelain-tile-6.jpg",
+    "assets/images/porcelain-tile-7.jpg"
   ],
 
   infrastructureImages: [
