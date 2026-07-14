@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infrastructure | Koradiya Group Impex</title>
+<meta name="description" content="Manufacturing infrastructure at Koradiya Group Impex — pressing, printing, kiln firing, quality testing and packing.">
+<link rel="icon" href="assets/logo/logo.png">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="infrastructure">
+
+<div id="site-header"></div>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="crumb"><a href="index.html" style="color:#cfd9db;">Home</a><span>/</span>Corporate<span>/</span>Infrastructure</div>
+    <h1>Manufacturing Infrastructure</h1>
+    <p>From pressing to packing, every stage runs through equipment built for consistency at export volume.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Our Facility</div>
+      <h2>What Goes Into Every Batch</h2>
+      <p>Six connected stages, each monitored for consistency before a tile ever reaches the pallet.</p>
+    </div>
+    <div class="card-grid cols-3 reveal-stagger reveal" id="infraCards"></div>
+  </div>
+</section>
+
+<section class="section-alt tile-grid-bg">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <div class="eyebrow" style="justify-content:center;">Capacity Focus</div>
+      <h2>Where Production Time Goes</h2>
+      <p>Relative share of the manufacturing cycle spent at each stage, floor to pallet.</p>
+    </div>
+    <div class="bar-chart reveal">
+      <div class="bar-col"><div class="bar-val">Pressing</div><div class="bar" data-h="55"></div><div class="bar-lbl">Body forming</div></div>
+      <div class="bar-col"><div class="bar-val">Printing</div><div class="bar" data-h="70"></div><div class="bar-lbl">Glaze &amp; design</div></div>
+      <div class="bar-col"><div class="bar-val">Firing</div><div class="bar" data-h="100"></div><div class="bar-lbl">Kiln cycle</div></div>
+      <div class="bar-col"><div class="bar-val">QC</div><div class="bar" data-h="40"></div><div class="bar-lbl">Inspection</div></div>
+      <div class="bar-col"><div class="bar-val">Packing</div><div class="bar" data-h="35"></div><div class="bar-lbl">Sort &amp; box</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" style="padding:0;">
+  <div class="wrap">
+    <div>
+      <h3>Curious About Our Full Product Range?</h3>
+      <p>See every size and category we manufacture.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="products.html" class="btn btn-clay">View Products</a>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="media.js"></script>
+<script src="assets/js/content.js"></script>
+<script src="assets/js/partials.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  document.addEventListener('partialsMounted', () => {
+    const C = window.SITE_CONTENT || {};
+    const grid = document.getElementById('infraCards');
+    C.infrastructure.forEach(item => {
+      const el = document.createElement('div');
+      el.className = 'info-tile stagger-item';
+      el.innerHTML = `<div class="ico">&#9634;</div><h4>${item.title}</h4><p>${item.text}</p>`;
+      grid.appendChild(el);
+    });
+  });
+</script>
+</body>
+</html>

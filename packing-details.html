@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Packing Details | Koradiya Group Impex</title>
+<meta name="description" content="How Koradiya Group Impex packs tiles for export — edge protection, cartons, pallets and container loading.">
+<link rel="icon" href="assets/logo/logo.png">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="packing-details">
+
+<div id="site-header"></div>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="crumb"><a href="index.html" style="color:#cfd9db;">Home</a><span>/</span>Information<span>/</span>Packing Details</div>
+    <h1>Packing &amp; Pallet Details</h1>
+    <p>Export-grade packing built to survive ocean and road freight without shade or edge damage.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Export Packing</div>
+      <h2>Five Steps From Factory Floor To Container</h2>
+    </div>
+    <div class="card-grid cols-3 reveal-stagger reveal" id="packingCards"></div>
+  </div>
+</section>
+
+<section class="section-alt tile-grid-bg">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <div class="eyebrow" style="justify-content:center;">Good To Know</div>
+      <h2>Pallet &amp; Container Notes</h2>
+    </div>
+    <div class="card-grid cols-3 reveal-stagger reveal">
+      <div class="info-tile stagger-item">
+        <div class="ico">&#9634;</div>
+        <h4>Export Pallets</h4>
+        <p>Cartons are stacked to standard export pallet dimensions for efficient container loading and reduced freight cost per m&sup2;.</p>
+      </div>
+      <div class="info-tile stagger-item">
+        <div class="ico">&#9670;</div>
+        <h4>Moisture Protection</h4>
+        <p>Shrink-wrapping and edge protection guard against moisture and handling damage on long ocean freight routes.</p>
+      </div>
+      <div class="info-tile stagger-item">
+        <div class="ico">&#9733;</div>
+        <h4>Shade Batching</h4>
+        <p>Tiles are boxed and labelled by shade batch, so what arrives matches what was quoted — no surprises on-site.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" style="padding:0;">
+  <div class="wrap">
+    <div>
+      <h3>Have A Specific Packing Requirement?</h3>
+      <p>Custom pallet sizes and labelling can be arranged for larger orders.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="contact.html" class="btn btn-clay">Discuss Your Order</a>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="media.js"></script>
+<script src="assets/js/content.js"></script>
+<script src="assets/js/partials.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  document.addEventListener('partialsMounted', () => {
+    const C = window.SITE_CONTENT || {};
+    const grid = document.getElementById('packingCards');
+    C.packingSteps.forEach((item, i) => {
+      const el = document.createElement('div');
+      el.className = 'info-tile stagger-item';
+      el.innerHTML = `<div class="ico mono">${String(i+1).padStart(2,'0')}</div><h4>${item.title}</h4><p>${item.text}</p>`;
+      grid.appendChild(el);
+    });
+  });
+</script>
+</body>
+</html>
