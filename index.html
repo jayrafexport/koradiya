@@ -149,9 +149,13 @@ nav.nav{display:flex;align-items:center;gap:2px;}
 
 /* ==================== HERO (home) ==================== */
 .hero{position:relative;height:88vh;min-height:600px;max-height:900px;overflow:hidden;background:var(--black);}
+#heroSlides{position:absolute;inset:0;transition:transform .5s cubic-bezier(.2,.6,.3,1);transform-style:preserve-3d;will-change:transform;}
 .hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transform:scale(1.08);transition:opacity 1.4s ease, transform 7s ease;}
 .hero-slide.active{opacity:1;transform:scale(1);}
 .hero-slide::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(14,16,18,0.45) 0%, rgba(14,16,18,0.35) 45%, rgba(14,16,18,0.82) 100%);}
+.hero-style-badge{position:absolute;top:118px;left:40px;z-index:4;display:flex;align-items:center;gap:9px;background:rgba(20,23,26,0.55);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.18);color:#fff;padding:9px 16px 9px 12px;border-radius:30px;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;transition:opacity .35s ease;}
+.hero-style-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--brass-light);box-shadow:0 0 0 4px rgba(23,162,168,0.22);flex:none;animation:heroDotPulse 2.2s ease-in-out infinite;}
+@keyframes heroDotPulse{0%,100%{opacity:1;}50%{opacity:0.35;}}
 .hero-fallback{position:absolute;inset:0;background:
   radial-gradient(circle at 20% 20%, rgba(180,146,76,0.18), transparent 45%),
   radial-gradient(circle at 80% 70%, rgba(138,58,42,0.22), transparent 50%),
@@ -469,6 +473,9 @@ img.media-img.loaded{display:block;}
   .flow-track{grid-template-columns:1fr 1fr;}
   .hero-sub{display:none;}
   .scroll-cue{display:none;}
+  .hero-style-badge{top:auto;bottom:150px;left:22px;font-size:9.5px;padding:7px 13px 7px 10px;}
+  .hero-dots{left:22px;bottom:96px;}
+  .hero-content{padding:0 22px;}
 }
 @media (prefers-reduced-motion: reduce){
   *{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;}
@@ -555,6 +562,7 @@ img.media-img.loaded{display:block;}
 <!-- ============ HERO ============ -->
 <section class="hero anchor-offset" id="home" style="padding:0;">
   <div id="heroSlides"></div>
+  <div class="hero-style-badge mono" id="heroStyleBadge"><span class="dot"></span><span id="heroStyleText">Modern Minimalist Living</span></div>
   <div class="hero-content">
     <div class="hero-inner">
       <div class="hero-eyebrow"><span class="rule"></span> Halvad &middot; Morbi &middot; Gujarat &middot; India</div>
@@ -562,6 +570,8 @@ img.media-img.loaded{display:block;}
         <h1 class="hl active">Precision-Fired<br>Porcelain, Made&nbsp;for&nbsp;Export.</h1>
         <h1 class="hl">Marble-Grade Slabs.<br>Manufactured to&nbsp;Spec.</h1>
         <h1 class="hl">800+ Designs.<br>One Quality Standard.</h1>
+        <h1 class="hl">Living Spaces,<br>Reimagined in&nbsp;Stone.</h1>
+        <h1 class="hl">From Our Floor<br>to&nbsp;Your&nbsp;Interiors.</h1>
       </div>
       <p class="hero-sub">A WHO-grade manufacturing floor producing 10,000+ boxes daily &mdash; engineered for architects, distributors and importers in 17+ countries.</p>
       <div class="hero-actions">
@@ -571,7 +581,7 @@ img.media-img.loaded{display:block;}
     </div>
   </div>
   <div class="hero-dots">
-    <button class="active"></button><button></button><button></button>
+    <button class="active"></button><button></button><button></button><button></button><button></button>
   </div>
   <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
   <div class="hero-ticker">
@@ -1413,11 +1423,24 @@ img.media-img.loaded{display:block;}
 window.SITE_MEDIA = {
   logo: "assets/logo/logo.png",
 
-  // Home hero background slides (any number, cycles automatically)
+  // Home hero background slides — 5 auto-rotating interior styles.
+  // Replace each URL with your own photography whenever ready; the site
+  // will keep working exactly the same way, just with your real assets.
   heroSlides: [
-    // "assets/hero/hero-1.jpg",
-    // "assets/hero/hero-2.jpg",
-    // "assets/hero/hero-3.jpg"
+    "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1920&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1920&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1920&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=1920&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1600121848594-d8644e57abab?q=80&w=1920&auto=format&fit=crop"
+  ],
+
+  // Style label shown on the badge for each hero slide above (same order)
+  heroStyles: [
+    "Modern Minimalist Living",
+    "Classic Marble Interiors",
+    "Luxury Villa Flooring",
+    "Industrial Loft Design",
+    "Elegant Bath & Kitchen"
   ],
 
   // About section
@@ -1493,6 +1516,7 @@ window.SITE_MEDIA = {
     testimonialSlider();
     backToTop();
     contactForm();
+    tilt3D();
   }
 
   /* ---------- media.js binding (graceful; falls back to CSS placeholder) ---------- */
@@ -1564,19 +1588,66 @@ window.SITE_MEDIA = {
     }
     const headlines = hero.querySelectorAll('.hl');
     const dots = document.querySelectorAll('.hero-dots button');
+    const styleLabel = document.getElementById('heroStyleText');
+    const styles = (M.heroStyles && M.heroStyles.length) ? M.heroStyles : [];
     let cur = 0;
-    const total = Math.max(headlines.length, 1);
+    let timer = null;
+    const total = Math.max(headlines.length, imgs.length, dots.length, 1);
     function go(i){
       cur = (i + total) % total;
-      headlines.forEach((h,idx) => h.classList.toggle('active', idx === cur));
+      headlines.forEach((h,idx) => h.classList.toggle('active', idx === (cur % headlines.length)));
       dots.forEach((d,idx) => d.classList.toggle('active', idx === cur));
       if (imgs.length > 1){
         const all = slidesEl.querySelectorAll('.hero-slide');
         all.forEach((s,idx) => s.classList.toggle('active', idx === (cur % all.length)));
       }
+      if (styleLabel && styles.length){
+        styleLabel.style.opacity = 0;
+        setTimeout(() => { styleLabel.textContent = styles[cur % styles.length]; styleLabel.style.opacity = 1; }, 220);
+      }
     }
-    dots.forEach((d,i) => d.addEventListener('click', () => go(i)));
-    if (total > 1) setInterval(() => go(cur+1), 5200);
+    function restart(){ if (timer) clearInterval(timer); if (total > 1) timer = setInterval(() => go(cur+1), 5200); }
+    dots.forEach((d,i) => d.addEventListener('click', () => { go(i); restart(); }));
+    restart();
+
+    /* subtle mouse-parallax 3D depth on the hero image */
+    if (window.matchMedia('(hover:hover)').matches){
+      hero.addEventListener('mousemove', (e) => {
+        const r = hero.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        slidesEl.style.transform = `scale(1.05) translate3d(${px * -16}px, ${py * -10}px, 0)`;
+      });
+      hero.addEventListener('mouseleave', () => { slidesEl.style.transform = 'translate3d(0,0,0)'; });
+    }
+
+    /* swipe support for touch devices */
+    let touchX = null;
+    hero.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, { passive:true });
+    hero.addEventListener('touchend', (e) => {
+      if (touchX === null) return;
+      const dx = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(dx) > 40){ go(cur + (dx < 0 ? 1 : -1)); restart(); }
+      touchX = null;
+    }, { passive:true });
+  }
+
+  /* ---------- 3D pointer-tilt on cards (product/room/info cards) ---------- */
+  function tilt3D(){
+    if (!window.matchMedia('(hover:hover)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const els = document.querySelectorAll('.room-card, .cat-card, .info-card, .about-media .frame, .product-teaser .frame');
+    els.forEach(el => {
+      el.style.transformStyle = 'preserve-3d';
+      el.style.transition = 'transform .25s cubic-bezier(.2,.6,.3,1), box-shadow .25s ease';
+      el.addEventListener('mousemove', (e) => {
+        const r = el.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        el.style.transform = `perspective(900px) rotateX(${py * -8}deg) rotateY(${px * 10}deg) scale3d(1.02,1.02,1.02)`;
+      });
+      el.addEventListener('mouseleave', () => { el.style.transform = 'perspective(900px) rotateX(0) rotateY(0) scale3d(1,1,1)'; });
+    });
   }
 
   /* ---------- scroll reveal ---------- */
