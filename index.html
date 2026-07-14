@@ -3,12 +3,457 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Koradiya Group Impex | Manufacturer & Exporter from India</title>
+<title>Koradiya Group Impex | Manufacturer &amp; Exporter from India</title>
 <meta name="description" content="Koradiya Group Impex — leading manufacturer of Porcelain Tiles, Digital Vitrified Tiles and Marble Slabs from Halvad, Morbi, Gujarat, India. Exporting to 17+ countries.">
-<link rel="icon" href="assets/logo/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="assets/css/style.css">
+<style>
+/* ==========================================================================
+   KORADIYA GROUP IMPEX — Design System
+   Direction: "Spec Sheet" — precision manufacturing meets quarried stone.
+   Palette: basalt charcoal, warm stone paper, burnished brass, deep clay.
+   Type: condensed industrial display + clean body + mono for measurements.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root{
+  /* -- core palette -- */
+  --black:#14171A;
+  --charcoal:#1E2328;
+  --charcoal-2:#262C32;
+  --paper:#F5F2EA;
+  --paper-alt:#ECE6D8;
+  --paper-deep:#E4DCC9;
+  --brass:#B4924C;
+  --brass-light:#D4B876;
+  --clay:#8A3A2A;
+  --clay-light:#B05038;
+  --slate:#586169;
+  --slate-light:#8A939B;
+  --line:#DCD4C0;
+  --line-dark:rgba(245,242,234,0.14);
+  --white:#FFFFFF;
+
+  /* -- semantic -- */
+  --ink:#1E2328;
+  --muted:#5C6570;
+  --radius-sm:4px;
+  --radius:8px;
+  --radius-lg:16px;
+  --maxw:1320px;
+  --shadow:0 24px 60px rgba(20,23,26,0.14);
+  --shadow-sm:0 10px 26px rgba(20,23,26,0.08);
+
+  /* -- type -- */
+  --f-display:'Space Grotesk',sans-serif;
+  --f-body:'Inter',sans-serif;
+  --f-mono:'IBM Plex Mono',monospace;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4,h5{font-family:var(--f-display);color:var(--black);margin:0;letter-spacing:-0.01em;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+ul{list-style:none;margin:0;padding:0;}
+button{font-family:inherit;}
+::selection{background:var(--brass);color:var(--black);}
+.mono{font-family:var(--f-mono);}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px;}
+.nowrap{white-space:nowrap;}
+
+/* texture: fine dot-grid used as subtle background accent */
+.grid-texture{
+  background-image:radial-gradient(rgba(20,23,26,0.06) 1px, transparent 1px);
+  background-size:22px 22px;
+}
+
+/* ==================== TOPBAR ==================== */
+.topbar{background:var(--black);color:#B9C0C6;font-family:var(--f-mono);font-size:11.5px;letter-spacing:0.03em;}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;padding:9px 40px;flex-wrap:wrap;gap:8px;}
+.topbar a{color:#B9C0C6;transition:color .2s;}
+.topbar a:hover{color:var(--brass-light);}
+.topbar-links{display:flex;gap:22px;flex-wrap:wrap;align-items:center;}
+.topbar-links .dot{color:var(--brass);}
+
+/* ==================== HEADER / NAV ==================== */
+header.site-header{position:sticky;top:0;z-index:300;background:rgba(245,242,234,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);transition:box-shadow .25s ease, padding .25s ease;}
+header.site-header.scrolled{box-shadow:0 8px 30px rgba(20,23,26,0.08);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 40px;gap:24px;}
+.brand{display:flex;align-items:center;gap:13px;flex:none;}
+.brand-mark{width:46px;height:46px;border-radius:6px;background:var(--black);display:flex;align-items:center;justify-content:center;color:var(--brass-light);font-family:var(--f-display);font-weight:700;font-size:17px;flex:none;overflow:hidden;}
+.brand-mark img{width:100%;height:100%;object-fit:cover;}
+.brand-text{display:flex;flex-direction:column;line-height:1.15;}
+.brand-text .name{font-family:var(--f-display);font-size:19px;font-weight:700;color:var(--black);letter-spacing:-0.01em;}
+.brand-text .tag{font-family:var(--f-mono);font-size:9.5px;color:var(--clay);letter-spacing:0.08em;text-transform:uppercase;margin-top:2px;}
+
+nav.nav{display:flex;align-items:center;gap:2px;}
+.nav-item{position:relative;}
+.nav-item > a, .nav-item > span{
+  display:flex;align-items:center;gap:6px;
+  font-family:var(--f-body);font-size:13.5px;font-weight:600;color:var(--charcoal);
+  letter-spacing:0.01em;padding:12px 15px;cursor:pointer;transition:color .2s;position:relative;
+}
+.nav-item > a::after{content:"";position:absolute;left:15px;right:15px;bottom:7px;height:2px;background:var(--clay);transform:scaleX(0);transform-origin:left;transition:transform .25s ease;}
+.nav-item.active > a::after, .nav-item > a:hover::after{transform:scaleX(1);}
+.nav-item > a:hover, .nav-item:hover > span, .nav-item.active > a{color:var(--clay);}
+.nav-item .caret{font-size:8px;transition:transform .2s;color:var(--slate-light);}
+.nav-item:hover .caret{transform:rotate(180deg);}
+.dropdown{
+  position:absolute;top:100%;left:0;min-width:240px;
+  background:var(--white);border:1px solid var(--line);border-top:2px solid var(--clay);
+  box-shadow:var(--shadow);padding:8px;border-radius:0 0 6px 6px;
+  opacity:0;visibility:hidden;transform:translateY(8px);
+  transition:opacity .2s ease, transform .2s ease, visibility .2s;
+}
+.nav-item:hover .dropdown{opacity:1;visibility:visible;transform:translateY(0);}
+.dropdown a{display:block;padding:11px 14px;font-size:13px;color:var(--charcoal);font-weight:500;border-radius:4px;}
+.dropdown a:hover{background:var(--paper-alt);color:var(--clay);}
+.nav-cta{display:flex;align-items:center;gap:14px;flex:none;}
+.menu-toggle{display:none;background:none;border:none;color:var(--black);font-size:22px;cursor:pointer;padding:4px;}
+
+/* ==================== BUTTONS ==================== */
+.btn{display:inline-flex;align-items:center;gap:9px;padding:14px 28px;border-radius:3px;font-family:var(--f-body);font-size:12.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;border:1.5px solid transparent;transition:transform .2s ease, background .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease;}
+.btn-dark{background:var(--black);color:var(--paper);}
+.btn-dark:hover{background:var(--charcoal-2);transform:translateY(-3px);box-shadow:0 12px 24px rgba(20,23,26,0.25);}
+.btn-clay{background:var(--clay);color:#fff;}
+.btn-clay:hover{background:var(--clay-light);transform:translateY(-3px);box-shadow:0 12px 24px rgba(138,58,42,0.3);}
+.btn-brass{background:var(--brass);color:var(--black);}
+.btn-brass:hover{background:var(--brass-light);transform:translateY(-3px);}
+.btn-outline{background:transparent;color:var(--black);border-color:var(--black);}
+.btn-outline:hover{background:var(--black);color:var(--paper);}
+.btn-outline-light{background:transparent;color:#fff;border-color:rgba(255,255,255,0.55);}
+.btn-outline-light:hover{background:#fff;color:var(--black);}
+.btn-sm{padding:10px 18px;font-size:11px;}
+.link-arrow{display:inline-flex;align-items:center;gap:7px;color:var(--clay);font-weight:700;font-size:12.5px;text-transform:uppercase;letter-spacing:0.05em;font-family:var(--f-body);transition:gap .2s ease;}
+.link-arrow:hover{gap:11px;color:var(--clay-light);}
+
+/* ==================== HERO (home) ==================== */
+.hero{position:relative;height:88vh;min-height:600px;max-height:900px;overflow:hidden;background:var(--black);}
+.hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transform:scale(1.08);transition:opacity 1.4s ease, transform 7s ease;}
+.hero-slide.active{opacity:1;transform:scale(1);}
+.hero-slide::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(14,16,18,0.45) 0%, rgba(14,16,18,0.35) 45%, rgba(14,16,18,0.82) 100%);}
+.hero-fallback{position:absolute;inset:0;background:
+  radial-gradient(circle at 20% 20%, rgba(180,146,76,0.18), transparent 45%),
+  radial-gradient(circle at 80% 70%, rgba(138,58,42,0.22), transparent 50%),
+  linear-gradient(135deg, #1E2328 0%, #14171A 60%);
+}
+.hero-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;z-index:3;padding:0 40px;}
+.hero-inner{max-width:var(--maxw);margin:0 auto;width:100%;}
+.hero-eyebrow{display:flex;align-items:center;gap:12px;font-family:var(--f-mono);font-size:12px;color:var(--brass-light);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:22px;}
+.hero-eyebrow .rule{width:40px;height:1px;background:var(--brass-light);}
+.hero-headline{position:relative;height:auto;min-height:190px;}
+.hero-headline .hl{position:absolute;inset:0;color:#fff;font-size:clamp(34px,5.2vw,68px);font-weight:600;line-height:1.08;letter-spacing:-0.01em;opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease;max-width:820px;}
+.hero-headline .hl.active{opacity:1;transform:translateY(0);}
+.hero-sub{color:#D8DDE1;font-size:16px;max-width:480px;margin:22px 0 32px;line-height:1.7;}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+.hero-dots{position:absolute;left:40px;bottom:110px;display:flex;gap:9px;z-index:4;}
+.hero-dots button{width:26px;height:3px;border:none;background:rgba(255,255,255,0.3);cursor:pointer;padding:0;transition:background .3s ease, width .3s ease;}
+.hero-dots button.active{background:var(--brass-light);width:44px;}
+.hero-ticker{position:absolute;left:0;right:0;bottom:0;z-index:4;background:rgba(20,23,26,0.72);backdrop-filter:blur(6px);border-top:1px solid rgba(255,255,255,0.1);overflow:hidden;}
+.hero-ticker-track{display:flex;gap:60px;white-space:nowrap;padding:13px 0;animation:ticker 26s linear infinite;font-family:var(--f-mono);font-size:11.5px;color:#B9C0C6;letter-spacing:0.05em;}
+.hero-ticker-track span{display:flex;align-items:center;gap:60px;}
+.hero-ticker-track b{color:var(--brass-light);}
+@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.scroll-cue{position:absolute;right:40px;bottom:118px;z-index:4;display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,0.6);font-family:var(--f-mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;writing-mode:vertical-rl;}
+.scroll-cue .line{width:1px;height:46px;background:linear-gradient(180deg,rgba(255,255,255,0.7),transparent);animation:scrollcue 1.8s ease-in-out infinite;}
+@keyframes scrollcue{0%{transform:scaleY(0.4);transform-origin:top;}50%{transform:scaleY(1);transform-origin:top;}100%{transform:scaleY(0.4);transform-origin:bottom;}}
+
+/* ==================== PAGE HEADER (inner pages) ==================== */
+.page-header{position:relative;background:var(--black);color:#fff;padding:150px 0 64px;overflow:hidden;}
+.page-header::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(circle at 85% 20%, rgba(180,146,76,0.18), transparent 45%),
+  radial-gradient(circle at 10% 90%, rgba(138,58,42,0.2), transparent 50%);}
+.page-header .wrap{position:relative;z-index:2;}
+.breadcrumb{font-family:var(--f-mono);font-size:11.5px;color:var(--brass-light);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;display:flex;gap:8px;align-items:center;}
+.breadcrumb a{color:#B9C0C6;}
+.breadcrumb a:hover{color:var(--brass-light);}
+.page-header h1{color:#fff;font-size:clamp(30px,4vw,46px);font-weight:600;max-width:700px;}
+.page-header p{color:#C7CDD1;font-size:15.5px;max-width:560px;margin-top:16px;line-height:1.75;}
+
+/* ==================== SECTION SHELL ==================== */
+section{padding:100px 0;}
+.section-tight{padding:64px 0;}
+.section-alt{background:var(--paper-alt);}
+.section-dark{background:var(--black);color:#fff;}
+.section-dark h2{color:#fff;}
+.section-dark p{color:#C7CDD1;}
+.section-head{max-width:640px;margin:0 0 48px;}
+.section-head.center{margin:0 auto 48px;text-align:center;}
+.section-head.split{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;max-width:none;flex-wrap:wrap;}
+.eyebrow{display:flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:11.5px;font-weight:600;color:var(--clay);text-transform:uppercase;letter-spacing:0.14em;margin-bottom:14px;}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--clay);}
+.section-dark .eyebrow{color:var(--brass-light);}
+.section-dark .eyebrow::before{background:var(--brass-light);}
+.section-head h2{font-size:clamp(26px,3vw,36px);font-weight:600;margin:0 0 14px;}
+.section-head p{color:var(--muted);font-size:15px;line-height:1.75;}
+.section-dark .section-head p{color:#C7CDD1;}
+.anchor-offset{scroll-margin-top:110px;}
+
+/* scroll reveal */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1);}
+.reveal.in{opacity:1;transform:translateY(0);}
+.reveal-scale{opacity:0;transform:scale(0.94);transition:opacity .7s ease, transform .7s ease;}
+.reveal-scale.in{opacity:1;transform:scale(1);}
+.reveal-left{opacity:0;transform:translateX(-30px);transition:opacity .7s ease, transform .7s ease;}
+.reveal-left.in{opacity:1;transform:translateX(0);}
+.reveal-right{opacity:0;transform:translateX(30px);transition:opacity .7s ease, transform .7s ease;}
+.reveal-right.in{opacity:1;transform:translateX(0);}
+.stagger.in > *{transition-delay:calc(var(--i, 0) * 90ms);}
+
+/* ==================== ABOUT / MVV ==================== */
+.about-grid{display:grid;grid-template-columns:0.92fr 1.08fr;gap:64px;align-items:start;}
+.about-media{position:relative;}
+.about-media .frame{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);aspect-ratio:4/5;background:var(--charcoal);}
+.about-media .tag-badge{position:absolute;left:-22px;bottom:-22px;background:var(--black);color:#fff;padding:20px 24px;border-radius:var(--radius-sm);box-shadow:var(--shadow);}
+.about-media .tag-badge .n{font-family:var(--f-mono);font-size:28px;font-weight:600;color:var(--brass-light);}
+.about-media .tag-badge .l{font-size:11px;color:#C7CDD1;text-transform:uppercase;letter-spacing:0.06em;margin-top:2px;}
+.about-copy > p{color:var(--muted);font-size:15px;line-height:1.85;margin:14px 0 28px;}
+.mvv{border-top:1px solid var(--line);}
+.mvv-item{border-bottom:1px solid var(--line);}
+.mvv-head{display:flex;align-items:center;gap:16px;padding:20px 0;cursor:pointer;}
+.mvv-head .mark{font-family:var(--f-mono);font-weight:600;font-size:15px;width:26px;height:26px;border-radius:50%;border:1px solid var(--clay);color:var(--clay);display:flex;align-items:center;justify-content:center;flex:none;transition:all .25s ease;}
+.mvv-item.open .mvv-head .mark{background:var(--clay);color:#fff;transform:rotate(45deg);}
+.mvv-head .label{font-weight:700;font-size:14.5px;color:var(--black);text-transform:uppercase;letter-spacing:0.04em;font-family:var(--f-body);}
+.mvv-body{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.mvv-item.open .mvv-body{max-height:240px;}
+.mvv-body p{margin:0 0 20px;padding-left:42px;color:var(--muted);font-size:14px;line-height:1.8;}
+
+/* ==================== STATS (mono count-up) ==================== */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+.stats-row .stat{background:var(--paper);padding:34px 26px;text-align:left;}
+.section-dark .stats-row{background:var(--line-dark);border-color:var(--line-dark);}
+.section-dark .stats-row .stat{background:var(--charcoal);}
+.stats-row .num{font-family:var(--f-mono);font-size:clamp(28px,2.6vw,38px);font-weight:600;color:var(--black);display:flex;align-items:baseline;gap:3px;}
+.section-dark .stats-row .num{color:#fff;}
+.stats-row .num .suffix{font-size:0.55em;color:var(--clay);}
+.stats-row .lbl{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-top:8px;}
+.section-dark .stats-row .lbl{color:#9FA8AE;}
+
+/* ==================== PROCESS / FLOW DIAGRAM ==================== */
+.flow-wrap{position:relative;padding-top:10px;}
+.flow-track{display:grid;grid-template-columns:repeat(6,1fr);gap:0;position:relative;}
+.flow-node{position:relative;padding:0 18px 0 0;}
+.flow-node .idx{font-family:var(--f-mono);font-size:11px;color:var(--brass);border:1px solid var(--brass);width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:18px;background:var(--black);position:relative;z-index:2;}
+.flow-node h4{font-size:14.5px;font-weight:700;color:#fff;margin-bottom:8px;}
+.flow-node p{font-size:12.5px;color:#9FA8AE;line-height:1.6;}
+.flow-connector{position:absolute;top:15px;left:0;right:0;height:1px;z-index:1;}
+.flow-connector svg{width:100%;height:2px;display:block;overflow:visible;}
+.flow-connector path{stroke:var(--brass);stroke-width:1.5;stroke-dasharray:6 6;fill:none;stroke-dashoffset:1000;transition:stroke-dashoffset 1.8s ease;}
+.flow-track.in .flow-connector path{stroke-dashoffset:0;}
+
+/* ==================== DONUT CHART ==================== */
+.chart-card{background:var(--charcoal);border-radius:var(--radius);padding:36px;display:flex;gap:36px;align-items:center;flex-wrap:wrap;}
+.donut{position:relative;width:170px;height:170px;flex:none;}
+.donut svg{transform:rotate(-90deg);width:100%;height:100%;}
+.donut circle{fill:none;stroke-width:14;}
+.donut .bg{stroke:rgba(255,255,255,0.08);}
+.donut .seg{stroke-dasharray:0 999;transition:stroke-dasharray 1.6s cubic-bezier(.3,.8,.3,1);}
+.donut-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.donut-center .n{font-family:var(--f-mono);font-size:26px;font-weight:600;color:#fff;}
+.donut-center .l{font-size:10px;color:#9FA8AE;text-transform:uppercase;letter-spacing:0.06em;margin-top:2px;}
+.chart-legend{display:grid;gap:12px;flex:1;min-width:200px;}
+.chart-legend li{display:flex;align-items:center;gap:12px;font-size:13.5px;color:#C7CDD1;}
+.chart-legend .sw{width:11px;height:11px;border-radius:2px;flex:none;}
+.chart-legend .pct{margin-left:auto;font-family:var(--f-mono);color:#fff;font-weight:600;}
+
+/* bar chart (mini) */
+.bars{display:grid;gap:16px;}
+.bar-row{display:grid;grid-template-columns:110px 1fr 52px;align-items:center;gap:14px;}
+.bar-row .lbl{font-size:12.5px;color:var(--muted);font-weight:600;}
+.bar-track{height:9px;background:var(--line);border-radius:5px;overflow:hidden;}
+.bar-fill{height:100%;width:0;background:linear-gradient(90deg,var(--clay),var(--brass));border-radius:5px;transition:width 1.4s cubic-bezier(.3,.8,.3,1);}
+.bar-row .val{font-family:var(--f-mono);font-size:12.5px;color:var(--black);font-weight:600;text-align:right;}
+
+/* ==================== PRODUCT / MARQUEE ==================== */
+.marquee{overflow:hidden;border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);padding:26px 0;}
+.marquee-track{display:flex;gap:64px;width:max-content;animation:marquee 30s linear infinite;}
+.marquee-track span{font-family:var(--f-mono);font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:#8A939B;white-space:nowrap;display:flex;align-items:center;gap:64px;}
+.marquee-track span b{color:var(--brass-light);}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+.filter-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px;}
+.filter-tabs button{padding:10px 20px;border-radius:100px;border:1px solid var(--line);background:var(--paper);font-family:var(--f-body);font-size:12.5px;font-weight:600;letter-spacing:0.02em;color:var(--charcoal);cursor:pointer;transition:all .2s ease;}
+.filter-tabs button:hover{border-color:var(--clay);color:var(--clay);}
+.filter-tabs button.active{background:var(--black);color:#fff;border-color:var(--black);}
+
+.family-photos{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+.p-card{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:#fff;transition:transform .35s cubic-bezier(.2,.8,.3,1), box-shadow .35s ease;}
+.p-card:hover{transform:translateY(-8px);box-shadow:var(--shadow);}
+.p-card .thumb{aspect-ratio:1/1;background:var(--charcoal);position:relative;overflow:hidden;}
+.p-card .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+.p-card:hover .thumb img{transform:scale(1.08);}
+.p-card .thumb .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.35);font-family:var(--f-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;text-align:center;padding:0 16px;background:
+  repeating-linear-gradient(135deg, rgba(255,255,255,0.04) 0 2px, transparent 2px 14px), var(--charcoal);}
+.p-card .dim-tag{position:absolute;top:12px;left:12px;background:rgba(20,23,26,0.82);color:var(--brass-light);font-family:var(--f-mono);font-size:10.5px;padding:5px 10px;border-radius:3px;letter-spacing:0.03em;backdrop-filter:blur(4px);}
+.p-card .meta{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);}
+.p-card .meta .sz{font-size:13px;font-weight:700;color:var(--black);}
+.p-card .meta .arr{color:var(--clay);font-size:14px;}
+
+/* ==================== INFO TILES / TWO CARD ==================== */
+.two-card{display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+.info-tile{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:34px;transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;}
+.info-tile:hover{transform:translateY(-6px);box-shadow:var(--shadow-sm);border-color:var(--clay);}
+.info-tile .ico{width:46px;height:46px;border-radius:8px;background:var(--black);color:var(--brass-light);display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:18px;}
+.info-tile h4{font-size:17px;color:var(--black);margin:0 0 10px;font-weight:700;}
+.info-tile p{font-size:14px;color:var(--muted);line-height:1.7;margin:0 0 14px;}
+
+/* room-use cards */
+.room-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;}
+.room-card{position:relative;aspect-ratio:3/4;border-radius:var(--radius);overflow:hidden;cursor:pointer;background:var(--charcoal);}
+.room-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+.room-card:hover img{transform:scale(1.1);}
+.room-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, transparent 40%, rgba(14,16,18,0.85));}
+.room-card span{position:absolute;left:16px;bottom:16px;z-index:2;color:#fff;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:0.04em;}
+
+/* ==================== TESTIMONIAL SLIDER ==================== */
+.testi-slider{position:relative;max-width:760px;margin:0 auto;text-align:center;min-height:220px;}
+.testi-slide{position:absolute;inset:0;opacity:0;transform:translateY(10px);transition:opacity .5s ease, transform .5s ease;pointer-events:none;}
+.testi-slide.active{opacity:1;transform:translateY(0);pointer-events:auto;position:relative;}
+.testi-slide q{display:block;font-family:var(--f-display);font-size:clamp(19px,2.4vw,26px);font-weight:500;color:#fff;line-height:1.5;quotes:none;}
+.testi-slide .who{margin-top:24px;font-family:var(--f-mono);font-size:12px;color:var(--brass-light);text-transform:uppercase;letter-spacing:0.06em;}
+.testi-dots{display:flex;gap:8px;justify-content:center;margin-top:32px;}
+.testi-dots button{width:8px;height:8px;border-radius:50%;border:1px solid rgba(255,255,255,0.4);background:transparent;cursor:pointer;padding:0;transition:all .2s ease;}
+.testi-dots button.active{background:var(--brass-light);border-color:var(--brass-light);width:22px;border-radius:5px;}
+
+/* ==================== GALLERY / LIGHTBOX ==================== */
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;grid-auto-rows:180px;}
+.gallery-grid .g-item{grid-row:span 1;}
+.gallery-grid .g-item.tall{grid-row:span 2;}
+.g-item{position:relative;border-radius:var(--radius);overflow:hidden;cursor:pointer;background:var(--charcoal);}
+.g-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+.g-item:hover img{transform:scale(1.08);}
+.g-item .zoom{position:absolute;inset:0;background:rgba(14,16,18,0.4);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s ease;color:#fff;font-size:22px;}
+.g-item:hover .zoom{opacity:1;}
+.lightbox{position:fixed;inset:0;background:rgba(10,12,14,0.94);z-index:1000;display:none;align-items:center;justify-content:center;padding:40px;}
+.lightbox.open{display:flex;}
+.lightbox img{max-width:90vw;max-height:82vh;border-radius:6px;box-shadow:0 30px 80px rgba(0,0,0,0.5);}
+.lightbox-close{position:absolute;top:28px;right:36px;color:#fff;font-size:30px;cursor:pointer;background:none;border:none;}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.1);border:none;color:#fff;width:48px;height:48px;border-radius:50%;font-size:20px;cursor:pointer;transition:background .2s ease;}
+.lightbox-nav:hover{background:rgba(255,255,255,0.22);}
+.lightbox-nav.prev{left:32px;}
+.lightbox-nav.next{right:32px;}
+
+/* ==================== BLOG CARDS ==================== */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.blog-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:transform .3s ease, box-shadow .3s ease;}
+.blog-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-sm);}
+.blog-card .thumb{aspect-ratio:16/10;background:var(--charcoal);position:relative;overflow:hidden;}
+.blog-card .thumb img{width:100%;height:100%;object-fit:cover;}
+.blog-card .body{padding:24px;}
+.blog-card .date{font-family:var(--f-mono);font-size:11px;color:var(--clay);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;}
+.blog-card h4{font-size:16.5px;font-weight:700;line-height:1.4;margin-bottom:10px;}
+.blog-card p{font-size:13.5px;color:var(--muted);line-height:1.65;margin:0 0 14px;}
+
+/* ==================== EXPORT / COUNTRY LIST ==================== */
+.country-list{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 30px;}
+.country-list li{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.16);padding:8px 16px;border-radius:100px;font-size:12.5px;color:#DBE1E4;font-family:var(--f-mono);}
+.world-note{font-family:var(--f-mono);font-size:11.5px;color:var(--brass-light);letter-spacing:0.06em;text-transform:uppercase;}
+
+/* ==================== CONTACT ==================== */
+.contact-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:50px;}
+.contact-info{display:flex;flex-direction:column;gap:14px;}
+.info-card{display:flex;gap:16px;align-items:flex-start;padding:22px;border-radius:var(--radius);background:#fff;border:1px solid var(--line);}
+.info-card .ico{flex:none;width:44px;height:44px;border-radius:8px;background:var(--black);color:var(--brass-light);display:flex;align-items:center;justify-content:center;font-size:18px;}
+.info-card h4{margin:0 0 5px;font-size:14px;color:var(--black);}
+.info-card p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.6;}
+.info-card a{color:var(--clay);font-weight:600;}
+form.contact-form{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:34px;display:grid;gap:18px;box-shadow:var(--shadow-sm);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+label{font-family:var(--f-mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:7px;display:block;}
+input,textarea,select{width:100%;padding:13px 14px;border-radius:5px;background:var(--paper);border:1px solid var(--line);color:var(--ink);font-family:var(--f-body);font-size:14px;transition:border-color .2s, background .2s;}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--clay);background:#fff;}
+textarea{resize:vertical;min-height:120px;}
+.form-note{font-size:11px;color:var(--slate-light);}
+.map-embed{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);margin-top:4px;filter:grayscale(0.3) contrast(1.05);}
+.map-embed iframe{width:100%;height:230px;border:0;}
+
+/* ==================== CATALOGUE ==================== */
+.cat-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px;}
+.cat-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px;text-align:center;transition:transform .3s ease, box-shadow .3s ease;}
+.cat-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-sm);}
+.cat-card .ico{width:56px;height:56px;border-radius:50%;background:var(--paper-alt);color:var(--clay);display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 18px;}
+.cat-card h4{font-size:15px;margin-bottom:8px;}
+.cat-card p{font-size:13px;color:var(--muted);margin-bottom:18px;}
+
+/* ==================== FOOTER ==================== */
+footer{background:var(--black);color:#B9C0C6;padding:70px 0 0;position:relative;overflow:hidden;}
+.footer-grid{display:grid;grid-template-columns:1.3fr 0.8fr 1.1fr 1.1fr;gap:40px;margin-bottom:44px;position:relative;z-index:2;}
+.footer-brand .brand{margin-bottom:16px;}
+.footer-brand .brand-text .name{color:#fff;}
+.footer-brand p{font-size:13.5px;line-height:1.75;max-width:270px;color:#8A939B;}
+.footer-col h5{font-family:var(--f-mono);font-size:11.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--brass-light);margin:0 0 20px;font-weight:600;}
+.footer-col ul{display:grid;gap:12px;}
+.footer-col a{color:#B9C0C6;font-size:13.5px;transition:color .2s;}
+.footer-col a:hover{color:var(--brass-light);}
+.footer-col p{color:#B9C0C6;font-size:13.5px;line-height:1.7;margin:0 0 8px;}
+.socials{display:flex;gap:10px;margin-top:16px;}
+.socials a{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:13px;color:#B9C0C6;transition:all .2s;}
+.socials a:hover{background:var(--brass);color:var(--black);border-color:var(--brass);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding:22px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:12px;font-family:var(--f-mono);color:#6E767D;position:relative;z-index:2;}
+.footer-bottom a{color:var(--brass-light);}
+.back-to-top{position:fixed;right:26px;bottom:26px;width:48px;height:48px;border-radius:50%;background:var(--black);color:var(--brass-light);border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:17px;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(10px);transition:all .3s ease;z-index:400;box-shadow:var(--shadow-sm);}
+.back-to-top.show{opacity:1;visibility:visible;transform:translateY(0);}
+.back-to-top:hover{background:var(--clay);color:#fff;}
+
+/* ==================== MEDIA SLOT (graceful image fallback) ==================== */
+.media-slot{position:relative;display:block;width:100%;height:100%;overflow:hidden;}
+.ph-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;color:rgba(255,255,255,0.38);font-family:var(--f-mono);font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;padding:0 14px;background:
+  repeating-linear-gradient(135deg, rgba(255,255,255,0.045) 0 2px, transparent 2px 14px), var(--charcoal);}
+.ph-fallback .ic{display:block;font-size:20px;margin-bottom:8px;color:var(--brass);opacity:0.7;}
+img.media-img{display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+img.media-img.loaded{display:block;}
+.brand-mark .media-slot{background:transparent;}
+.brand-mark .ph-fallback{position:static;background:none;color:var(--brass-light);font-family:var(--f-display);font-weight:700;font-size:16px;padding:0;}
+.about-media .ph-fallback{font-size:11.5px;}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width:1080px){
+  .family-photos{grid-template-columns:repeat(3,1fr);}
+  .room-grid{grid-template-columns:repeat(3,1fr);}
+  .gallery-grid{grid-template-columns:repeat(3,1fr);}
+  .blog-grid{grid-template-columns:repeat(2,1fr);}
+  .flow-track{grid-template-columns:repeat(3,1fr);row-gap:40px;}
+  .flow-connector{display:none;}
+}
+@media (max-width:980px){
+  nav.nav{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--paper);flex-direction:column;align-items:stretch;justify-content:flex-start;padding:100px 28px 28px;gap:0;transform:translateX(100%);transition:transform .35s ease;overflow-y:auto;z-index:250;}
+  nav.nav.open{transform:translateX(0);}
+  .nav-item{width:100%;}
+  .nav-item > a, .nav-item > span{font-size:16px;padding:17px 4px;justify-content:space-between;border-bottom:1px solid var(--line);}
+  .dropdown{position:static;opacity:1;visibility:visible;transform:none;display:none;box-shadow:none;border:none;border-top:none;background:var(--paper-alt);}
+  .nav-item.mobile-open .dropdown{display:block;}
+  .menu-toggle{display:block;order:3;}
+  .nav-cta .btn span{display:none;}
+  .about-grid,.contact-grid,.two-card{grid-template-columns:1fr;}
+  .stats-row{grid-template-columns:repeat(2,1fr);}
+  .family-photos{grid-template-columns:repeat(2,1fr);}
+  .room-grid{grid-template-columns:repeat(2,1fr);}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);}
+  .blog-grid{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
+  .chart-card{flex-direction:column;text-align:center;}
+  .bar-row{grid-template-columns:80px 1fr 44px;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:640px){
+  .wrap{padding:0 22px;}
+  .nav-inner,.topbar .wrap{padding-left:22px;padding-right:22px;}
+  .family-photos,.gallery-grid,.room-grid{grid-template-columns:1fr 1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+  .hero-headline .hl{font-size:32px;}
+  .hero{height:78vh;}
+  .flow-track{grid-template-columns:1fr 1fr;}
+  .hero-sub{display:none;}
+  .scroll-cue{display:none;}
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;}
+}
+
+</style>
 </head>
 <body>
 
@@ -25,7 +470,7 @@
 
 <header class="site-header">
   <div class="wrap nav-inner">
-    <a href="index.html" class="brand">
+    <a href="#home" class="brand">
       <span class="brand-mark"><span class="media-slot"><span class="ph-fallback">KGI</span><img class="media-img" data-media="logo" alt="Koradiya Group Impex logo"></span></span>
       <span class="brand-text">
         <span class="name">Koradiya Group Impex</span>
@@ -33,19 +478,19 @@
       </span>
     </a>
     <nav class="nav" id="mainNav">
-      <div class="nav-item active"><a href="index.html">Home</a></div>
+      <div class="nav-item active"><a href="#home">Home</a></div>
       <div class="nav-item">
         <span>Corporate <span class="caret">&#9662;</span></span>
-        <div class="dropdown"><a href="about.html">Company Profile</a><a href="infrastructure.html">Infrastructure</a><a href="gallery.html">Gallery</a></div>
+        <div class="dropdown"><a href="#about">Company Profile</a><a href="#infrastructure">Infrastructure</a><a href="#gallery">Gallery</a></div>
       </div>
-      <div class="nav-item"><a href="products.html">Products</a></div>
-      <div class="nav-item"><a href="catalogue.html">E-Catalogue</a></div>
-      <div class="nav-item"><a href="export.html">Global</a></div>
-      <div class="nav-item"><a href="blog.html">Blog</a></div>
-      <div class="nav-item"><a href="contact.html">Contact</a></div>
+      <div class="nav-item"><a href="#products">Products</a></div>
+      <div class="nav-item"><a href="#catalogue">E-Catalogue</a></div>
+      <div class="nav-item"><a href="#export">Global</a></div>
+      <div class="nav-item"><a href="#blog">Blog</a></div>
+      <div class="nav-item"><a href="#contact">Contact</a></div>
     </nav>
     <div class="nav-cta">
-      <a href="contact.html" class="btn btn-clay btn-sm"><span>Get a Quote</span></a>
+      <a href="#contact" class="btn btn-clay btn-sm"><span>Get a Quote</span></a>
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">&#9776;</button>
     </div>
   </div>
@@ -65,8 +510,8 @@
       </div>
       <p class="hero-sub">A WHO-grade manufacturing floor producing 10,000+ boxes daily &mdash; engineered for architects, distributors and importers in 17+ countries.</p>
       <div class="hero-actions">
-        <a href="products.html" class="btn btn-clay">View Products</a>
-        <a href="catalogue.html" class="btn btn-outline-light">Download Catalogue</a>
+        <a href="#products" class="btn btn-clay">View Products</a>
+        <a href="#catalogue" class="btn btn-outline-light">Download Catalogue</a>
       </div>
     </div>
   </div>
@@ -90,8 +535,8 @@
   </div>
 </div>
 
-<!-- ============ ABOUT + MVV ============ -->
-<section id="about-home" class="anchor-offset">
+<!-- ============ ABOUT + MVV (home teaser) ============ -->
+<section id="home-about" class="anchor-offset">
   <div class="wrap about-grid">
     <div class="about-media reveal-left">
       <div class="frame media-slot">
@@ -118,6 +563,7 @@
           <div class="mvv-body"><p>Trust, respect and honesty in every interaction &mdash; with the trader placing a trial order and the importer placing a container load alike.</p></div>
         </div>
       </div>
+      <a href="#about" class="link-arrow" style="margin-top:22px;">Read Full Company Profile &rarr;</a>
     </div>
   </div>
 </section>
@@ -135,7 +581,7 @@
 </section>
 
 <!-- ============ PRODUCT TEASER ============ -->
-<section id="our-product" class="anchor-offset">
+<section id="home-product" class="anchor-offset">
   <div class="wrap product-teaser" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;">
     <div class="reveal-left">
       <span class="eyebrow">Our Product</span>
@@ -150,7 +596,7 @@
         <li class="mono" style="font-size:13px;padding:6px 0;color:var(--charcoal);">&#8226; 1000&times;1000mm</li>
         <li class="mono" style="font-size:13px;padding:6px 0;color:var(--charcoal);">&#8226; 1200&times;1800mm</li>
       </ul>
-      <a href="products.html" class="btn btn-clay">See Full Range</a>
+      <a href="#products" class="btn btn-clay">See Full Range</a>
     </div>
     <div class="reveal-right" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
       <div class="frame media-slot" style="border-radius:8px;aspect-ratio:1/1;box-shadow:var(--shadow-sm);">
@@ -165,36 +611,12 @@
   </div>
 </section>
 
-<!-- ============ MANUFACTURING PROCESS (FLOW DIAGRAM) ============ -->
-<section class="section-dark anchor-offset" id="process">
-  <div class="wrap">
-    <div class="section-head center reveal">
-      <span class="eyebrow" style="justify-content:center;">How It's Made</span>
-      <h2>Raw Material to Ready-to-Ship, in Six Stages</h2>
-      <p>Every slab and tile moves through the same controlled sequence &mdash; the reason our shade and size variation stays within tolerance across a full container.</p>
-    </div>
-    <div class="flow-wrap">
-      <div class="flow-track">
-        <div class="flow-connector" style="grid-column:1/7;">
-          <svg viewBox="0 0 1200 2" preserveAspectRatio="none"><path d="M0,1 L1200,1"/></svg>
-        </div>
-        <div class="flow-node"><div class="idx">01</div><h4>Raw Material Selection</h4><p>Clay, feldspar and quartz sourced and lab-tested for consistency.</p></div>
-        <div class="flow-node"><div class="idx">02</div><h4>Batching &amp; Grinding</h4><p>Precise recipe blending, wet-milled into a uniform slurry.</p></div>
-        <div class="flow-node"><div class="idx">03</div><h4>Pressing &amp; Shaping</h4><p>High-tonnage hydraulic presses form each body to spec.</p></div>
-        <div class="flow-node"><div class="idx">04</div><h4>Digital Glazing</h4><p>German digital printing lays down design with minimal variance.</p></div>
-        <div class="flow-node"><div class="idx">05</div><h4>Firing</h4><p>Kiln-fired at controlled temperature for strength &amp; finish.</p></div>
-        <div class="flow-node"><div class="idx">06</div><h4>Sort, Pack &amp; Dispatch</h4><p>100% quality-checked, palletised and loaded for export.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ ROOM USE GRID ============ -->
 <section class="anchor-offset">
   <div class="wrap">
     <div class="section-head split reveal">
       <div><span class="eyebrow">Applications</span><h2>Built for Every Space</h2></div>
-      <a href="products.html" class="link-arrow">Browse by Size &rarr;</a>
+      <a href="#products" class="link-arrow">Browse by Size &rarr;</a>
     </div>
     <div class="room-grid stagger reveal">
       <div class="room-card"><div class="media-slot"><span class="ph-fallback">Bathroom</span><img class="media-img" data-media="roomPhotos" data-media-index="0" alt="Bathroom tiles"></div><span>Bathroom</span></div>
@@ -206,31 +628,15 @@
   </div>
 </section>
 
-<!-- ============ EXPORT TEASER + DONUT CHART ============ -->
-<section class="section-dark section-alt anchor-offset" id="global-teaser" style="background:var(--charcoal-2);">
-  <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;">
-    <div class="reveal-left">
+<!-- ============ EXPORT TEASER ============ -->
+<section class="section-dark section-alt anchor-offset" id="home-export" style="background:var(--charcoal-2);">
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;">
+    <div style="max-width:640px;">
       <span class="eyebrow">Global Reach</span>
       <h2>Shipping to 17+ Countries, Every Month</h2>
-      <p style="margin-bottom:26px;">From UAE to South Africa, the Americas to Southeast Asia &mdash; our export desk handles documentation, container loading and freight coordination end-to-end.</p>
-      <a href="export.html" class="btn btn-brass">Explore Export Reach</a>
+      <p style="margin-bottom:0;">From UAE to South Africa, the Americas to Southeast Asia &mdash; our export desk handles documentation, container loading and freight coordination end-to-end.</p>
     </div>
-    <div class="chart-card reveal-right">
-      <div class="donut" data-pct="34">
-        <svg viewBox="0 0 160 160">
-          <circle class="bg" cx="80" cy="80" r="68"></circle>
-          <circle class="seg" cx="80" cy="80" r="68" stroke="var(--clay)"></circle>
-        </svg>
-        <div class="donut-center"><div class="n">34%</div><div class="l">Middle East</div></div>
-      </div>
-      <ul class="chart-legend">
-        <li><span class="sw" style="background:var(--clay);"></span>Middle East<span class="pct">34%</span></li>
-        <li><span class="sw" style="background:var(--brass);"></span>Africa<span class="pct">22%</span></li>
-        <li><span class="sw" style="background:#6E8B7A;"></span>Americas<span class="pct">18%</span></li>
-        <li><span class="sw" style="background:#8A939B;"></span>Europe &amp; UK<span class="pct">14%</span></li>
-        <li><span class="sw" style="background:#4B5860;"></span>Asia Pacific<span class="pct">12%</span></li>
-      </ul>
-    </div>
+    <a href="#export" class="btn btn-brass">Explore Export Reach</a>
   </div>
 </section>
 
@@ -259,13 +665,606 @@
       <h2 style="font-size:24px;margin-bottom:6px;">Ready to place a trial order?</h2>
       <p style="color:var(--muted);font-size:14.5px;margin:0;">Get pricing, MOQs and lead times within one business day.</p>
     </div>
-    <a href="contact.html" class="btn btn-dark">Request a Quote</a>
+    <a href="#contact" class="btn btn-dark">Request a Quote</a>
   </div>
 </section>
 
+<!-- ============================================================ -->
+<!-- ============ COMPANY PROFILE (About) ============ -->
+<!-- ============================================================ -->
+<div class="page-header" id="about-header">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="#home">Home</a> / <span>Corporate</span> / <span>Company Profile</span></div>
+    <h1>Company Profile</h1>
+    <p>A manufacturer-first business built in Halvad, Morbi &mdash; India's ceramic cluster &mdash; and run on one rule: quality that holds up outside the sample box.</p>
+  </div>
+</div>
+
+<section class="anchor-offset" id="about">
+  <div class="wrap about-grid">
+    <div class="about-media reveal-left">
+      <div class="frame media-slot">
+        <span class="ph-fallback"><span class="ic">&#9673;</span>Company Photograph</span>
+        <img class="media-img" data-media="aboutImage" alt="Koradiya Group Impex team">
+      </div>
+      <div class="tag-badge"><div class="n mono">2010</div><div class="l">Founded</div></div>
+    </div>
+    <div class="about-copy reveal-right">
+      <span class="eyebrow">Who We Are</span>
+      <h2>A Leading Manufacturer of Porcelain &amp; Ceramic Tiles</h2>
+      <p>Koradiya Group Impex is a leading manufacturer of Porcelain and Ceramic tiles in India. Our manufacturing units run on modern, closely-monitored equipment, and the Indian consumer's fast-moving appetite for style and finish shapes every new design we release.</p>
+      <p>Our pace in keeping up with customer and market demand has made Koradiya Group Impex synonymous with quality, service and innovation &mdash; not only in the domestic market but internationally too. Our Porcelain Tiles, Ceramic Wall Tiles, Floor Tiles and Designer Tiles come in a wide range of colours and textures, suited to bathrooms, living rooms, corridors, study rooms and kitchens alike.</p>
+      <ul style="list-style:none;padding:0;display:grid;gap:14px;margin-top:22px;">
+        <li style="display:flex;gap:12px;font-size:14.5px;color:var(--muted);"><span style="color:var(--clay);font-weight:700;">&#10003;</span> Eco-friendly production, following environmental compliance at every stage</li>
+        <li style="display:flex;gap:12px;font-size:14.5px;color:var(--muted);"><span style="color:var(--clay);font-weight:700;">&#10003;</span> In-house design studio creating uniquely patterned tiles</li>
+        <li style="display:flex;gap:12px;font-size:14.5px;color:var(--muted);"><span style="color:var(--clay);font-weight:700;">&#10003;</span> German digital printing technology for sharp, low-variance output</li>
+        <li style="display:flex;gap:12px;font-size:14.5px;color:var(--muted);"><span style="color:var(--clay);font-weight:700;">&#10003;</span> A manufacturing &amp; export hub connecting Asia to the global market</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt anchor-offset">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="justify-content:center;">Mission, Vision &amp; Values</span>
+      <h2>What Drives Every Batch We Fire</h2>
+    </div>
+    <div class="two-card stagger reveal" style="max-width:960px;margin:0 auto;grid-template-columns:repeat(2,1fr);">
+      <div class="info-tile"><div class="ico">&#127919;</div><h4>Mission</h4><p>Meet every customer's expectation on quality, colour consistency and delivery timeline &mdash; without exception, on every order size.</p></div>
+      <div class="info-tile"><div class="ico">&#128065;</div><h4>Vision</h4><p>To rank among the top five tile and slab manufacturers in India through continuous technology and design investment.</p></div>
+      <div class="info-tile"><div class="ico">&#129309;</div><h4>Values</h4><p>Trust, respect and honesty in every interaction &mdash; with a first-time trader and a long-term importer alike.</p></div>
+      <div class="info-tile"><div class="ico">&#127757;</div><h4>Sustainability</h4><p>Water-recycling kilns and responsibly sourced raw material across our Halvad manufacturing floor.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="anchor-offset">
+  <div class="wrap">
+    <div class="section-head split reveal">
+      <div><span class="eyebrow">Milestones</span><h2>Growing Since 2010</h2></div>
+    </div>
+    <div class="bars reveal" style="max-width:720px;">
+      <div class="bar-row"><span class="lbl">2010</span><div class="bar-track"><div class="bar-fill" data-width="30%"></div></div><span class="val">Founded</span></div>
+      <div class="bar-row"><span class="lbl">2015</span><div class="bar-track"><div class="bar-fill" data-width="55%"></div></div><span class="val">5 Nations</span></div>
+      <div class="bar-row"><span class="lbl">2020</span><div class="bar-track"><div class="bar-fill" data-width="80%"></div></div><span class="val">12 Nations</span></div>
+      <div class="bar-row"><span class="lbl">2026</span><div class="bar-track"><div class="bar-fill" data-width="100%"></div></div><span class="val">17+ Nations</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-dark">
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;">
+    <div>
+      <span class="eyebrow">Next</span>
+      <h2 style="margin-bottom:0;">See how it's manufactured &rarr;</h2>
+    </div>
+    <a href="#infrastructure" class="btn btn-brass">View Infrastructure</a>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- ============ INFRASTRUCTURE ============ -->
+<!-- ============================================================ -->
+<div class="page-header" id="infrastructure-header">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="#home">Home</a> / <span>Corporate</span> / <span>Infrastructure</span></div>
+    <h1>Infrastructure &amp; Manufacturing</h1>
+    <p>A modern production floor built to move raw material to export-ready pallet without a quality drop-off, at scale.</p>
+  </div>
+</div>
+
+<section id="infrastructure" class="anchor-offset">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Capacity</span>
+      <h2>Built to Produce at Volume, Without Cutting Corners</h2>
+      <p>From day one we've focused on a strong setup to manufacture a large volume of quality product. Today our facility produces 10,000+ boxes of tile daily, backed by a smart packing and loading process so tiles stay safe from our floor to your dock.</p>
+    </div>
+    <div class="stats-row stagger reveal">
+      <div class="stat"><div class="num"><span data-count="10000" data-suffix="+">0</span></div><div class="lbl">Boxes Produced Daily</div></div>
+      <div class="stat"><div class="num"><span data-count="17" data-suffix="+">0</span></div><div class="lbl">Export Countries</div></div>
+      <div class="stat"><div class="num"><span data-count="100" data-suffix="%">0</span></div><div class="lbl">Quality Checked</div></div>
+      <div class="stat"><div class="num" style="font-size:26px;">Safe</div><div class="lbl">Packing &amp; Storage</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt anchor-offset">
+  <div class="wrap">
+    <div class="section-head split reveal">
+      <div><span class="eyebrow">Output Mix</span><h2>Daily Production by Product Line</h2></div>
+    </div>
+    <div class="bars reveal" style="max-width:720px;">
+      <div class="bar-row"><span class="lbl">Porcelain Tiles</span><div class="bar-track"><div class="bar-fill" data-width="100%"></div></div><span class="val">6,000 bx</span></div>
+      <div class="bar-row"><span class="lbl">Marble Slabs</span><div class="bar-track"><div class="bar-fill" data-width="58%"></div></div><span class="val">2,500 bx</span></div>
+      <div class="bar-row"><span class="lbl">Digital Vitrified</span><div class="bar-track"><div class="bar-fill" data-width="35%"></div></div><span class="val">1,500 bx</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MANUFACTURING PROCESS (FLOW DIAGRAM) ============ -->
+<section class="section-dark anchor-offset" id="process">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="justify-content:center;">Process</span>
+      <h2>Raw Material to Ready-to-Ship, in Six Stages</h2>
+      <p>The same controlled sequence runs on every batch &mdash; why our shade and size tolerance holds across a full container load.</p>
+    </div>
+    <div class="flow-wrap">
+      <div class="flow-track">
+        <div class="flow-connector" style="grid-column:1/7;">
+          <svg viewBox="0 0 1200 2" preserveAspectRatio="none"><path d="M0,1 L1200,1"/></svg>
+        </div>
+        <div class="flow-node"><div class="idx">01</div><h4>Raw Material Selection</h4><p>Clay, feldspar and quartz sourced and lab-tested for consistency.</p></div>
+        <div class="flow-node"><div class="idx">02</div><h4>Batching &amp; Grinding</h4><p>Precise recipe blending, wet-milled into a uniform slurry.</p></div>
+        <div class="flow-node"><div class="idx">03</div><h4>Pressing &amp; Shaping</h4><p>High-tonnage hydraulic presses form each body to spec.</p></div>
+        <div class="flow-node"><div class="idx">04</div><h4>Digital Glazing</h4><p>German digital printing lays down design with minimal variance.</p></div>
+        <div class="flow-node"><div class="idx">05</div><h4>Firing</h4><p>Kiln-fired at controlled temperature for strength &amp; finish.</p></div>
+        <div class="flow-node"><div class="idx">06</div><h4>Sort, Pack &amp; Dispatch</h4><p>100% quality-checked, palletised and loaded for export.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="anchor-offset">
+  <div class="wrap two-card reveal">
+    <div class="info-tile">
+      <div class="ico">&#9881;</div>
+      <h4>Technical Specification</h4>
+      <p>Water absorption, breaking strength, PEI rating and slip resistance data available for every SKU on request.</p>
+      <a href="#contact" class="link-arrow">Request Spec Sheet &rarr;</a>
+    </div>
+    <div class="info-tile" id="packing-details">
+      <div class="ico">&#127873;</div>
+      <h4>Packing Details</h4>
+      <p>Standard export cartons, shrink-wrapped pallets and container load plans optimised for zero-breakage transit.</p>
+      <a href="#contact" class="link-arrow">Ask About Packing &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- ============ GALLERY ============ -->
+<!-- ============================================================ -->
+<div class="page-header" id="gallery-header">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="#home">Home</a> / <span>Corporate</span> / <span>Gallery</span></div>
+    <h1>Gallery</h1>
+    <p>A look inside our manufacturing floor, finished projects and product close-ups.</p>
+  </div>
+</div>
+
+<section class="anchor-offset" id="gallery">
+  <div class="wrap">
+    <div class="gallery-grid stagger reveal">
+      <div class="g-item tall" data-lightbox="" data-media="galleryImages" data-media-index="0">
+        <div class="media-slot"><span class="ph-fallback">Gallery 1</span><img class="media-img" data-media="galleryImages" data-media-index="0" alt="Project gallery photo 1"></div>
+        <div class="zoom">&#128269;</div>
+      </div>
+      <div class="g-item" data-lightbox="" data-media="galleryImages" data-media-index="1">
+        <div class="media-slot"><span class="ph-fallback">Gallery 2</span><img class="media-img" data-media="galleryImages" data-media-index="1" alt="Project gallery photo 2"></div>
+        <div class="zoom">&#128269;</div>
+      </div>
+      <div class="g-item" data-lightbox="" data-media="galleryImages" data-media-index="2">
+        <div class="media-slot"><span class="ph-fallback">Gallery 3</span><img class="media-img" data-media="galleryImages" data-media-index="2" alt="Project gallery photo 3"></div>
+        <div class="zoom">&#128269;</div>
+      </div>
+      <div class="g-item tall" data-lightbox="" data-media="galleryImages" data-media-index="3">
+        <div class="media-slot"><span class="ph-fallback">Gallery 4</span><img class="media-img" data-media="galleryImages" data-media-index="3" alt="Project gallery photo 4"></div>
+        <div class="zoom">&#128269;</div>
+      </div>
+      <div class="g-item" data-lightbox="" data-media="galleryImages" data-media-index="4">
+        <div class="media-slot"><span class="ph-fallback">Gallery 5</span><img class="media-img" data-media="galleryImages" data-media-index="4" alt="Project gallery photo 5"></div>
+        <div class="zoom">&#128269;</div>
+      </div>
+      <div class="g-item" data-lightbox="" data-media="galleryImages" data-media-index="5">
+        <div class="media-slot"><span class="ph-fallback">Gallery 6</span><img class="media-img" data-media="galleryImages" data-media-index="5" alt="Project gallery photo 6"></div>
+        <div class="zoom">&#128269;</div>
+      </div>
+      <div class="g-item tall" data-lightbox="" data-media="galleryImages" data-media-index="6">
+        <div class="media-slot"><span class="ph-fallback">Gallery 7</span><img class="media-img" data-media="galleryImages" data-media-index="6" alt="Project gallery photo 7"></div>
+        <div class="zoom">&#128269;</div>
+      </div>
+      <div class="g-item" data-lightbox="" data-media="galleryImages" data-media-index="7">
+        <div class="media-slot"><span class="ph-fallback">Gallery 8</span><img class="media-img" data-media="galleryImages" data-media-index="7" alt="Project gallery photo 8"></div>
+        <div class="zoom">&#128269;</div>
+      </div>
+      <div class="g-item" data-lightbox="" data-media="galleryImages" data-media-index="8">
+        <div class="media-slot"><span class="ph-fallback">Gallery 9</span><img class="media-img" data-media="galleryImages" data-media-index="8" alt="Project gallery photo 9"></div>
+        <div class="zoom">&#128269;</div>
+      </div>
+      <div class="g-item" data-lightbox="" data-media="galleryImages" data-media-index="9">
+        <div class="media-slot"><span class="ph-fallback">Gallery 10</span><img class="media-img" data-media="galleryImages" data-media-index="9" alt="Project gallery photo 10"></div>
+        <div class="zoom">&#128269;</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- ============ PRODUCTS ============ -->
+<!-- ============================================================ -->
+<div class="page-header" id="products-header">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="#home">Home</a> / <span>Products</span></div>
+    <h1>Our Product Range</h1>
+    <p>Porcelain Tiles, Digital Vitrified Tiles and Marble Slabs &mdash; every size below ships with a matching technical spec sheet.</p>
+  </div>
+</div>
+
+<section class="anchor-offset" id="products">
+  <div class="wrap">
+    <div class="filter-tabs" data-target="#productGrid .p-card">
+      <button class="active" data-filter="all">All Products</button>
+      <button data-filter="marble-slab">Marble Slab</button>
+      <button data-filter="porcelain-tiles">Porcelain Tiles</button>
+    </div>
+    <div class="family-photos" id="productGrid">
+      <div class="p-card" data-cat="marble-slab">
+          <div class="thumb media-slot">
+            <span class="ph-fallback">1200 X 2780 MM</span>
+            <img class="media-img" data-media="marbleSlabImages" data-media-index="0" alt="1200 X 2780 MM marble slab">
+            <span class="dim-tag mono">1200 X 2780 MM</span>
+          </div>
+          <div class="meta"><span class="sz">1200 X 2780 MM</span><span class="arr">&rarr;</span></div>
+        </div>
+        <div class="p-card" data-cat="marble-slab">
+          <div class="thumb media-slot">
+            <span class="ph-fallback">600 X 1800 MM</span>
+            <img class="media-img" data-media="marbleSlabImages" data-media-index="1" alt="600 X 1800 MM marble slab">
+            <span class="dim-tag mono">600 X 1800 MM</span>
+          </div>
+          <div class="meta"><span class="sz">600 X 1800 MM</span><span class="arr">&rarr;</span></div>
+        </div>
+      <div class="p-card" data-cat="porcelain-tiles">
+          <div class="thumb media-slot">
+            <span class="ph-fallback">600 X 1200 MM</span>
+            <img class="media-img" data-media="porcelainTileImages" data-media-index="0" alt="600 X 1200 MM porcelain tiles">
+            <span class="dim-tag mono">600 X 1200 MM</span>
+          </div>
+          <div class="meta"><span class="sz">600 X 1200 MM</span><span class="arr">&rarr;</span></div>
+        </div>
+        <div class="p-card" data-cat="porcelain-tiles">
+          <div class="thumb media-slot">
+            <span class="ph-fallback">300 X 600 MM</span>
+            <img class="media-img" data-media="porcelainTileImages" data-media-index="1" alt="300 X 600 MM porcelain tiles">
+            <span class="dim-tag mono">300 X 600 MM</span>
+          </div>
+          <div class="meta"><span class="sz">300 X 600 MM</span><span class="arr">&rarr;</span></div>
+        </div>
+        <div class="p-card" data-cat="porcelain-tiles">
+          <div class="thumb media-slot">
+            <span class="ph-fallback">600 X 600 MM</span>
+            <img class="media-img" data-media="porcelainTileImages" data-media-index="2" alt="600 X 600 MM porcelain tiles">
+            <span class="dim-tag mono">600 X 600 MM</span>
+          </div>
+          <div class="meta"><span class="sz">600 X 600 MM</span><span class="arr">&rarr;</span></div>
+        </div>
+        <div class="p-card" data-cat="porcelain-tiles">
+          <div class="thumb media-slot">
+            <span class="ph-fallback">800 X 800 MM</span>
+            <img class="media-img" data-media="porcelainTileImages" data-media-index="3" alt="800 X 800 MM porcelain tiles">
+            <span class="dim-tag mono">800 X 800 MM</span>
+          </div>
+          <div class="meta"><span class="sz">800 X 800 MM</span><span class="arr">&rarr;</span></div>
+        </div>
+        <div class="p-card" data-cat="porcelain-tiles">
+          <div class="thumb media-slot">
+            <span class="ph-fallback">1200 X 1200 MM</span>
+            <img class="media-img" data-media="porcelainTileImages" data-media-index="4" alt="1200 X 1200 MM porcelain tiles">
+            <span class="dim-tag mono">1200 X 1200 MM</span>
+          </div>
+          <div class="meta"><span class="sz">1200 X 1200 MM</span><span class="arr">&rarr;</span></div>
+        </div>
+        <div class="p-card" data-cat="porcelain-tiles">
+          <div class="thumb media-slot">
+            <span class="ph-fallback">1000 X 1000 MM</span>
+            <img class="media-img" data-media="porcelainTileImages" data-media-index="5" alt="1000 X 1000 MM porcelain tiles">
+            <span class="dim-tag mono">1000 X 1000 MM</span>
+          </div>
+          <div class="meta"><span class="sz">1000 X 1000 MM</span><span class="arr">&rarr;</span></div>
+        </div>
+        <div class="p-card" data-cat="porcelain-tiles">
+          <div class="thumb media-slot">
+            <span class="ph-fallback">1200 X 1800 MM</span>
+            <img class="media-img" data-media="porcelainTileImages" data-media-index="6" alt="1200 X 1800 MM porcelain tiles">
+            <span class="dim-tag mono">1200 X 1800 MM</span>
+          </div>
+          <div class="meta"><span class="sz">1200 X 1800 MM</span><span class="arr">&rarr;</span></div>
+        </div>
+        <div class="p-card" data-cat="porcelain-tiles">
+          <div class="thumb media-slot">
+            <span class="ph-fallback">800 X 1600 MM</span>
+            <img class="media-img" data-media="porcelainTileImages" data-media-index="7" alt="800 X 1600 MM porcelain tiles">
+            <span class="dim-tag mono">800 X 1600 MM</span>
+          </div>
+          <div class="meta"><span class="sz">800 X 1600 MM</span><span class="arr">&rarr;</span></div>
+        </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt anchor-offset" id="marble-slab">
+  <div class="wrap">
+    <div class="section-head split reveal">
+      <div><span class="eyebrow">Collection</span><h3 style="font-size:24px;font-weight:600;">Marble Slab Collection</h3></div>
+      <a href="#catalogue" class="link-arrow">View in Catalogue &rarr;</a>
+    </div>
+    <p style="max-width:640px;color:var(--muted);font-size:14.5px;line-height:1.75;">Asia's growing appetite for large-format surfaces, engineered into a slab that installs like porcelain and reads like natural stone &mdash; ideal for countertops, facades and feature walls.</p>
+  </div>
+</section>
+
+<section class="anchor-offset" id="porcelain-tiles">
+  <div class="wrap">
+    <div class="section-head split reveal">
+      <div><span class="eyebrow">Collection</span><h3 style="font-size:24px;font-weight:600;">Porcelain &amp; Digital Vitrified Tiles</h3></div>
+      <a href="#catalogue" class="link-arrow">View in Catalogue &rarr;</a>
+    </div>
+    <p style="max-width:640px;color:var(--muted);font-size:14.5px;line-height:1.75;">Smooth, durable and slip-resistant &mdash; checked for shade consistency before packing, in sizes from 300&times;600mm through to 1200&times;1800mm.</p>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap two-card reveal">
+    <div class="info-tile">
+      <div class="ico">&#9881;</div>
+      <h4>Technical Specification</h4>
+      <p>Technical data sheets that help you make the right choice for the application.</p>
+      <a href="#infrastructure" class="link-arrow">Read More &rarr;</a>
+    </div>
+    <div class="info-tile">
+      <div class="ico">&#127873;</div>
+      <h4>Packing Details</h4>
+      <p>Carton and pallet specifications available per size &mdash; ask our export desk for a load plan.</p>
+      <a href="#contact" class="link-arrow">Contact Us &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- ============ E-CATALOGUE ============ -->
+<!-- ============================================================ -->
+<div class="page-header" id="catalogue-header">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="#home">Home</a> / <span>E-Catalogue</span></div>
+    <h1>Browse Our Full Catalogue</h1>
+    <p>Download the complete product catalogue for detailed specifications, finishes and sizing across our full tile and marble slab range.</p>
+  </div>
+</div>
+
+<section class="anchor-offset" id="catalogue">
+  <div class="wrap" style="text-align:center;">
+    <a href="#" class="btn btn-dark" data-catalogue-link>Download Catalogue (PDF)</a>
+    <div class="cat-cards">
+      <div class="cat-card reveal">
+        <div class="ico">&#127973;</div>
+        <h4>Marble Slab Collection</h4>
+        <p>1200&times;2780mm &amp; 600&times;1800mm formats with finish samples.</p>
+        <a href="#" class="link-arrow" data-catalogue-link>Download &rarr;</a>
+      </div>
+      <div class="cat-card reveal">
+        <div class="ico">&#9635;</div>
+        <h4>Porcelain Tile Range</h4>
+        <p>Full size chart from 300&times;600mm to 1200&times;1800mm.</p>
+        <a href="#" class="link-arrow" data-catalogue-link>Download &rarr;</a>
+      </div>
+      <div class="cat-card reveal">
+        <div class="ico">&#128203;</div>
+        <h4>Technical Data Sheet</h4>
+        <p>Water absorption, PEI rating &amp; breaking strength per SKU.</p>
+        <a href="#contact" class="link-arrow">Request &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;">
+    <div>
+      <h2 style="font-size:24px;margin-bottom:6px;">Need a size not listed?</h2>
+      <p style="color:var(--muted);font-size:14.5px;margin:0;">We take on custom formats for larger export orders &mdash; talk to our team.</p>
+    </div>
+    <a href="#contact" class="btn btn-clay">Talk to Export Desk</a>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- ============ GLOBAL / EXPORT ============ -->
+<!-- ============================================================ -->
+<div class="page-header" id="export-header">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="#home">Home</a> / <span>Global</span></div>
+    <h1>Our Export Reach</h1>
+    <p>Koradiya Group Impex doesn't stay in one place &mdash; we reach out across the world, shipping to 17+ countries and growing.</p>
+  </div>
+</div>
+
+<section class="anchor-offset" id="export">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Global Reach</span>
+      <h2>We Export to More Than 17 Countries</h2>
+      <p>Including UAE, South Africa, the United States, Nepal, the United Kingdom and Saudi Arabia, among others. We take an active part in exhibitions held globally every year, giving equal focus to domestic and international markets, and keep adding new customers, dealers and agents &mdash; without ever compromising on quality.</p>
+    </div>
+    <ul class="country-list reveal" style="max-width:820px;">
+      <li>UAE</li><li>South Africa</li><li>United States</li><li>Nepal</li><li>United Kingdom</li><li>Saudi Arabia</li><li>Kenya</li><li>Tanzania</li><li>Sri Lanka</li><li>Qatar</li><li>Oman</li><li>+ 6 more</li>
+    </ul>
+    <a href="#contact" class="btn btn-clay reveal">Enquire for Export</a>
+  </div>
+</section>
+
+<section class="section-dark section-alt" style="background:var(--charcoal-2);">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="justify-content:center;">Distribution</span>
+      <h2>Export Volume by Region</h2>
+    </div>
+    <div class="chart-card reveal" style="max-width:760px;margin:0 auto;">
+      <div class="donut" data-pct="34">
+        <svg viewBox="0 0 160 160">
+          <circle class="bg" cx="80" cy="80" r="68"></circle>
+          <circle class="seg" cx="80" cy="80" r="68" stroke="var(--clay)"></circle>
+        </svg>
+        <div class="donut-center"><div class="n">34%</div><div class="l">Middle East</div></div>
+      </div>
+      <ul class="chart-legend">
+        <li><span class="sw" style="background:var(--clay);"></span>Middle East<span class="pct">34%</span></li>
+        <li><span class="sw" style="background:var(--brass);"></span>Africa<span class="pct">22%</span></li>
+        <li><span class="sw" style="background:#6E8B7A;"></span>Americas<span class="pct">18%</span></li>
+        <li><span class="sw" style="background:#8A939B;"></span>Europe &amp; UK<span class="pct">14%</span></li>
+        <li><span class="sw" style="background:#4B5860;"></span>Asia Pacific<span class="pct">12%</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="anchor-offset">
+  <div class="wrap">
+    <div class="section-head split reveal">
+      <div><span class="eyebrow">Top Markets</span><h2>Leading Export Destinations</h2></div>
+    </div>
+    <div class="bars reveal" style="max-width:720px;">
+      <div class="bar-row"><span class="lbl">UAE</span><div class="bar-track"><div class="bar-fill" data-width="100%"></div></div><span class="val">Top</span></div>
+      <div class="bar-row"><span class="lbl">South Africa</span><div class="bar-track"><div class="bar-fill" data-width="82%"></div></div><span class="val">High</span></div>
+      <div class="bar-row"><span class="lbl">Nepal</span><div class="bar-track"><div class="bar-fill" data-width="64%"></div></div><span class="val">High</span></div>
+      <div class="bar-row"><span class="lbl">Saudi Arabia</span><div class="bar-track"><div class="bar-fill" data-width="58%"></div></div><span class="val">Growing</span></div>
+      <div class="bar-row"><span class="lbl">USA</span><div class="bar-track"><div class="bar-fill" data-width="40%"></div></div><span class="val">Growing</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- ============ BLOG ============ -->
+<!-- ============================================================ -->
+<div class="page-header" id="blog-header">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="#home">Home</a> / <span>Blog</span></div>
+    <h1>Notes on Tiles, Slabs &amp; Export</h1>
+    <p>Practical guides for architects, distributors and importers working with porcelain and marble.</p>
+  </div>
+</div>
+
+<section class="anchor-offset" id="blog">
+  <div class="wrap">
+    <div class="blog-grid stagger reveal">
+      <div class="blog-card reveal">
+        <div class="thumb media-slot"><span class="ph-fallback">Blog Photo 1</span><img class="media-img" data-media="blogImages" data-media-index="0" alt="Porcelain vs Ceramic Tiles: Which Is Right for Your Project?"></div>
+        <div class="body">
+          <div class="date">12 Jul 2026</div>
+          <h4>Porcelain vs Ceramic Tiles: Which Is Right for Your Project?</h4>
+          <p>A practical comparison of density, water absorption and cost for architects and importers choosing between the two.</p>
+          <a href="#" class="link-arrow">Read More &rarr;</a>
+        </div>
+      </div>
+      <div class="blog-card reveal">
+        <div class="thumb media-slot"><span class="ph-fallback">Blog Photo 2</span><img class="media-img" data-media="blogImages" data-media-index="1" alt="How to Choose the Right Tile Size for Small Spaces"></div>
+        <div class="body">
+          <div class="date">28 Jun 2026</div>
+          <h4>How to Choose the Right Tile Size for Small Spaces</h4>
+          <p>Why 600&times;600mm often outperforms larger formats in compact bathrooms and utility areas.</p>
+          <a href="#" class="link-arrow">Read More &rarr;</a>
+        </div>
+      </div>
+      <div class="blog-card reveal">
+        <div class="thumb media-slot"><span class="ph-fallback">Blog Photo 3</span><img class="media-img" data-media="blogImages" data-media-index="2" alt="Marble Slab Countertops: A Buyer's Guide for Importers"></div>
+        <div class="body">
+          <div class="date">14 Jun 2026</div>
+          <h4>Marble Slab Countertops: A Buyer's Guide for Importers</h4>
+          <p>MOQ, crating and transit considerations when bringing large-format slabs into a new market.</p>
+          <a href="#" class="link-arrow">Read More &rarr;</a>
+        </div>
+      </div>
+      <div class="blog-card reveal">
+        <div class="thumb media-slot"><span class="ph-fallback">Blog Photo 4</span><img class="media-img" data-media="blogImages" data-media-index="3" alt="Grout Colour Guide: Matching Grout to Your Tile Palette"></div>
+        <div class="body">
+          <div class="date">30 May 2026</div>
+          <h4>Grout Colour Guide: Matching Grout to Your Tile Palette</h4>
+          <p>Contrast vs. blend &mdash; how grout choice changes the perceived size and tone of a floor.</p>
+          <a href="#" class="link-arrow">Read More &rarr;</a>
+        </div>
+      </div>
+      <div class="blog-card reveal">
+        <div class="thumb media-slot"><span class="ph-fallback">Blog Photo 5</span><img class="media-img" data-media="blogImages" data-media-index="4" alt="Understanding Tile Packing &amp; Export Logistics"></div>
+        <div class="body">
+          <div class="date">16 May 2026</div>
+          <h4>Understanding Tile Packing &amp; Export Logistics</h4>
+          <p>What happens between our packing line and your container &mdash; and how we keep breakage near zero.</p>
+          <a href="#" class="link-arrow">Read More &rarr;</a>
+        </div>
+      </div>
+      <div class="blog-card reveal">
+        <div class="thumb media-slot"><span class="ph-fallback">Blog Photo 6</span><img class="media-img" data-media="blogImages" data-media-index="5" alt="2026 Design Trends: Large-Format Porcelain Slabs"></div>
+        <div class="body">
+          <div class="date">2 May 2026</div>
+          <h4>2026 Design Trends: Large-Format Porcelain Slabs</h4>
+          <p>Why 1200&times;1800mm formats are moving from commercial lobbies into residential kitchens.</p>
+          <a href="#" class="link-arrow">Read More &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- ============ CONTACT ============ -->
+<!-- ============================================================ -->
+<div class="page-header" id="contact-header">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="#home">Home</a> / <span>Contact</span></div>
+    <h1>Let's Work Together</h1>
+    <p>Send us an enquiry and our export or domestic team will respond with pricing and availability within one business day.</p>
+  </div>
+</div>
+
+<section class="anchor-offset" id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-info reveal-left">
+      <div class="info-card">
+        <div class="ico">&#128205;</div>
+        <div><h4>Address</h4><p>Survey No. 5577, D.V. Parkhani<br>Opposite Gadhani Rang, Halvad, Morbi<br>Gujarat &ndash; 363330, India</p></div>
+      </div>
+      <div class="info-card">
+        <div class="ico">&#9993;</div>
+        <div><h4>Export Enquiry</h4><p><a href="mailto:export@koradiyagroupimpex.com">export@koradiyagroupimpex.com</a><br>+91 77779 71693</p></div>
+      </div>
+      <div class="info-card">
+        <div class="ico">&#9993;</div>
+        <div><h4>Domestic Enquiry</h4><p><a href="mailto:info@koradiyagroupimpex.com">info@koradiyagroupimpex.com</a><br>+91 77779 71693</p></div>
+      </div>
+      <div class="map-embed">
+        <iframe src="https://www.google.com/maps?q=Halvad,Morbi,Gujarat,363330&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+    <form class="contact-form reveal-right" id="contactForm">
+      <div class="form-row">
+        <div><label>Full Name</label><input type="text" name="name" required placeholder="Your name"></div>
+        <div><label>Phone</label><input type="tel" name="phone" placeholder="Your phone number"></div>
+      </div>
+      <div class="form-row">
+        <div><label>Email</label><input type="email" name="email" required placeholder="you@company.com"></div>
+        <div><label>Enquiry Type</label>
+          <select name="type">
+            <option>Export Enquiry</option>
+            <option>Domestic Enquiry</option>
+            <option>Catalogue Request</option>
+            <option>Technical Spec Request</option>
+          </select>
+        </div>
+      </div>
+      <div><label>Message</label><textarea name="message" placeholder="Tell us what you're looking for &mdash; product, size, quantity, destination port..."></textarea></div>
+      <button type="submit" class="btn btn-clay" style="justify-self:start;">Send Enquiry</button>
+      <p class="form-note">This form currently opens your email app to send the message. Connect it to a backend later to receive enquiries directly.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ SITE-WIDE LIGHTBOX (gallery) ============ -->
 <div id="lightbox" class="lightbox">
   <button class="lightbox-close">&times;</button>
+  <button class="lightbox-nav prev">&#8249;</button>
   <img src="" alt="">
+  <button class="lightbox-nav next">&#8250;</button>
 </div>
 
 <!-- ============ FOOTER ============ -->
@@ -273,7 +1272,7 @@
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="index.html" class="brand">
+        <a href="#home" class="brand">
           <span class="brand-mark"><span class="media-slot"><span class="ph-fallback">KGI</span><img class="media-img" data-media="logo" alt="Koradiya Group Impex logo"></span></span>
           <span class="brand-text"><span class="name">Koradiya Group Impex</span></span>
         </a>
@@ -288,12 +1287,15 @@
       <div class="footer-col">
         <h5>Quick Links</h5>
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">Company Profile</a></li>
-          <li><a href="products.html">Products</a></li>
-          <li><a href="catalogue.html">E-Catalogue</a></li>
-          <li><a href="export.html">Global Reach</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">Company Profile</a></li>
+          <li><a href="#infrastructure">Infrastructure</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#catalogue">E-Catalogue</a></li>
+          <li><a href="#export">Global Reach</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -316,7 +1318,360 @@
 
 <button class="back-to-top" id="backToTop" aria-label="Back to top">&#8593;</button>
 
-<script src="media.js"></script>
-<script src="assets/js/main.js"></script>
+<script>
+/* ==========================================================================
+   SITE_MEDIA — central image registry.
+   Replace each path below with your real uploaded asset paths (or point
+   these at your Supabase/CDN URLs). Any key left empty will gracefully
+   fall back to the on-brand placeholder pattern already built into the
+   page design, so the site never shows a broken image icon.
+   ========================================================================== */
+window.SITE_MEDIA = {
+  logo: "assets/logo/logo.png",
+
+  // Home hero background slides (any number, cycles automatically)
+  heroSlides: [
+    // "assets/hero/hero-1.jpg",
+    // "assets/hero/hero-2.jpg",
+    // "assets/hero/hero-3.jpg"
+  ],
+
+  // About section
+  aboutImage: "", // "assets/about/facility.jpg"
+
+  // Home "Our Product" teaser (2 images)
+  homeProductPhotos: [
+    // "assets/products/teaser-1.jpg",
+    // "assets/products/teaser-2.jpg"
+  ],
+
+  // Product grids on products.html — order must match the size list on the page
+  marbleSlabImages: [
+    // "assets/products/marble-1200x2780.jpg",
+    // "assets/products/marble-600x1800.jpg"
+  ],
+  porcelainTileImages: [
+    // "assets/products/porcelain-600x1200.jpg",
+    // "assets/products/porcelain-300x600.jpg",
+    // "assets/products/porcelain-600x600.jpg",
+    // "assets/products/porcelain-800x800.jpg",
+    // "assets/products/porcelain-1200x1200.jpg",
+    // "assets/products/porcelain-1000x1000.jpg",
+    // "assets/products/porcelain-1200x1800.jpg",
+    // "assets/products/porcelain-800x1600.jpg"
+  ],
+
+  // Home "Built for Every Space" room cards — Bathroom, Bedroom, Kitchen, Living Room, Facade
+  roomPhotos: [
+    // "assets/rooms/bathroom.jpg",
+    // "assets/rooms/bedroom.jpg",
+    // "assets/rooms/kitchen.jpg",
+    // "assets/rooms/living-room.jpg",
+    // "assets/rooms/facade.jpg"
+  ],
+
+  // gallery.html — up to 10 images
+  galleryImages: [],
+
+  // blog.html — up to 6 images
+  blogImages: [],
+
+  // Catalogue PDF download
+  brochure: "assets/brochure/catalogue.pdf"
+};
+
+</script>
+<script>
+/* ==========================================================================
+   KORADIYA GROUP IMPEX — main.js
+   Shared interactivity: nav, hero slider, scroll reveal, count-up stats,
+   flow-diagram draw-in, donut/bar charts, filters, gallery lightbox,
+   testimonial slider, media.js image binding.
+   ========================================================================== */
+(function(){
+  "use strict";
+
+  document.addEventListener('DOMContentLoaded', init);
+
+  function init(){
+    document.getElementById('year') && (document.getElementById('year').textContent = new Date().getFullYear());
+    bindMedia();
+    headerScroll();
+    mobileNav();
+    heroSlider();
+    scrollReveal();
+    countUp();
+    flowDiagram();
+    donutCharts();
+    barCharts();
+    productFilter();
+    galleryLightbox();
+    testimonialSlider();
+    backToTop();
+    contactForm();
+  }
+
+  /* ---------- media.js binding (graceful; falls back to CSS placeholder) ---------- */
+  function bindMedia(){
+    const M = window.SITE_MEDIA || {};
+    document.querySelectorAll('[data-media]').forEach(el => {
+      const key = el.getAttribute('data-media');
+      const idx = el.getAttribute('data-media-index');
+      let val = M[key];
+      if (idx !== null && Array.isArray(val)) val = val[+idx];
+      if (!val) return;
+      if (el.tagName === 'IMG'){
+        const fb = el.parentElement && el.parentElement.querySelector('.ph-fallback');
+        el.onerror = () => { el.classList.remove('loaded'); if (fb) fb.style.display = ''; };
+        el.onload = () => { el.classList.add('loaded'); if (fb) fb.style.display = 'none'; };
+        el.src = val;
+      } else {
+        el.style.backgroundImage = `url('${val}')`;
+        el.classList.add('loaded');
+      }
+    });
+    const brochurePath = M.brochure || "assets/brochure/catalogue.pdf";
+    document.querySelectorAll('[data-catalogue-link]').forEach(a => {
+      a.href = brochurePath; a.setAttribute('download',''); a.target = "_blank";
+    });
+  }
+
+  /* ---------- sticky header shrink ---------- */
+  function headerScroll(){
+    const header = document.querySelector('header.site-header');
+    if (!header) return;
+    const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 30);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive:true });
+  }
+
+  /* ---------- mobile nav ---------- */
+  function mobileNav(){
+    const toggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('mainNav');
+    if (!toggle || !nav) return;
+    toggle.addEventListener('click', () => nav.classList.toggle('open'));
+    nav.querySelectorAll('.nav-item').forEach(item => {
+      const span = item.querySelector(':scope > span');
+      if (span) span.addEventListener('click', () => { if (window.innerWidth <= 980) item.classList.toggle('mobile-open'); });
+      item.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { if (window.innerWidth <= 980) nav.classList.remove('open'); }));
+    });
+  }
+
+  /* ---------- hero slider (headline rotation + bg slides) ---------- */
+  function heroSlider(){
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+    const M = window.SITE_MEDIA || {};
+    const slidesEl = document.getElementById('heroSlides');
+    const imgs = (M.heroSlides && M.heroSlides.length) ? M.heroSlides : [];
+    if (slidesEl){
+      imgs.forEach((src, i) => {
+        const d = document.createElement('div');
+        d.className = 'hero-slide' + (i === 0 ? ' active' : '');
+        d.style.backgroundImage = `url('${src}')`;
+        slidesEl.appendChild(d);
+      });
+      if (!imgs.length){
+        const fb = document.createElement('div');
+        fb.className = 'hero-fallback';
+        slidesEl.appendChild(fb);
+      }
+    }
+    const headlines = hero.querySelectorAll('.hl');
+    const dots = document.querySelectorAll('.hero-dots button');
+    let cur = 0;
+    const total = Math.max(headlines.length, 1);
+    function go(i){
+      cur = (i + total) % total;
+      headlines.forEach((h,idx) => h.classList.toggle('active', idx === cur));
+      dots.forEach((d,idx) => d.classList.toggle('active', idx === cur));
+      if (imgs.length > 1){
+        const all = slidesEl.querySelectorAll('.hero-slide');
+        all.forEach((s,idx) => s.classList.toggle('active', idx === (cur % all.length)));
+      }
+    }
+    dots.forEach((d,i) => d.addEventListener('click', () => go(i)));
+    if (total > 1) setInterval(() => go(cur+1), 5200);
+  }
+
+  /* ---------- scroll reveal ---------- */
+  function scrollReveal(){
+    const els = document.querySelectorAll('.reveal, .reveal-scale, .reveal-left, .reveal-right, .stagger');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting){
+          if (e.target.classList.contains('stagger')){
+            Array.from(e.target.children).forEach((c,i) => c.style.setProperty('--i', i));
+          }
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold:0.14 });
+    els.forEach(el => io.observe(el));
+  }
+
+  /* ---------- count-up numbers ---------- */
+  function countUp(){
+    const nums = document.querySelectorAll('[data-count]');
+    if (!nums.length) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const target = parseFloat(el.getAttribute('data-count'));
+        const suffix = el.getAttribute('data-suffix') || '';
+        const decimals = el.getAttribute('data-decimals') ? +el.getAttribute('data-decimals') : 0;
+        const dur = 1600;
+        const start = performance.now();
+        function tick(now){
+          const p = Math.min(1, (now - start) / dur);
+          const eased = 1 - Math.pow(1 - p, 3);
+          const val = target * eased;
+          el.textContent = val.toFixed(decimals) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+          else el.textContent = target.toFixed(decimals) + suffix;
+        }
+        requestAnimationFrame(tick);
+        io.unobserve(el);
+      });
+    }, { threshold:0.5 });
+    nums.forEach(el => io.observe(el));
+  }
+
+  /* ---------- flow diagram draw-in ---------- */
+  function flowDiagram(){
+    const track = document.querySelector('.flow-track');
+    if (!track) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting){ track.classList.add('in'); io.unobserve(track); }
+      });
+    }, { threshold:0.25 });
+    io.observe(track);
+  }
+
+  /* ---------- donut chart animate ---------- */
+  function donutCharts(){
+    document.querySelectorAll('.donut').forEach(donut => {
+      const seg = donut.querySelector('.seg');
+      if (!seg) return;
+      const pct = parseFloat(donut.getAttribute('data-pct') || '0');
+      const r = 68, circ = 2 * Math.PI * r;
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting){
+            seg.style.strokeDasharray = `${(pct/100)*circ} ${circ}`;
+            io.unobserve(donut);
+          }
+        });
+      }, { threshold:0.4 });
+      io.observe(donut);
+    });
+  }
+
+  /* ---------- bar chart animate ---------- */
+  function barCharts(){
+    document.querySelectorAll('.bar-fill').forEach(bar => {
+      const w = bar.getAttribute('data-width') || '0%';
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting){ bar.style.width = w; io.unobserve(bar); }
+        });
+      }, { threshold:0.5 });
+      io.observe(bar);
+    });
+  }
+
+  /* ---------- product / gallery filter tabs ---------- */
+  function productFilter(){
+    document.querySelectorAll('.filter-tabs').forEach(tabs => {
+      const targetSel = tabs.getAttribute('data-target');
+      const items = document.querySelectorAll(targetSel);
+      tabs.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabs.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const filter = btn.getAttribute('data-filter');
+          items.forEach(item => {
+            const show = filter === 'all' || item.getAttribute('data-cat') === filter;
+            item.style.display = show ? '' : 'none';
+          });
+        });
+      });
+    });
+  }
+
+  /* ---------- gallery lightbox ---------- */
+  function galleryLightbox(){
+    const items = Array.from(document.querySelectorAll('[data-lightbox]'));
+    if (!items.length) return;
+    const lb = document.getElementById('lightbox');
+    if (!lb) return;
+    const img = lb.querySelector('img');
+    let idx = 0;
+    function open(i){
+      idx = i;
+      const src = items[idx].getAttribute('data-lightbox') || items[idx].querySelector('img')?.src;
+      img.src = src;
+      lb.classList.add('open');
+    }
+    items.forEach((it,i) => it.addEventListener('click', () => open(i)));
+    lb.querySelector('.lightbox-close')?.addEventListener('click', () => lb.classList.remove('open'));
+    lb.querySelector('.prev')?.addEventListener('click', () => open((idx-1+items.length)%items.length));
+    lb.querySelector('.next')?.addEventListener('click', () => open((idx+1)%items.length));
+    lb.addEventListener('click', (e) => { if (e.target === lb) lb.classList.remove('open'); });
+    document.addEventListener('keydown', (e) => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') lb.classList.remove('open');
+      if (e.key === 'ArrowRight') open((idx+1)%items.length);
+      if (e.key === 'ArrowLeft') open((idx-1+items.length)%items.length);
+    });
+  }
+
+  /* ---------- testimonial slider ---------- */
+  function testimonialSlider(){
+    const wrap = document.querySelector('.testi-slider');
+    if (!wrap) return;
+    const slides = wrap.querySelectorAll('.testi-slide');
+    const dots = wrap.parentElement.querySelectorAll('.testi-dots button');
+    let cur = 0;
+    function go(i){
+      cur = (i+slides.length)%slides.length;
+      slides.forEach((s,idx) => s.classList.toggle('active', idx===cur));
+      dots.forEach((d,idx) => d.classList.toggle('active', idx===cur));
+    }
+    dots.forEach((d,i) => d.addEventListener('click', () => go(i)));
+    if (slides.length > 1) setInterval(() => go(cur+1), 6000);
+  }
+
+  /* ---------- back to top ---------- */
+  function backToTop(){
+    const btn = document.getElementById('backToTop');
+    if (!btn) return;
+    window.addEventListener('scroll', () => btn.classList.toggle('show', window.scrollY > 500), { passive:true });
+    btn.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
+  }
+
+  /* ---------- contact form -> mailto fallback ---------- */
+  function contactForm(){
+    const form = document.getElementById('contactForm');
+    if (!form) return;
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const data = new FormData(form);
+      const name = data.get('name') || '';
+      const phone = data.get('phone') || '';
+      const email = data.get('email') || '';
+      const message = data.get('message') || '';
+      const body = `Name: ${name}%0APhone: ${phone}%0AEmail: ${email}%0A%0A${message}`;
+      window.location.href = `mailto:info@koradiyagroupimpex.com?subject=Website Enquiry&body=${body}`;
+    });
+  }
+
+})();
+
+</script>
 </body>
 </html>
