@@ -453,6 +453,12 @@ img.media-img.loaded{display:block;}
   *{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;}
 }
 
+
+/* ==================== SPA PAGE ROUTER ==================== */
+.page{display:none;}
+.page.active{display:block;animation:pageIn .35s ease;}
+@keyframes pageIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
 </style>
 </head>
 <body>
@@ -497,6 +503,7 @@ img.media-img.loaded{display:block;}
 </header>
 
 
+<div class="page active" id="page-home" data-page="home">
 <!-- ============ HERO ============ -->
 <section class="hero anchor-offset" id="home" style="padding:0;">
   <div id="heroSlides"></div>
@@ -669,7 +676,9 @@ img.media-img.loaded{display:block;}
   </div>
 </section>
 
-<!-- ============================================================ -->
+</div>
+
+<div class="page" id="page-about" data-page="about">
 <!-- ============ COMPANY PROFILE (About) ============ -->
 <!-- ============================================================ -->
 <div class="page-header" id="about-header">
@@ -744,6 +753,10 @@ img.media-img.loaded{display:block;}
 </section>
 
 <!-- ============================================================ -->
+
+</div>
+
+<div class="page" id="page-infrastructure" data-page="infrastructure">
 <!-- ============ INFRASTRUCTURE ============ -->
 <!-- ============================================================ -->
 <div class="page-header" id="infrastructure-header">
@@ -825,6 +838,10 @@ img.media-img.loaded{display:block;}
 </section>
 
 <!-- ============================================================ -->
+
+</div>
+
+<div class="page" id="page-gallery" data-page="gallery">
 <!-- ============ GALLERY ============ -->
 <!-- ============================================================ -->
 <div class="page-header" id="gallery-header">
@@ -882,7 +899,9 @@ img.media-img.loaded{display:block;}
   </div>
 </section>
 
-<!-- ============================================================ -->
+</div>
+
+<div class="page" id="page-products" data-page="products">
 <!-- ============ PRODUCTS ============ -->
 <!-- ============================================================ -->
 <div class="page-header" id="products-header">
@@ -1023,6 +1042,10 @@ img.media-img.loaded{display:block;}
 </section>
 
 <!-- ============================================================ -->
+
+</div>
+
+<div class="page" id="page-catalogue" data-page="catalogue">
 <!-- ============ E-CATALOGUE ============ -->
 <!-- ============================================================ -->
 <div class="page-header" id="catalogue-header">
@@ -1070,6 +1093,10 @@ img.media-img.loaded{display:block;}
 </section>
 
 <!-- ============================================================ -->
+
+</div>
+
+<div class="page" id="page-export" data-page="export">
 <!-- ============ GLOBAL / EXPORT ============ -->
 <!-- ============================================================ -->
 <div class="page-header" id="export-header">
@@ -1134,7 +1161,9 @@ img.media-img.loaded{display:block;}
   </div>
 </section>
 
-<!-- ============================================================ -->
+</div>
+
+<div class="page" id="page-blog" data-page="blog">
 <!-- ============ BLOG ============ -->
 <!-- ============================================================ -->
 <div class="page-header" id="blog-header">
@@ -1207,6 +1236,10 @@ img.media-img.loaded{display:block;}
 </section>
 
 <!-- ============================================================ -->
+
+</div>
+
+<div class="page" id="page-contact" data-page="contact">
 <!-- ============ CONTACT ============ -->
 <!-- ============================================================ -->
 <div class="page-header" id="contact-header">
@@ -1258,6 +1291,9 @@ img.media-img.loaded{display:block;}
     </form>
   </div>
 </section>
+
+
+</div>
 
 <!-- ============ SITE-WIDE LIGHTBOX (gallery) ============ -->
 <div id="lightbox" class="lightbox">
@@ -1670,6 +1706,65 @@ window.SITE_MEDIA = {
     });
   }
 
+})();
+
+</script>
+<script>
+
+/* ==========================================================================
+   SPA PAGE ROUTER — single-file multi-page navigation
+   ========================================================================== */
+(function(){
+  "use strict";
+  var VALID_PAGES = ["home","about","infrastructure","gallery","products","catalogue","export","blog","contact"];
+
+  function currentPageId(){
+    var h = (location.hash || "").replace("#","").trim();
+    return VALID_PAGES.indexOf(h) !== -1 ? h : "home";
+  }
+
+  function showPage(id){
+    var pages = document.querySelectorAll(".page");
+    pages.forEach(function(p){ p.classList.remove("active"); });
+    var target = document.getElementById("page-" + id) || document.getElementById("page-home");
+    target.classList.add("active");
+
+    // set nav active state
+    document.querySelectorAll(".nav-item").forEach(function(item){
+      item.classList.remove("active");
+    });
+    document.querySelectorAll('nav a[href="#' + id + '"]').forEach(function(a){
+      var item = a.closest(".nav-item");
+      if (item) item.classList.add("active");
+    });
+
+    // close mobile nav if open
+    var nav = document.getElementById("mainNav");
+    if (nav) nav.classList.remove("open");
+
+    window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+
+    // reveal any scroll-reveal elements already in view on this page immediately,
+    // then let IntersectionObserver take over for anything below the fold
+    requestAnimationFrame(function(){
+      target.querySelectorAll(".reveal,.reveal-scale,.reveal-left,.reveal-right").forEach(function(el){
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight) el.classList.add("in");
+      });
+      target.querySelectorAll(".stagger").forEach(function(el){
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight){
+          Array.from(el.children).forEach(function(c,i){ c.style.setProperty("--i", i); });
+          el.classList.add("in");
+        }
+      });
+    });
+  }
+
+  function route(){ showPage(currentPageId()); }
+
+  window.addEventListener("hashchange", route);
+  document.addEventListener("DOMContentLoaded", route);
 })();
 
 </script>
