@@ -6,6 +6,9 @@
 <title>Koradiya Group Impex | Porcelain Tile &amp; Marble Slab Manufacturer, India</title>
 <meta name="description" content="Koradiya Group Impex — manufacturer and exporter of Porcelain Tiles, Digital Vitrified Tiles and Marble Slabs from Halvad, Morbi, Gujarat, India. Exporting to 17+ countries.">
 <link rel="icon" href="assets/logo/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body data-page="index">
@@ -47,7 +50,7 @@
       </div>
     </div>
     <div class="about-copy reveal">
-      <div class="eyebrow">Who We Are</div>
+      <div class="eyebrow teal">Who We Are</div>
       <h2>Trust, Quality &amp; Transparency — Built Into Every Tile</h2>
       <p>Koradiya Group Impex stands for Trust, Quality, Transparency and Reliability. We aim to meet our customers' expectations and make sure they are happy with our products and services, whether they're a trader, customer or supplier — providing new and improved designs, patterns, colours and quality for beautiful walls and floors.</p>
       <div class="mvv" id="mvvList">
@@ -96,14 +99,40 @@
   </div>
 </section>
 
-<!-- ============ WHY CHOOSE US ============ -->
+<!-- ============ SOLUTIONS FOR ANY SPACE ============ -->
 <section class="section-alt">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <div class="eyebrow" style="justify-content:center;">Solutions For Any Space</div>
+      <h2>One Range, Every Room</h2>
+      <p>The same finish and shade consistency across bathrooms, kitchens, bedrooms, offices and living rooms.</p>
+    </div>
+    <div class="card-grid cols-5 reveal-stagger reveal" id="spacesGrid"></div>
+  </div>
+</section>
+
+<!-- ============ WHY CHOOSE US ============ -->
+<section>
   <div class="wrap">
     <div class="section-head center reveal">
       <div class="eyebrow" style="justify-content:center;">Why Koradiya</div>
       <h2>What Buyers Get Working With Us</h2>
     </div>
     <div class="card-grid cols-4 reveal-stagger reveal" id="whyCards"></div>
+  </div>
+</section>
+
+<!-- ============ FAVOURITE DESIGNS MARQUEE ============ -->
+<section class="section-dark tile-grid-bg" style="padding-bottom:80px;">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <div class="eyebrow" style="justify-content:center;">Our Favourite Designs</div>
+      <h2>A Shade Card, In Motion</h2>
+      <p>A small sample of the finishes running through our design library — hover to pause.</p>
+    </div>
+  </div>
+  <div class="marquee-wrap reveal">
+    <div class="marquee-track" id="marqueeTrack"></div>
   </div>
 </section>
 
@@ -154,69 +183,5 @@
 <script src="assets/js/content.js"></script>
 <script src="assets/js/partials.js"></script>
 <script src="assets/js/main.js"></script>
-<script>
-  document.addEventListener('partialsMounted', () => {
-    const M = window.SITE_MEDIA || {};
-    const C = window.SITE_CONTENT || {};
-
-    if (document.getElementById('about-img')) document.getElementById('about-img').src = M.about.image;
-    if (document.getElementById('teaser-img-1')) document.getElementById('teaser-img-1').src = M.homeProductPhotos[0];
-    if (document.getElementById('teaser-img-2')) document.getElementById('teaser-img-2').src = M.homeProductPhotos[1];
-
-    // stat strip
-    const strip = document.getElementById('statStrip');
-    C.heroStats.forEach(s => {
-      const d = document.createElement('div');
-      d.className = 'item';
-      d.innerHTML = `<div class="num"><span data-count="${s.num}" data-suffix="${s.suffix}">0</span></div><div class="lbl">${s.label}</div>`;
-      strip.appendChild(d);
-    });
-
-    // process flow
-    const flowTrack = document.getElementById('flowTrack');
-    C.process.forEach(p => {
-      const d = document.createElement('div');
-      d.className = 'flow-step';
-      d.innerHTML = `<div class="flow-node">${p.step}</div><h4>${p.title}</h4><p>${p.text}</p>`;
-      flowTrack.appendChild(d);
-    });
-
-    // product cards
-    const productImgs = [M.homeProductPhotos[0], M.homeProductPhotos[1]];
-    C.productCategories.forEach((item, i) => {
-      const grid = document.getElementById('productCards');
-      const el = document.createElement('div');
-      el.className = 'tile-card stagger-item';
-      el.innerHTML = `
-        <a href="${item.link}">
-          <div class="media"><img src="${productImgs[i] || ''}" alt="${item.name}"></div>
-          <div class="body">
-            <h4>${item.name}</h4>
-            <p>${item.desc}</p>
-            <span class="go">View Sizes <span class="arrow">&rarr;</span></span>
-          </div>
-        </a>`;
-      grid.appendChild(el);
-    });
-
-    // why choose cards
-    const whyGrid = document.getElementById('whyCards');
-    C.whyChoose.forEach(item => {
-      const el = document.createElement('div');
-      el.className = 'info-tile stagger-item';
-      el.innerHTML = `<div class="ico">${item.ico}</div><h4>${item.title}</h4><p>${item.text}</p>`;
-      whyGrid.appendChild(el);
-    });
-
-    // country chips (preview)
-    const cGrid = document.getElementById('countryGrid');
-    C.countries.forEach(c => {
-      const el = document.createElement('div');
-      el.className = 'country-chip';
-      el.innerHTML = `<span class="name">${c.name}</span><span class="tag mono">${c.tag}</span>`;
-      cGrid.appendChild(el);
-    });
-  });
-</script>
 </body>
 </html>
