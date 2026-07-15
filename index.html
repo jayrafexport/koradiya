@@ -239,6 +239,25 @@ section{padding:100px 0;}
 .reveal-left.in{opacity:1;transform:translateX(0);}
 .reveal-right{opacity:0;transform:translateX(30px);transition:opacity .7s ease, transform .7s ease;}
 .reveal-right.in{opacity:1;transform:translateX(0);}
+.reveal-3d{opacity:0;transform:perspective(1000px) translateY(40px) rotateX(8deg) scale(0.92);filter:blur(6px);transition:opacity .8s cubic-bezier(.2,.7,.3,1), transform .8s cubic-bezier(.2,.7,.3,1), filter .8s ease;transform-style:preserve-3d;}
+.reveal-3d.in{opacity:1;transform:perspective(1000px) translateY(0) rotateX(0) scale(1);filter:blur(0px);}
+
+/* ==================== GLASSMORPHISM ==================== */
+.glass{background:rgba(255,255,255,0.55);backdrop-filter:blur(16px) saturate(160%);-webkit-backdrop-filter:blur(16px) saturate(160%);border:1px solid rgba(255,255,255,0.5);box-shadow:0 8px 32px rgba(20,23,26,0.1);}
+.glass-dark{background:rgba(20,23,26,0.55);backdrop-filter:blur(16px) saturate(160%);-webkit-backdrop-filter:blur(16px) saturate(160%);border:1px solid rgba(255,255,255,0.12);box-shadow:0 8px 32px rgba(0,0,0,0.25);}
+.glass-card{border-radius:var(--radius-lg);transition:transform .35s cubic-bezier(.2,.8,.3,1), box-shadow .35s ease, background .35s ease;}
+.glass-card:hover{transform:translateY(-6px);box-shadow:0 20px 46px rgba(20,23,26,0.16);background:rgba(255,255,255,0.72);}
+.section-dark .glass-card:hover{background:rgba(20,23,26,0.72);box-shadow:0 20px 46px rgba(0,0,0,0.35);}
+.btn-glass{background:rgba(255,255,255,0.16);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff;border-color:rgba(255,255,255,0.4);}
+.btn-glass:hover{background:rgba(255,255,255,0.28);border-color:rgba(255,255,255,0.7);transform:translateY(-3px);box-shadow:0 12px 24px rgba(0,0,0,0.2);}
+.btn:active{transform:translateY(-1px) scale(0.97);}
+
+/* ==================== BENTO GRID ==================== */
+.bento-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;grid-template-rows:auto auto;gap:20px;}
+.bento-grid .cat-card:first-child{grid-row:1 / 3;display:flex;flex-direction:column;justify-content:center;padding:40px 32px;}
+.bento-grid .cat-card{text-align:left;}
+.bento-grid .cat-card .ico{margin:0 0 18px;}
+@media (max-width:900px){.bento-grid{grid-template-columns:1fr;}.bento-grid .cat-card:first-child{grid-row:auto;}}
 .stagger.in > *{transition-delay:calc(var(--i, 0) * 90ms);}
 
 /* ==================== ABOUT / MVV ==================== */
@@ -262,8 +281,11 @@ section{padding:100px 0;}
 /* ==================== STATS (mono count-up) ==================== */
 .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
 .stats-row .stat{background:var(--paper);padding:34px 26px;text-align:left;}
-.section-dark .stats-row{background:var(--line-dark);border-color:var(--line-dark);}
-.section-dark .stats-row .stat{background:var(--charcoal);}
+.section-dark .stats-row{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.12);}
+.section-dark .stats-row .stat{background:rgba(36,54,66,0.5);backdrop-filter:blur(14px) saturate(160%);-webkit-backdrop-filter:blur(14px) saturate(160%);transition:background .3s ease, transform .3s ease;}
+.section-dark .stats-row .stat:hover{background:rgba(36,54,66,0.78);transform:translateY(-4px);}
+.stats-row .stat{transition:background .3s ease, transform .3s ease;}
+.stats-row .stat:hover{transform:translateY(-4px);box-shadow:var(--shadow-sm);}
 .stats-row .num{font-family:var(--f-mono);font-size:clamp(28px,2.6vw,38px);font-weight:600;color:var(--black);display:flex;align-items:baseline;gap:3px;}
 .section-dark .stats-row .num{color:#fff;}
 .stats-row .num .suffix{font-size:0.55em;color:var(--clay);}
@@ -347,7 +369,7 @@ section{padding:100px 0;}
 .room-card span{position:absolute;left:16px;bottom:16px;z-index:2;color:#fff;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:0.04em;}
 
 /* ==================== TESTIMONIAL SLIDER ==================== */
-.testi-slider{position:relative;max-width:760px;margin:0 auto;text-align:center;min-height:220px;}
+.testi-slider{position:relative;max-width:760px;margin:0 auto;text-align:center;min-height:220px;padding:44px 40px;border-radius:var(--radius-lg);background:rgba(255,255,255,0.06);backdrop-filter:blur(16px) saturate(160%);-webkit-backdrop-filter:blur(16px) saturate(160%);border:1px solid rgba(255,255,255,0.14);}
 .testi-slide{position:absolute;inset:0;opacity:0;transform:translateY(10px);transition:opacity .5s ease, transform .5s ease;pointer-events:none;}
 .testi-slide.active{opacity:1;transform:translateY(0);pointer-events:auto;position:relative;}
 .testi-slide q{display:block;font-family:var(--f-display);font-size:clamp(19px,2.4vw,26px);font-weight:500;color:#fff;line-height:1.5;quotes:none;}
@@ -393,7 +415,8 @@ section{padding:100px 0;}
 /* ==================== CONTACT ==================== */
 .contact-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:50px;}
 .contact-info{display:flex;flex-direction:column;gap:14px;}
-.info-card{display:flex;gap:16px;align-items:flex-start;padding:22px;border-radius:var(--radius);background:#fff;border:1px solid var(--line);}
+.info-card{display:flex;gap:16px;align-items:flex-start;padding:22px;border-radius:var(--radius);background:rgba(255,255,255,0.6);backdrop-filter:blur(14px) saturate(160%);-webkit-backdrop-filter:blur(14px) saturate(160%);border:1px solid rgba(255,255,255,0.7);box-shadow:0 8px 24px rgba(20,23,26,0.06);transition:transform .3s ease, box-shadow .3s ease, background .3s ease;}
+.info-card:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(20,23,26,0.12);background:rgba(255,255,255,0.85);}
 .info-card .ico{flex:none;width:44px;height:44px;border-radius:8px;background:var(--black);color:var(--brass-light);display:flex;align-items:center;justify-content:center;font-size:18px;}
 .info-card h4{margin:0 0 5px;font-size:14px;color:var(--black);}
 .info-card p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.6;}
@@ -410,8 +433,8 @@ textarea{resize:vertical;min-height:120px;}
 
 /* ==================== CATALOGUE ==================== */
 .cat-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px;}
-.cat-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px;text-align:center;transition:transform .3s ease, box-shadow .3s ease;}
-.cat-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-sm);}
+.cat-card{background:rgba(255,255,255,0.65);backdrop-filter:blur(14px) saturate(160%);-webkit-backdrop-filter:blur(14px) saturate(160%);border:1px solid rgba(255,255,255,0.7);border-radius:var(--radius-lg);padding:30px;text-align:center;transition:transform .3s ease, box-shadow .3s ease, background .3s ease;}
+.cat-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);background:rgba(255,255,255,0.88);}
 .cat-card .ico{width:56px;height:56px;border-radius:50%;background:var(--paper-alt);color:var(--clay);display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 18px;}
 .cat-card h4{font-size:15px;margin-bottom:8px;}
 .cat-card p{font-size:13px;color:var(--muted);margin-bottom:18px;}
@@ -680,7 +703,7 @@ img.media-img.loaded{display:block;}
       <p class="hero-sub">A WHO-grade manufacturing floor producing 10,000+ boxes daily &mdash; engineered for architects, distributors and importers in 17+ countries.</p>
       <div class="hero-actions">
         <a href="#products" class="btn btn-clay">View Products</a>
-        <a href="#catalogue" class="btn btn-outline-light">Download Catalogue</a>
+        <a href="#catalogue" class="btn btn-glass">Download Catalogue</a>
       </div>
     </div>
   </div>
@@ -775,7 +798,7 @@ img.media-img.loaded{display:block;}
 <section id="home-about" class="anchor-offset">
   <div class="wrap about-grid">
     <div class="about-media reveal-left">
-      <div class="frame media-slot">
+      <div class="frame media-slot reveal-3d">
         <span class="ph-fallback"><span class="ic">&#9673;</span>Facility Photograph</span>
         <img class="media-img" data-media="aboutImage" alt="Koradiya Group Impex manufacturing facility">
       </div>
@@ -835,11 +858,11 @@ img.media-img.loaded{display:block;}
       <a href="#products" class="btn btn-clay">See Full Range</a>
     </div>
     <div class="reveal-right" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-      <div class="frame media-slot" style="border-radius:8px;aspect-ratio:1/1;box-shadow:var(--shadow-sm);">
+      <div class="frame media-slot reveal-3d" style="border-radius:8px;aspect-ratio:1/1;box-shadow:var(--shadow-sm);">
         <span class="ph-fallback">Tile Finish 01</span>
         <img class="media-img" data-media="homeProductPhotos" data-media-index="0" alt="Tile finish">
       </div>
-      <div class="frame media-slot" style="border-radius:8px;aspect-ratio:1/1;box-shadow:var(--shadow-sm);margin-top:34px;">
+      <div class="frame media-slot reveal-3d" style="border-radius:8px;aspect-ratio:1/1;box-shadow:var(--shadow-sm);margin-top:34px;">
         <span class="ph-fallback">Tile Finish 02</span>
         <img class="media-img" data-media="homeProductPhotos" data-media-index="1" alt="Tile finish">
       </div>
@@ -855,11 +878,11 @@ img.media-img.loaded{display:block;}
       <a href="#products" class="link-arrow">Browse by Size &rarr;</a>
     </div>
     <div class="room-grid stagger reveal">
-      <div class="room-card"><div class="media-slot"><span class="ph-fallback">Bathroom</span><img class="media-img" data-media="roomPhotos" data-media-index="0" alt="Bathroom tiles"></div><span>Bathroom</span></div>
-      <div class="room-card"><div class="media-slot"><span class="ph-fallback">Bedroom</span><img class="media-img" data-media="roomPhotos" data-media-index="1" alt="Bedroom tiles"></div><span>Bedroom</span></div>
-      <div class="room-card"><div class="media-slot"><span class="ph-fallback">Kitchen</span><img class="media-img" data-media="roomPhotos" data-media-index="2" alt="Kitchen tiles"></div><span>Kitchen</span></div>
-      <div class="room-card"><div class="media-slot"><span class="ph-fallback">Living Room</span><img class="media-img" data-media="roomPhotos" data-media-index="3" alt="Living room tiles"></div><span>Living Room</span></div>
-      <div class="room-card"><div class="media-slot"><span class="ph-fallback">Facade</span><img class="media-img" data-media="roomPhotos" data-media-index="4" alt="Facade tiles"></div><span>Facade</span></div>
+      <div class="room-card reveal-3d"><div class="media-slot"><span class="ph-fallback">Bathroom</span><img class="media-img" data-media="roomPhotos" data-media-index="0" alt="Bathroom tiles"></div><span>Bathroom</span></div>
+      <div class="room-card reveal-3d"><div class="media-slot"><span class="ph-fallback">Bedroom</span><img class="media-img" data-media="roomPhotos" data-media-index="1" alt="Bedroom tiles"></div><span>Bedroom</span></div>
+      <div class="room-card reveal-3d"><div class="media-slot"><span class="ph-fallback">Kitchen</span><img class="media-img" data-media="roomPhotos" data-media-index="2" alt="Kitchen tiles"></div><span>Kitchen</span></div>
+      <div class="room-card reveal-3d"><div class="media-slot"><span class="ph-fallback">Living Room</span><img class="media-img" data-media="roomPhotos" data-media-index="3" alt="Living room tiles"></div><span>Living Room</span></div>
+      <div class="room-card reveal-3d"><div class="media-slot"><span class="ph-fallback">Facade</span><img class="media-img" data-media="roomPhotos" data-media-index="4" alt="Facade tiles"></div><span>Facade</span></div>
     </div>
   </div>
 </section>
@@ -976,7 +999,7 @@ img.media-img.loaded{display:block;}
 <section class="anchor-offset" id="about">
   <div class="wrap about-grid">
     <div class="about-media reveal-left">
-      <div class="frame media-slot">
+      <div class="frame media-slot reveal-3d">
         <span class="ph-fallback"><span class="ic">&#9673;</span>Company Photograph</span>
         <img class="media-img" data-media="aboutImage" alt="Koradiya Group Impex team">
       </div>
@@ -1027,12 +1050,14 @@ img.media-img.loaded{display:block;}
 </section>
 
 <section class="section-dark">
-  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;">
-    <div>
-      <span class="eyebrow">Next</span>
-      <h2 style="margin-bottom:0;">See how it's manufactured &rarr;</h2>
+  <div class="wrap">
+    <div class="glass-dark glass-card" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;padding:36px 40px;">
+      <div>
+        <span class="eyebrow">Next</span>
+        <h2 style="margin-bottom:0;">See how it's manufactured &rarr;</h2>
+      </div>
+      <a href="#infrastructure" class="btn btn-brass">View Infrastructure</a>
     </div>
-    <a href="#infrastructure" class="btn btn-brass">View Infrastructure</a>
   </div>
 </section>
 
@@ -1139,43 +1164,43 @@ img.media-img.loaded{display:block;}
 <section class="anchor-offset" id="gallery">
   <div class="wrap">
     <div class="gallery-grid stagger reveal">
-      <div class="g-item tall" data-lightbox="" data-media="galleryImages" data-media-index="0">
+      <div class="g-item tall reveal-3d" data-lightbox="" data-media="galleryImages" data-media-index="0">
         <div class="media-slot"><span class="ph-fallback">Gallery 1</span><img class="media-img" data-media="galleryImages" data-media-index="0" alt="Project gallery photo 1"></div>
         <div class="zoom">&#128269;</div>
       </div>
-      <div class="g-item" data-lightbox="" data-media="galleryImages" data-media-index="1">
+      <div class="g-item reveal-3d" data-lightbox="" data-media="galleryImages" data-media-index="1">
         <div class="media-slot"><span class="ph-fallback">Gallery 2</span><img class="media-img" data-media="galleryImages" data-media-index="1" alt="Project gallery photo 2"></div>
         <div class="zoom">&#128269;</div>
       </div>
-      <div class="g-item" data-lightbox="" data-media="galleryImages" data-media-index="2">
+      <div class="g-item reveal-3d" data-lightbox="" data-media="galleryImages" data-media-index="2">
         <div class="media-slot"><span class="ph-fallback">Gallery 3</span><img class="media-img" data-media="galleryImages" data-media-index="2" alt="Project gallery photo 3"></div>
         <div class="zoom">&#128269;</div>
       </div>
-      <div class="g-item tall" data-lightbox="" data-media="galleryImages" data-media-index="3">
+      <div class="g-item tall reveal-3d" data-lightbox="" data-media="galleryImages" data-media-index="3">
         <div class="media-slot"><span class="ph-fallback">Gallery 4</span><img class="media-img" data-media="galleryImages" data-media-index="3" alt="Project gallery photo 4"></div>
         <div class="zoom">&#128269;</div>
       </div>
-      <div class="g-item" data-lightbox="" data-media="galleryImages" data-media-index="4">
+      <div class="g-item reveal-3d" data-lightbox="" data-media="galleryImages" data-media-index="4">
         <div class="media-slot"><span class="ph-fallback">Gallery 5</span><img class="media-img" data-media="galleryImages" data-media-index="4" alt="Project gallery photo 5"></div>
         <div class="zoom">&#128269;</div>
       </div>
-      <div class="g-item" data-lightbox="" data-media="galleryImages" data-media-index="5">
+      <div class="g-item reveal-3d" data-lightbox="" data-media="galleryImages" data-media-index="5">
         <div class="media-slot"><span class="ph-fallback">Gallery 6</span><img class="media-img" data-media="galleryImages" data-media-index="5" alt="Project gallery photo 6"></div>
         <div class="zoom">&#128269;</div>
       </div>
-      <div class="g-item tall" data-lightbox="" data-media="galleryImages" data-media-index="6">
+      <div class="g-item tall reveal-3d" data-lightbox="" data-media="galleryImages" data-media-index="6">
         <div class="media-slot"><span class="ph-fallback">Gallery 7</span><img class="media-img" data-media="galleryImages" data-media-index="6" alt="Project gallery photo 7"></div>
         <div class="zoom">&#128269;</div>
       </div>
-      <div class="g-item" data-lightbox="" data-media="galleryImages" data-media-index="7">
+      <div class="g-item reveal-3d" data-lightbox="" data-media="galleryImages" data-media-index="7">
         <div class="media-slot"><span class="ph-fallback">Gallery 8</span><img class="media-img" data-media="galleryImages" data-media-index="7" alt="Project gallery photo 8"></div>
         <div class="zoom">&#128269;</div>
       </div>
-      <div class="g-item" data-lightbox="" data-media="galleryImages" data-media-index="8">
+      <div class="g-item reveal-3d" data-lightbox="" data-media="galleryImages" data-media-index="8">
         <div class="media-slot"><span class="ph-fallback">Gallery 9</span><img class="media-img" data-media="galleryImages" data-media-index="8" alt="Project gallery photo 9"></div>
         <div class="zoom">&#128269;</div>
       </div>
-      <div class="g-item" data-lightbox="" data-media="galleryImages" data-media-index="9">
+      <div class="g-item reveal-3d" data-lightbox="" data-media="galleryImages" data-media-index="9">
         <div class="media-slot"><span class="ph-fallback">Gallery 10</span><img class="media-img" data-media="galleryImages" data-media-index="9" alt="Project gallery photo 10"></div>
         <div class="zoom">&#128269;</div>
       </div>
@@ -1204,7 +1229,7 @@ img.media-img.loaded{display:block;}
       <button data-filter="porcelain-tiles">Porcelain Tiles</button>
     </div>
     <div class="family-photos" id="productGrid">
-      <div class="p-card" data-cat="marble-slab">
+      <div class="p-card reveal-3d" data-cat="marble-slab">
           <div class="thumb media-slot">
             <span class="ph-fallback">1200 X 2780 MM</span>
             <img class="media-img" data-media="marbleSlabImages" data-media-index="0" alt="1200 X 2780 MM marble slab">
@@ -1212,7 +1237,7 @@ img.media-img.loaded{display:block;}
           </div>
           <div class="meta"><span class="sz">1200 X 2780 MM</span><span class="arr">&rarr;</span></div>
         </div>
-        <div class="p-card" data-cat="marble-slab">
+        <div class="p-card reveal-3d" data-cat="marble-slab">
           <div class="thumb media-slot">
             <span class="ph-fallback">600 X 1800 MM</span>
             <img class="media-img" data-media="marbleSlabImages" data-media-index="1" alt="600 X 1800 MM marble slab">
@@ -1220,7 +1245,7 @@ img.media-img.loaded{display:block;}
           </div>
           <div class="meta"><span class="sz">600 X 1800 MM</span><span class="arr">&rarr;</span></div>
         </div>
-      <div class="p-card" data-cat="porcelain-tiles">
+      <div class="p-card reveal-3d" data-cat="porcelain-tiles">
           <div class="thumb media-slot">
             <span class="ph-fallback">600 X 1200 MM</span>
             <img class="media-img" data-media="porcelainTileImages" data-media-index="0" alt="600 X 1200 MM porcelain tiles">
@@ -1228,7 +1253,7 @@ img.media-img.loaded{display:block;}
           </div>
           <div class="meta"><span class="sz">600 X 1200 MM</span><span class="arr">&rarr;</span></div>
         </div>
-        <div class="p-card" data-cat="porcelain-tiles">
+        <div class="p-card reveal-3d" data-cat="porcelain-tiles">
           <div class="thumb media-slot">
             <span class="ph-fallback">300 X 600 MM</span>
             <img class="media-img" data-media="porcelainTileImages" data-media-index="1" alt="300 X 600 MM porcelain tiles">
@@ -1236,7 +1261,7 @@ img.media-img.loaded{display:block;}
           </div>
           <div class="meta"><span class="sz">300 X 600 MM</span><span class="arr">&rarr;</span></div>
         </div>
-        <div class="p-card" data-cat="porcelain-tiles">
+        <div class="p-card reveal-3d" data-cat="porcelain-tiles">
           <div class="thumb media-slot">
             <span class="ph-fallback">600 X 600 MM</span>
             <img class="media-img" data-media="porcelainTileImages" data-media-index="2" alt="600 X 600 MM porcelain tiles">
@@ -1244,7 +1269,7 @@ img.media-img.loaded{display:block;}
           </div>
           <div class="meta"><span class="sz">600 X 600 MM</span><span class="arr">&rarr;</span></div>
         </div>
-        <div class="p-card" data-cat="porcelain-tiles">
+        <div class="p-card reveal-3d" data-cat="porcelain-tiles">
           <div class="thumb media-slot">
             <span class="ph-fallback">800 X 800 MM</span>
             <img class="media-img" data-media="porcelainTileImages" data-media-index="3" alt="800 X 800 MM porcelain tiles">
@@ -1252,7 +1277,7 @@ img.media-img.loaded{display:block;}
           </div>
           <div class="meta"><span class="sz">800 X 800 MM</span><span class="arr">&rarr;</span></div>
         </div>
-        <div class="p-card" data-cat="porcelain-tiles">
+        <div class="p-card reveal-3d" data-cat="porcelain-tiles">
           <div class="thumb media-slot">
             <span class="ph-fallback">1200 X 1200 MM</span>
             <img class="media-img" data-media="porcelainTileImages" data-media-index="4" alt="1200 X 1200 MM porcelain tiles">
@@ -1260,7 +1285,7 @@ img.media-img.loaded{display:block;}
           </div>
           <div class="meta"><span class="sz">1200 X 1200 MM</span><span class="arr">&rarr;</span></div>
         </div>
-        <div class="p-card" data-cat="porcelain-tiles">
+        <div class="p-card reveal-3d" data-cat="porcelain-tiles">
           <div class="thumb media-slot">
             <span class="ph-fallback">1000 X 1000 MM</span>
             <img class="media-img" data-media="porcelainTileImages" data-media-index="5" alt="1000 X 1000 MM porcelain tiles">
@@ -1268,7 +1293,7 @@ img.media-img.loaded{display:block;}
           </div>
           <div class="meta"><span class="sz">1000 X 1000 MM</span><span class="arr">&rarr;</span></div>
         </div>
-        <div class="p-card" data-cat="porcelain-tiles">
+        <div class="p-card reveal-3d" data-cat="porcelain-tiles">
           <div class="thumb media-slot">
             <span class="ph-fallback">1200 X 1800 MM</span>
             <img class="media-img" data-media="porcelainTileImages" data-media-index="6" alt="1200 X 1800 MM porcelain tiles">
@@ -1276,7 +1301,7 @@ img.media-img.loaded{display:block;}
           </div>
           <div class="meta"><span class="sz">1200 X 1800 MM</span><span class="arr">&rarr;</span></div>
         </div>
-        <div class="p-card" data-cat="porcelain-tiles">
+        <div class="p-card reveal-3d" data-cat="porcelain-tiles">
           <div class="thumb media-slot">
             <span class="ph-fallback">800 X 1600 MM</span>
             <img class="media-img" data-media="porcelainTileImages" data-media-index="7" alt="800 X 1600 MM porcelain tiles">
@@ -1343,7 +1368,7 @@ img.media-img.loaded{display:block;}
 <section class="anchor-offset" id="catalogue">
   <div class="wrap" style="text-align:center;">
     <a href="#" class="btn btn-dark" data-catalogue-link>Download Catalogue (PDF)</a>
-    <div class="cat-cards">
+    <div class="cat-cards bento-grid">
       <div class="cat-card reveal">
         <div class="ico">&#127973;</div>
         <h4>Marble Slab Collection</h4>
@@ -1963,7 +1988,7 @@ window.SITE_MEDIA = {
 
   /* ---------- scroll reveal ---------- */
   function scrollReveal(){
-    const els = document.querySelectorAll('.reveal, .reveal-scale, .reveal-left, .reveal-right, .stagger');
+    const els = document.querySelectorAll('.reveal, .reveal-scale, .reveal-left, .reveal-right, .reveal-3d, .stagger');
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting){
@@ -2178,7 +2203,7 @@ window.SITE_MEDIA = {
     // reveal any scroll-reveal elements already in view on this page immediately,
     // then let IntersectionObserver take over for anything below the fold
     requestAnimationFrame(function(){
-      target.querySelectorAll(".reveal,.reveal-scale,.reveal-left,.reveal-right").forEach(function(el){
+      target.querySelectorAll(".reveal,.reveal-scale,.reveal-left,.reveal-right,.reveal-3d").forEach(function(el){
         var r = el.getBoundingClientRect();
         if (r.top < window.innerHeight) el.classList.add("in");
       });
