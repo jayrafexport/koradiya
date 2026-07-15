@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Koradiya Group Impex | Manufacturer &amp; Exporter from India</title>
 <meta name="description" content="Koradiya Group Impex — leading manufacturer of Porcelain Tiles, Digital Vitrified Tiles and Marble Slabs from Halvad, Morbi, Gujarat, India. Exporting to 17+ countries.">
+<meta name="theme-color" content="#141E24">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <style>
@@ -51,8 +52,9 @@
   --f-mono:'IBM Plex Mono',monospace;
 }
 
-*{box-sizing:border-box;}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html{scroll-behavior:smooth;}
+html,body{max-width:100%;overflow-x:hidden;}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;}
 h1,h2,h3,h4,h5{font-family:var(--f-display);color:var(--black);margin:0;letter-spacing:-0.01em;}
 a{color:inherit;text-decoration:none;}
@@ -79,8 +81,13 @@ button{font-family:inherit;}
 .topbar-links .dot{color:var(--brass);}
 
 /* ==================== HEADER / NAV ==================== */
-header.site-header{position:sticky;top:0;z-index:300;background:rgba(245,242,234,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);transition:box-shadow .25s ease, padding .25s ease;}
+header.site-header{position:sticky;top:0;z-index:300;background:rgba(245,242,234,0.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);transition:box-shadow .25s ease, padding .25s ease;}
 header.site-header.scrolled{box-shadow:0 8px 30px rgba(20,23,26,0.08);}
+/* backdrop-filter creates a new containing block for position:fixed descendants —
+   without this override, the fixed mobile nav panel gets clipped to the header's
+   own (short) box instead of the full viewport. Drop the filter while the menu
+   is open so nav.nav's fixed inset:0 measures against the real viewport. */
+header.site-header.menu-open{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--paper);}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 40px;gap:24px;}
 .brand{display:flex;align-items:center;gap:13px;flex:none;}
 .brand-mark{width:auto;height:50px;flex:none;display:flex;align-items:center;justify-content:center;overflow:visible;}
@@ -129,7 +136,17 @@ nav.nav{display:flex;align-items:center;gap:2px;}
 .search-close{position:absolute;top:28px;right:36px;color:#fff;font-size:30px;background:none;border:none;cursor:pointer;}
 .search-hint{color:#9FB0B3;font-size:12px;font-family:var(--f-mono);margin-top:12px;letter-spacing:0.04em;}
 .nav-cta{display:flex;align-items:center;gap:14px;flex:none;}
-.menu-toggle{display:none;background:none;border:none;color:var(--black);font-size:22px;cursor:pointer;padding:4px;}
+.menu-toggle{display:none;position:relative;width:44px;height:44px;background:none;border:none;cursor:pointer;padding:0;flex:none;}
+.menu-toggle span{position:absolute;left:11px;right:11px;height:2px;border-radius:2px;background:var(--black);transition:transform .3s cubic-bezier(.4,0,.2,1), opacity .2s ease, top .3s cubic-bezier(.4,0,.2,1);}
+.menu-toggle span:nth-child(1){top:15px;}
+.menu-toggle span:nth-child(2){top:21px;}
+.menu-toggle span:nth-child(3){top:27px;}
+.menu-toggle.active span:nth-child(1){top:21px;transform:rotate(45deg);}
+.menu-toggle.active span:nth-child(2){opacity:0;transform:translateX(-6px);}
+.menu-toggle.active span:nth-child(3){top:21px;transform:rotate(-45deg);}
+.nav-overlay{position:fixed;inset:0;background:rgba(14,16,18,0.5);backdrop-filter:blur(2px);z-index:240;opacity:0;visibility:hidden;transition:opacity .3s ease, visibility .3s ease;}
+.nav-overlay.show{opacity:1;visibility:visible;}
+body.nav-locked{overflow:hidden;}
 
 /* ==================== BUTTONS ==================== */
 .btn{display:inline-flex;align-items:center;gap:9px;padding:14px 28px;border-radius:3px;font-family:var(--f-body);font-size:12.5px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;border:1.5px solid transparent;transition:transform .2s ease, background .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease;}
@@ -432,6 +449,69 @@ img.media-img.loaded{display:block;}
 .footer-brand .brand-mark img{height:38px;}
 .about-media .ph-fallback{font-size:11.5px;}
 
+/* ==================== 3D SHINE / MARBLE-MOVE ON CARDS ==================== */
+.p-card{perspective:1100px;}
+.p-card .thumb{position:relative;}
+.p-card .thumb::before{content:"";position:absolute;top:0;left:-160%;width:55%;height:100%;background:linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.4) 45%, transparent 90%);transform:skewX(-20deg);z-index:2;transition:left .85s cubic-bezier(.2,.7,.3,1);pointer-events:none;}
+.p-card:hover .thumb::before{left:160%;}
+.gallery-grid .g-item{perspective:900px;}
+.gallery-grid .g-item .media-slot{transition:transform .3s ease;}
+.gallery-grid .g-item:hover .media-slot{transform:translateZ(0) scale(1.01);}
+.gallery-grid .g-item:hover img{transform:scale(1.09) rotateZ(-0.3deg);}
+.room-card{perspective:900px;}
+
+/* ==================== WHATSAPP FLOATING CHAT ==================== */
+.whatsapp-float{position:fixed;left:24px;bottom:26px;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(37,211,102,0.45);z-index:400;transition:transform .25s ease, box-shadow .25s ease;}
+.whatsapp-float:hover{transform:translateY(-4px) scale(1.06);box-shadow:0 16px 34px rgba(37,211,102,0.55);}
+.whatsapp-float svg{width:29px;height:29px;fill:#fff;position:relative;z-index:2;}
+.whatsapp-float .wa-ring{position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(37,211,102,0.55);animation:waRing 2.4s ease-out infinite;pointer-events:none;}
+@keyframes waRing{0%{transform:scale(0.92);opacity:0.85;}100%{transform:scale(1.55);opacity:0;}}
+.whatsapp-tip{position:absolute;right:calc(100% + 12px);top:50%;transform:translateY(-50%);background:var(--black);color:#fff;font-size:12px;font-weight:600;font-family:var(--f-body);padding:7px 12px;border-radius:6px;white-space:nowrap;opacity:0;visibility:hidden;transition:opacity .2s ease;}
+.whatsapp-float:hover .whatsapp-tip{opacity:1;visibility:visible;}
+
+/* ==================== COMPARE US TABLE ==================== */
+.compare-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--radius);}
+.compare-table{width:100%;border-collapse:separate;border-spacing:0;min-width:640px;background:#fff;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);}
+.compare-table th,.compare-table td{padding:16px 20px;text-align:left;font-size:13.5px;border-bottom:1px solid var(--line);vertical-align:middle;}
+.compare-table thead th{background:var(--black);color:#fff;font-family:var(--f-display);font-weight:600;font-size:14.5px;}
+.compare-table thead th.us-col{background:var(--clay);}
+.compare-table tbody tr:last-child td{border-bottom:none;}
+.compare-table tbody tr:hover{background:var(--paper-alt);}
+.compare-table td.us-col{background:rgba(18,137,143,0.07);font-weight:700;color:var(--clay);}
+.compare-table .yes::before{content:"\2713";color:var(--clay);font-weight:700;margin-right:6px;}
+.compare-table .no{color:var(--slate-light);}
+.compare-table .no::before{content:"\2013";color:var(--slate-light);margin-right:6px;}
+.compare-table .crit{font-weight:600;color:var(--black);}
+.compare-note{font-size:12px;color:var(--muted);margin-top:14px;}
+
+/* ==================== CRAFTED IN MOTION — SCROLL 3D SHOWCASE ==================== */
+.motion-showcase{background:var(--black);padding:100px 0 40px;overflow:hidden;position:relative;}
+.motion-showcase::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(circle at 15% 10%, rgba(23,162,168,0.12), transparent 40%),
+  radial-gradient(circle at 90% 80%, rgba(180,146,76,0.1), transparent 45%);pointer-events:none;}
+.motion-intro{max-width:620px;margin:0 auto 12vh;text-align:center;padding:0 40px;position:relative;z-index:2;}
+.motion-intro .eyebrow{justify-content:center;color:var(--brass-light);}
+.motion-intro .eyebrow::before{background:var(--brass-light);}
+.motion-intro h2{color:#fff;font-size:clamp(28px,4vw,44px);margin:14px 0;}
+.motion-intro p{color:#B9C0C6;font-size:15px;line-height:1.75;margin:0;}
+.motion-panel{position:relative;z-index:2;max-width:1080px;margin:0 auto 16vh;padding:0 40px;display:flex;align-items:center;gap:60px;}
+.motion-panel:last-child{margin-bottom:6vh;}
+.motion-panel:nth-child(odd){flex-direction:row-reverse;}
+.motion-media{flex:1 1 54%;position:relative;aspect-ratio:4/5;max-width:520px;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.55);will-change:transform,filter,opacity;}
+.motion-media .media-slot{width:100%;height:100%;}
+.motion-media img{width:100%;height:100%;object-fit:cover;display:block;}
+.motion-media::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg, rgba(23,162,168,0.12), transparent 55%);pointer-events:none;}
+.motion-caption{flex:1 1 40%;color:#fff;}
+.motion-caption .mono{color:var(--brass-light);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;}
+.motion-caption h3{color:#fff;font-size:clamp(22px,2.6vw,32px);margin:12px 0 0;font-weight:600;line-height:1.2;}
+.motion-caption p{color:#9FA8AE;font-size:14px;line-height:1.7;margin:12px 0 0;max-width:340px;}
+@media (max-width:860px){
+  .motion-panel,.motion-panel:nth-child(odd){flex-direction:column !important;gap:24px;margin-bottom:12vh;}
+  .motion-media{max-width:100%;width:100%;}
+  .motion-intro{margin-bottom:9vh;}
+}
+
+
 /* ==================== RESPONSIVE ==================== */
 @media (max-width:1080px){
   .family-photos{grid-template-columns:repeat(3,1fr);}
@@ -469,13 +549,36 @@ img.media-img.loaded{display:block;}
   .family-photos,.gallery-grid,.room-grid{grid-template-columns:1fr 1fr;}
   .footer-grid{grid-template-columns:1fr;}
   .hero-headline .hl{font-size:32px;}
-  .hero{height:78vh;}
+  .hero{height:78vh;min-height:520px;}
   .flow-track{grid-template-columns:1fr 1fr;}
   .hero-sub{display:none;}
   .scroll-cue{display:none;}
   .hero-style-badge{top:auto;bottom:150px;left:22px;font-size:9.5px;padding:7px 13px 7px 10px;}
   .hero-dots{left:22px;bottom:96px;}
   .hero-content{padding:0 22px;}
+  .brand-mark{height:40px;}
+  .brand-text .name{font-size:16px;}
+  .nav-inner{padding:12px 22px;gap:12px;}
+  .whatsapp-float{left:16px;bottom:16px;width:52px;height:52px;}
+  .whatsapp-float svg{width:26px;height:26px;}
+  .whatsapp-tip{display:none;}
+  .back-to-top{right:16px;bottom:16px;width:44px;height:44px;font-size:15px;}
+  .compare-table th,.compare-table td{padding:12px 14px;font-size:12.5px;}
+  .socials a{width:34px;height:34px;}
+  .stats-row{gap:1px;}
+  .about-media .tag-badge{left:-10px;bottom:-16px;padding:14px 18px;}
+  .about-media .tag-badge .n{font-size:22px;}
+}
+@media (max-width:420px){
+  .gallery-grid{grid-auto-rows:130px;gap:8px;}
+  .stats-row{grid-template-columns:1fr 1fr;}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:6px;}
+  .p-card .meta{padding:11px 13px;}
+  .topbar{font-size:10px;}
+  .topbar .wrap{padding:8px 16px;gap:4px;}
+  .hero-headline .hl{font-size:27px;}
+  .section-head h2{font-size:22px;}
+  .compare-table{min-width:560px;}
 }
 @media (prefers-reduced-motion: reduce){
   *{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;}
@@ -552,10 +655,11 @@ img.media-img.loaded{display:block;}
     <div class="nav-cta">
       <button class="search-toggle" id="searchToggle" aria-label="Search">&#128269;</button>
       <a href="#contact" class="btn btn-clay btn-sm"><span>Get a Quote</span></a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">&#9776;</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
+<div class="nav-overlay" id="navOverlay"></div>
 
 
 <div class="page active" id="page-home" data-page="home">
@@ -599,6 +703,73 @@ img.media-img.loaded{display:block;}
     <span><b>&#9670;</b> Precision Manufacturing &nbsp; <b>&#9670;</b> German Digital Printing Tech &nbsp; <b>&#9670;</b> 10,000+ Boxes Daily Output &nbsp; <b>&#9670;</b> 17+ Export Nations &nbsp; <b>&#9670;</b> 100% Quality Checked &nbsp; <b>&#9670;</b> Halvad, Morbi Manufacturing Hub</span>
   </div>
 </div>
+
+<!-- ============ CRAFTED IN MOTION — SCROLL-DRIVEN 3D SHOWCASE ============ -->
+<!-- Demo imagery for now (see motionShowcaseImages in SITE_MEDIA below) — swap in
+     real macro photography whenever it's ready, the layout and motion stay the same. -->
+<section class="motion-showcase anchor-offset" id="motion-showcase">
+  <div class="motion-intro reveal">
+    <span class="eyebrow">Scroll to Explore</span>
+    <h2>Every Surface, Every Angle.</h2>
+    <p>A closer look at what leaves our floor &mdash; scroll through to see the veining, the print precision and the finish, up close.</p>
+  </div>
+
+  <div class="motion-panel">
+    <div class="motion-media">
+      <div class="frame media-slot">
+        <span class="ph-fallback"><span class="ic">&#9673;</span>Marble Detail</span>
+        <img class="media-img" data-media="motionShowcaseImages" data-media-index="0" alt="Marble slab veining detail" loading="lazy">
+      </div>
+    </div>
+    <div class="motion-caption">
+      <span class="mono">01 &mdash; Marble Slabs</span>
+      <h3>Quarried Veining, Book-Matched</h3>
+      <p>Natural stone character, cut and matched for a continuous pattern across large-format slabs.</p>
+    </div>
+  </div>
+
+  <div class="motion-panel">
+    <div class="motion-media">
+      <div class="frame media-slot">
+        <span class="ph-fallback"><span class="ic">&#9673;</span>Digital Vitrified Detail</span>
+        <img class="media-img" data-media="motionShowcaseImages" data-media-index="1" alt="Digital vitrified tile print detail" loading="lazy">
+      </div>
+    </div>
+    <div class="motion-caption">
+      <span class="mono">02 &mdash; Digital Vitrified</span>
+      <h3>German Print, Zero Repeat</h3>
+      <p>High-resolution digital printing keeps every tile in a lot visually distinct, with no obvious repeat pattern.</p>
+    </div>
+  </div>
+
+  <div class="motion-panel">
+    <div class="motion-media">
+      <div class="frame media-slot">
+        <span class="ph-fallback"><span class="ic">&#9673;</span>Porcelain Detail</span>
+        <img class="media-img" data-media="motionShowcaseImages" data-media-index="2" alt="Porcelain tile texture close-up" loading="lazy">
+      </div>
+    </div>
+    <div class="motion-caption">
+      <span class="mono">03 &mdash; Porcelain Tiles</span>
+      <h3>Dimensionally Stable, Edge to Edge</h3>
+      <p>Fired for consistency &mdash; tight tolerances that keep grout lines even across the full installation.</p>
+    </div>
+  </div>
+
+  <div class="motion-panel">
+    <div class="motion-media">
+      <div class="frame media-slot">
+        <span class="ph-fallback"><span class="ic">&#9673;</span>Installed Finish</span>
+        <img class="media-img" data-media="motionShowcaseImages" data-media-index="3" alt="Finished interior flooring installation" loading="lazy">
+      </div>
+    </div>
+    <div class="motion-caption">
+      <span class="mono">04 &mdash; Installed</span>
+      <h3>From Our Floor to Yours</h3>
+      <p>The same batch, the same shade, from the container to the finished room.</p>
+    </div>
+  </div>
+</section>
 
 <!-- ============ ABOUT + MVV (home teaser) ============ -->
 <section id="home-about" class="anchor-offset">
@@ -690,6 +861,61 @@ img.media-img.loaded{display:block;}
       <div class="room-card"><div class="media-slot"><span class="ph-fallback">Living Room</span><img class="media-img" data-media="roomPhotos" data-media-index="3" alt="Living room tiles"></div><span>Living Room</span></div>
       <div class="room-card"><div class="media-slot"><span class="ph-fallback">Facade</span><img class="media-img" data-media="roomPhotos" data-media-index="4" alt="Facade tiles"></div><span>Facade</span></div>
     </div>
+  </div>
+</section>
+
+<!-- ============ COMPARE US ============ -->
+<section class="section-alt anchor-offset" id="home-compare">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="justify-content:center;">How We Compare</span>
+      <h2>Koradiya Group Impex vs. a Typical Local Supplier</h2>
+      <p>Most buyers only discover the difference after the first shipment. Here's what to check before you place a trial order.</p>
+    </div>
+    <div class="compare-wrap reveal-scale">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Criteria</th>
+            <th class="us-col">Koradiya Group Impex</th>
+            <th>Typical Local Supplier</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="crit">Shade &amp; batch consistency</td>
+            <td class="us-col yes">German digital printing, 100% checked</td>
+            <td class="no">Varies by lot, manual spot checks</td>
+          </tr>
+          <tr>
+            <td class="crit">Export documentation &amp; container loading</td>
+            <td class="us-col yes">Dedicated export desk, in-house</td>
+            <td class="no">Outsourced to third-party agents</td>
+          </tr>
+          <tr>
+            <td class="crit">Design range</td>
+            <td class="us-col yes">800+ designs, updated regularly</td>
+            <td class="no">Limited, slower to refresh</td>
+          </tr>
+          <tr>
+            <td class="crit">Packing for long sea transit</td>
+            <td class="us-col yes">Reinforced export-grade packing</td>
+            <td class="no">Standard domestic packing</td>
+          </tr>
+          <tr>
+            <td class="crit">Daily production capacity</td>
+            <td class="us-col yes">10,000+ boxes / day</td>
+            <td class="no">Lower, longer lead times</td>
+          </tr>
+          <tr>
+            <td class="crit">Response time on trade queries</td>
+            <td class="us-col yes">Within one business day</td>
+            <td class="no">Often delayed, inconsistent</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="compare-note">Figures reflect our own production and service benchmarks; individual suppliers vary. <a href="#contact" class="link-arrow" style="display:inline-flex;">Request a sample comparison &rarr;</a></p>
   </div>
 </section>
 
@@ -1410,8 +1636,15 @@ img.media-img.loaded{display:block;}
   </div>
 </footer>
 
+<a class="whatsapp-float" href="https://wa.me/917777971693?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20your%20tiles%20%26%20marble%20slabs" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <span class="wa-ring"></span>
+  <span class="whatsapp-tip">Chat with us</span>
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.383.7 4.6 1.902 6.463L4 29l7.73-1.867A11.94 11.94 0 0 0 16.001 27C22.628 27 28 21.627 28 15S22.628 3 16.001 3zm6.994 17.09c-.297.836-1.474 1.53-2.42 1.73-.643.135-1.484.243-4.313-.926-3.62-1.498-5.95-5.155-6.132-5.393-.18-.239-1.47-1.955-1.47-3.73 0-1.775.928-2.646 1.257-3.008.33-.362.72-.453.96-.453.24 0 .48.002.69.013.222.012.518-.084.81.618.297.716 1.01 2.475 1.098 2.655.09.18.15.39.03.63-.12.24-.18.39-.36.6-.18.21-.378.469-.54.63-.18.18-.368.375-.158.735.21.36.936 1.545 2.01 2.502 1.382 1.233 2.548 1.615 2.91 1.795.36.18.57.15.78-.09.21-.24.9-1.05 1.14-1.41.24-.36.48-.3.81-.18.33.12 2.1.99 2.46 1.17.36.18.6.27.69.42.09.15.09.87-.207 1.707z"/></svg>
+</a>
 <button class="back-to-top" id="backToTop" aria-label="Back to top">&#8593;</button>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 /* ==========================================================================
    SITE_MEDIA — central image registry.
@@ -1477,6 +1710,15 @@ window.SITE_MEDIA = {
     // "assets/rooms/facade.jpg"
   ],
 
+  // "Crafted in Motion" scroll-driven showcase — demo imagery for now, swap for
+  // real macro shots of marble veining / tile printing whenever ready.
+  motionShowcaseImages: [
+    "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1600121848594-d8644e57abab?q=80&w=1200&auto=format&fit=crop"
+  ],
+
   // gallery.html — up to 10 images
   galleryImages: [],
 
@@ -1517,6 +1759,62 @@ window.SITE_MEDIA = {
     backToTop();
     contactForm();
     tilt3D();
+    motionShowcaseFX();
+  }
+
+  /* ---------- "Crafted in Motion" — scroll-scrubbed zoom / position / 3D tilt ----------
+     Progressive enhancement: the section already looks good via the existing
+     .reveal-scale fade-in (see the "reveal" class on .motion-intro / bindMedia above).
+     If GSAP + ScrollTrigger loaded successfully and the user hasn't asked for
+     reduced motion, layer in a continuous scroll-scrubbed 3D effect: each image
+     zooms in from an oversized, blurred, tilted state as it enters, settles flat
+     and sharp mid-viewport, then tilts and recedes the opposite way as it exits. */
+  function motionShowcaseFX(){
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    const panels = document.querySelectorAll('.motion-panel');
+    if (!panels.length) return;
+    const small = window.innerWidth < 700;
+
+    panels.forEach((panel, i) => {
+      const media = panel.querySelector('.motion-media');
+      const caption = panel.querySelector('.motion-caption');
+      if (!media) return;
+      const dir = i % 2 === 0 ? 1 : -1;
+      const tiltY = small ? 10 : 22;
+      const tiltX = small ? 4 : 9;
+
+      gsap.set(media, { transformPerspective: 900, transformStyle: 'preserve-3d' });
+
+      /* entrance: oversized + blurred + tilted -> flat, sharp, in place */
+      gsap.fromTo(media,
+        { scale: 1.32, rotateY: tiltY * dir, rotateX: tiltX, opacity: 0.2, filter: 'blur(14px)' },
+        {
+          scale: 1, rotateY: 0, rotateX: 0, opacity: 1, filter: 'blur(0px)', ease: 'none',
+          scrollTrigger: { trigger: panel, start: 'top 92%', end: 'top 42%', scrub: 0.6 }
+        }
+      );
+      /* exit: tilts the opposite way and recedes as it leaves through the top */
+      gsap.to(media, {
+        scale: 0.9, rotateY: -tiltY * 0.6 * dir, opacity: 0.35, filter: 'blur(5px)', ease: 'none',
+        scrollTrigger: { trigger: panel, start: 'top 20%', end: 'top -30%', scrub: 0.6 }
+      });
+      if (caption){
+        gsap.fromTo(caption, { opacity: 0, y: 36 },
+          { opacity: 1, y: 0, ease: 'none',
+            scrollTrigger: { trigger: panel, start: 'top 88%', end: 'top 48%', scrub: 0.6 } });
+      }
+    });
+
+    const intro = document.querySelector('.motion-intro');
+    if (intro){
+      gsap.to(intro, { yPercent: -10, ease: 'none',
+        scrollTrigger: { trigger: '.motion-showcase', start: 'top bottom', end: 'bottom top', scrub: true } });
+    }
+
+    window.addEventListener('load', () => ScrollTrigger.refresh());
   }
 
   /* ---------- media.js binding (graceful; falls back to CSS placeholder) ---------- */
@@ -1557,13 +1855,26 @@ window.SITE_MEDIA = {
   function mobileNav(){
     const toggle = document.getElementById('menuToggle');
     const nav = document.getElementById('mainNav');
+    const overlay = document.getElementById('navOverlay');
+    const header = document.querySelector('.site-header');
     if (!toggle || !nav) return;
-    toggle.addEventListener('click', () => nav.classList.toggle('open'));
+    function setOpen(open){
+      nav.classList.toggle('open', open);
+      toggle.classList.toggle('active', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (overlay) overlay.classList.toggle('show', open);
+      if (header) header.classList.toggle('menu-open', open);
+      document.body.classList.toggle('nav-locked', open);
+    }
+    toggle.addEventListener('click', () => setOpen(!nav.classList.contains('open')));
+    if (overlay) overlay.addEventListener('click', () => setOpen(false));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
     nav.querySelectorAll('.nav-item').forEach(item => {
       const span = item.querySelector(':scope > span');
       if (span) span.addEventListener('click', () => { if (window.innerWidth <= 980) item.classList.toggle('mobile-open'); });
-      item.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { if (window.innerWidth <= 980) nav.classList.remove('open'); }));
+      item.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { if (window.innerWidth <= 980) setOpen(false); }));
     });
+    window.addEventListener('resize', () => { if (window.innerWidth > 980) setOpen(false); });
   }
 
   /* ---------- hero slider (headline rotation + bg slides) ---------- */
@@ -1636,7 +1947,7 @@ window.SITE_MEDIA = {
   function tilt3D(){
     if (!window.matchMedia('(hover:hover)').matches) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const els = document.querySelectorAll('.room-card, .cat-card, .info-card, .about-media .frame, .product-teaser .frame');
+    const els = document.querySelectorAll('.room-card, .cat-card, .info-card, .about-media .frame, .product-teaser .frame, .p-card, .gallery-grid .g-item');
     els.forEach(el => {
       el.style.transformStyle = 'preserve-3d';
       el.style.transition = 'transform .25s cubic-bezier(.2,.6,.3,1), box-shadow .25s ease';
@@ -1862,6 +2173,7 @@ window.SITE_MEDIA = {
     if (nav) nav.classList.remove("open");
 
     window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+    if (window.ScrollTrigger) requestAnimationFrame(function(){ ScrollTrigger.refresh(); });
 
     // reveal any scroll-reveal elements already in view on this page immediately,
     // then let IntersectionObserver take over for anything below the fold
