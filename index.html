@@ -507,27 +507,39 @@ img.media-img.loaded{display:block;}
 .compare-table .crit{font-weight:600;color:var(--black);}
 .compare-note{font-size:12px;color:var(--muted);margin-top:14px;}
 
-/* ==================== CRAFTED IN MOTION — SCROLL 3D SHOWCASE ==================== */
+/* ==================== CRAFTED IN MOTION — CINEMATIC 3D SCROLL-THROUGH ==================== */
 .motion-showcase{background:var(--black);padding:100px 0 40px;overflow:hidden;position:relative;}
 .motion-showcase::before{content:"";position:absolute;inset:0;background:
-  radial-gradient(circle at 15% 10%, rgba(23,162,168,0.12), transparent 40%),
-  radial-gradient(circle at 90% 80%, rgba(180,146,76,0.1), transparent 45%);pointer-events:none;}
-.motion-intro{max-width:620px;margin:0 auto 12vh;text-align:center;padding:0 40px;position:relative;z-index:2;}
+  radial-gradient(circle at 15% 10%, rgba(23,162,168,0.14), transparent 40%),
+  radial-gradient(circle at 90% 80%, rgba(14,106,111,0.16), transparent 45%);pointer-events:none;}
+/* faint scanning grid — reinforces the "spec sheet meets cinema" mood without adding warm tones */
+.motion-showcase::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0.5;
+  background-image:linear-gradient(rgba(23,162,168,0.05) 1px, transparent 1px);background-size:100% 84px;}
+.motion-intro{max-width:640px;margin:0 auto 10vh;text-align:center;padding:0 40px;position:relative;z-index:2;}
 .motion-intro .eyebrow{justify-content:center;color:var(--brass-light);}
 .motion-intro .eyebrow::before{background:var(--brass-light);}
 .motion-intro h2{color:#fff;font-size:clamp(28px,4vw,44px);margin:14px 0;}
 .motion-intro p{color:#B9C0C6;font-size:15px;line-height:1.75;margin:0;}
+
+/* progress rail — six ticks, one per scene, fills in teal as the user scrolls */
+.motion-rail{position:sticky;top:50%;transform:translateY(-50%);float:right;margin-right:6px;display:flex;flex-direction:column;gap:14px;z-index:5;padding-right:34px;}
+.motion-rail .tick{width:7px;height:7px;border-radius:50%;background:rgba(244,248,248,0.16);border:1px solid rgba(23,162,168,0.3);transition:background .3s ease, box-shadow .3s ease, transform .3s ease;}
+.motion-rail .tick.active{background:var(--brass-light);box-shadow:0 0 14px 2px rgba(23,162,168,0.65);transform:scale(1.35);}
+@media (max-width:860px){.motion-rail{display:none;}}
+
 .motion-panel{position:relative;z-index:2;max-width:1080px;margin:0 auto 16vh;padding:0 40px;display:flex;align-items:center;gap:60px;}
 .motion-panel:last-child{margin-bottom:6vh;}
 .motion-panel:nth-child(odd){flex-direction:row-reverse;}
-.motion-media{flex:1 1 54%;position:relative;aspect-ratio:4/5;max-width:520px;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.55);will-change:transform,filter,opacity;}
+.motion-media{flex:1 1 54%;position:relative;aspect-ratio:16/10;max-width:560px;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(23,162,168,0.14);will-change:transform,filter,opacity;background:var(--charcoal);}
 .motion-media .media-slot{width:100%;height:100%;}
-.motion-media img{width:100%;height:100%;object-fit:cover;display:block;}
-.motion-media::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg, rgba(23,162,168,0.12), transparent 55%);pointer-events:none;}
+.motion-media video{width:100%;height:100%;object-fit:cover;display:block;}
+.motion-media::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg, rgba(23,162,168,0.16), transparent 55%);pointer-events:none;}
+.motion-media .scene-tag{position:absolute;top:16px;left:16px;z-index:3;font-family:var(--f-mono);font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--brass-light);background:rgba(20,30,36,0.55);border:1px solid rgba(23,162,168,0.35);padding:5px 10px;border-radius:3px;backdrop-filter:blur(4px);}
 .motion-caption{flex:1 1 40%;color:#fff;}
 .motion-caption .mono{color:var(--brass-light);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;}
 .motion-caption h3{color:#fff;font-size:clamp(22px,2.6vw,32px);margin:12px 0 0;font-weight:600;line-height:1.2;}
 .motion-caption p{color:#9FA8AE;font-size:14px;line-height:1.7;margin:12px 0 0;max-width:340px;}
+.motion-caption .btn{margin-top:20px;}
 @media (max-width:860px){
   .motion-panel,.motion-panel:nth-child(odd){flex-direction:column !important;gap:24px;margin-bottom:12vh;}
   .motion-media{max-width:100%;width:100%;}
@@ -727,69 +739,114 @@ img.media-img.loaded{display:block;}
   </div>
 </div>
 
-<!-- ============ CRAFTED IN MOTION — SCROLL-DRIVEN 3D SHOWCASE ============ -->
-<!-- Demo imagery for now (see motionShowcaseImages in SITE_MEDIA below) — swap in
-     real macro photography whenever it's ready, the layout and motion stay the same. -->
+<!-- ============ CRAFTED IN MOTION — CINEMATIC 3D SCROLL-THROUGH ============ -->
+<!-- 6 scenes / 3 source videos (each video is scrubbed across two consecutive scenes —
+     scene N plays the first half of its clip, scene N+1 the second half — driven by
+     scroll position via ScrollTrigger, see videoScrollScrub() below). Palette is fixed
+     to basalt black / charcoal / paper-white with deep-teal + teal-cyan + clay-teal
+     accents only — no gold, orange or brown anywhere in this section. -->
 <section class="motion-showcase anchor-offset" id="motion-showcase">
+  <div class="motion-rail" aria-hidden="true">
+    <span class="tick" data-tick="0"></span><span class="tick" data-tick="1"></span>
+    <span class="tick" data-tick="2"></span><span class="tick" data-tick="3"></span>
+    <span class="tick" data-tick="4"></span><span class="tick" data-tick="5"></span>
+  </div>
+
   <div class="motion-intro reveal">
-    <span class="eyebrow">Scroll to Explore</span>
-    <h2>Every Surface, Every Angle.</h2>
-    <p>A closer look at what leaves our floor &mdash; scroll through to see the veining, the print precision and the finish, up close.</p>
+    <span class="eyebrow">Scroll to Explore &mdash; 6 Scenes</span>
+    <h2>Precision. Product. Global Reach.</h2>
+    <p>A cinematic pass through what we build and where it goes &mdash; scroll to move through each scene at your own pace.</p>
   </div>
 
-  <div class="motion-panel">
+  <!-- SCENE 01 — video 1, first half -->
+  <div class="motion-panel" data-scene="0">
     <div class="motion-media">
+      <span class="scene-tag">Scene 01 / 06</span>
       <div class="frame media-slot">
-        <span class="ph-fallback"><span class="ic">&#9673;</span>Marble Detail</span>
-        <img class="media-img" data-media="motionShowcaseImages" data-media-index="0" alt="Marble slab veining detail" loading="lazy">
+        <video class="scroll-video" data-src="videos/scene-01-02-precision.mp4" data-t0="0" data-t1="5" muted playsinline preload="auto" aria-hidden="true"></video>
       </div>
     </div>
     <div class="motion-caption">
-      <span class="mono">01 &mdash; Marble Slabs</span>
-      <h3>Quarried Veining, Book-Matched</h3>
-      <p>Natural stone character, cut and matched for a continuous pattern across large-format slabs.</p>
+      <span class="mono">01 &mdash; Origin</span>
+      <h3>Forged From Basalt, Built on Precision</h3>
+      <p>Every export begins on our own floor in Halvad &mdash; engineered to a single, repeatable standard before it ever leaves Gujarat.</p>
     </div>
   </div>
 
-  <div class="motion-panel">
+  <!-- SCENE 02 — video 1, second half -->
+  <div class="motion-panel" data-scene="1">
     <div class="motion-media">
+      <span class="scene-tag">Scene 02 / 06</span>
       <div class="frame media-slot">
-        <span class="ph-fallback"><span class="ic">&#9673;</span>Digital Vitrified Detail</span>
-        <img class="media-img" data-media="motionShowcaseImages" data-media-index="1" alt="Digital vitrified tile print detail" loading="lazy">
+        <video class="scroll-video" data-src="videos/scene-01-02-precision.mp4" data-t0="5" data-t1="10" muted playsinline preload="auto" aria-hidden="true"></video>
       </div>
     </div>
     <div class="motion-caption">
-      <span class="mono">02 &mdash; Digital Vitrified</span>
-      <h3>German Print, Zero Repeat</h3>
-      <p>High-resolution digital printing keeps every tile in a lot visually distinct, with no obvious repeat pattern.</p>
+      <span class="mono">02 &mdash; Identity</span>
+      <h3>One Mark, One Quality Standard</h3>
+      <p>800+ designs, one benchmark &mdash; every batch checked before it's cleared to carry the Koradiya Group Impex name.</p>
     </div>
   </div>
 
-  <div class="motion-panel">
+  <!-- SCENE 03 — video 2, first half -->
+  <div class="motion-panel" data-scene="2">
     <div class="motion-media">
+      <span class="scene-tag">Scene 03 / 06</span>
       <div class="frame media-slot">
-        <span class="ph-fallback"><span class="ic">&#9673;</span>Porcelain Detail</span>
-        <img class="media-img" data-media="motionShowcaseImages" data-media-index="2" alt="Porcelain tile texture close-up" loading="lazy">
+        <video class="scroll-video" data-src="videos/scene-03-04-product.mp4" data-t0="0" data-t1="5" muted playsinline preload="auto" aria-hidden="true"></video>
       </div>
     </div>
     <div class="motion-caption">
-      <span class="mono">03 &mdash; Porcelain Tiles</span>
-      <h3>Dimensionally Stable, Edge to Edge</h3>
-      <p>Fired for consistency &mdash; tight tolerances that keep grout lines even across the full installation.</p>
+      <span class="mono">03 &mdash; Product</span>
+      <h3>Every Slab, Suspended in Light</h3>
+      <p>Marble and porcelain, shown the way they're specified &mdash; true veining, true finish, true dimension.</p>
     </div>
   </div>
 
-  <div class="motion-panel">
+  <!-- SCENE 04 — video 2, second half -->
+  <div class="motion-panel" data-scene="3">
     <div class="motion-media">
+      <span class="scene-tag">Scene 04 / 06</span>
       <div class="frame media-slot">
-        <span class="ph-fallback"><span class="ic">&#9673;</span>Installed Finish</span>
-        <img class="media-img" data-media="motionShowcaseImages" data-media-index="3" alt="Finished interior flooring installation" loading="lazy">
+        <video class="scroll-video" data-src="videos/scene-03-04-product.mp4" data-t0="5" data-t1="10" muted playsinline preload="auto" aria-hidden="true"></video>
       </div>
     </div>
     <div class="motion-caption">
-      <span class="mono">04 &mdash; Installed</span>
-      <h3>From Our Floor to Yours</h3>
-      <p>The same batch, the same shade, from the container to the finished room.</p>
+      <span class="mono">04 &mdash; Range</span>
+      <h3>Porcelain Tiles, Digital Vitrified, Marble Slabs</h3>
+      <p>A single catalogue built for architects, distributors and importers who need consistency at scale.</p>
+      <a href="#products" class="btn btn-clay">View Products</a>
+    </div>
+  </div>
+
+  <!-- SCENE 05 — video 3, first half -->
+  <div class="motion-panel" data-scene="4">
+    <div class="motion-media">
+      <span class="scene-tag">Scene 05 / 06</span>
+      <div class="frame media-slot">
+        <video class="scroll-video" data-src="videos/scene-05-06-global.mp4" data-t0="0" data-t1="5" muted playsinline preload="auto" aria-hidden="true"></video>
+      </div>
+    </div>
+    <div class="motion-caption">
+      <span class="mono">05 &mdash; Global Reach</span>
+      <h3>17+ Countries, One Supply Chain</h3>
+      <p>From Halvad and Morbi to ports across the world &mdash; the same finish, the same shade, on arrival.</p>
+    </div>
+  </div>
+
+  <!-- SCENE 06 — video 3, second half -->
+  <div class="motion-panel" data-scene="5">
+    <div class="motion-media">
+      <span class="scene-tag">Scene 06 / 06</span>
+      <div class="frame media-slot">
+        <video class="scroll-video" data-src="videos/scene-05-06-global.mp4" data-t0="5" data-t1="10" muted playsinline preload="auto" aria-hidden="true"></video>
+      </div>
+    </div>
+    <div class="motion-caption">
+      <span class="mono">06 &mdash; Export</span>
+      <h3>From Our Floor to Your Ports</h3>
+      <p>Ready to bring Koradiya Group Impex into your next order? Let's talk specification, volume and timelines.</p>
+      <a href="#export" class="btn btn-clay">Start an Export Enquiry</a>
     </div>
   </div>
 </section>
@@ -1805,26 +1862,57 @@ window.SITE_MEDIA = {
     motionShowcaseFX();
   }
 
-  /* ---------- "Crafted in Motion" — scroll-scrubbed zoom / position / 3D tilt ----------
-     Progressive enhancement: the section already looks good via the existing
-     .reveal-scale fade-in (see the "reveal" class on .motion-intro / bindMedia above).
-     If GSAP + ScrollTrigger loaded successfully and the user hasn't asked for
-     reduced motion, layer in a continuous scroll-scrubbed 3D effect: each image
-     zooms in from an oversized, blurred, tilted state as it enters, settles flat
-     and sharp mid-viewport, then tilts and recedes the opposite way as it exits. */
+  /* ---------- "Crafted in Motion" — cinematic 3D scroll-through (6 scenes / 3 videos) ----------
+     Each .motion-panel holds one <video>. Two consecutive scenes share one source clip —
+     scene N scrubs the first half of the clip's timeline, scene N+1 the second half —
+     so scrolling forward always plays the video forward, never backward, across the pair.
+     The video never "plays" on its own: currentTime is driven entirely by scroll progress
+     (scrub), giving a true frame-by-frame scroll-through rather than a looping background.
+     Falls back gracefully (video sits on its poster frame) if GSAP/ScrollTrigger are
+     unavailable or the user has requested reduced motion. */
   function motionShowcaseFX(){
-    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    gsap.registerPlugin(ScrollTrigger);
-
     const panels = document.querySelectorAll('.motion-panel');
     if (!panels.length) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const hasGSAP = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
+    if (hasGSAP) gsap.registerPlugin(ScrollTrigger);
     const small = window.innerWidth < 700;
 
+    /* wire up each scene's <video>: load its real src, seed the first frame,
+       then scrub currentTime across its assigned [t0,t1] window as its panel
+       crosses the viewport. */
     panels.forEach((panel, i) => {
       const media = panel.querySelector('.motion-media');
       const caption = panel.querySelector('.motion-caption');
+      const video = panel.querySelector('.scroll-video');
       if (!media) return;
+
+      if (video){
+        const src = video.getAttribute('data-src');
+        const t0 = parseFloat(video.getAttribute('data-t0')) || 0;
+        const t1 = parseFloat(video.getAttribute('data-t1')) || (t0 + 5);
+        if (src && !video.getAttribute('src')) video.setAttribute('src', src);
+        video.addEventListener('loadedmetadata', () => { try { video.currentTime = t0; } catch(e){} }, { once:true });
+
+        if (hasGSAP && !reduced){
+          ScrollTrigger.create({
+            trigger: panel, start: 'top 85%', end: 'bottom 15%', scrub: 0.4,
+            onUpdate(self){
+              if (video.readyState < 1) return; // wait for metadata
+              const t = t0 + (t1 - t0) * self.progress;
+              try { video.currentTime = t; } catch(e){}
+            },
+            onToggle(self){
+              document.querySelectorAll('.motion-rail .tick').forEach((tick, idx) => {
+                tick.classList.toggle('active', self.isActive && idx === i);
+              });
+            }
+          });
+        }
+      }
+
+      if (!hasGSAP || reduced) return;
+
       const dir = i % 2 === 0 ? 1 : -1;
       const tiltY = small ? 10 : 22;
       const tiltX = small ? 4 : 9;
@@ -1851,13 +1939,14 @@ window.SITE_MEDIA = {
       }
     });
 
-    const intro = document.querySelector('.motion-intro');
-    if (intro){
-      gsap.to(intro, { yPercent: -10, ease: 'none',
-        scrollTrigger: { trigger: '.motion-showcase', start: 'top bottom', end: 'bottom top', scrub: true } });
+    if (hasGSAP){
+      const intro = document.querySelector('.motion-intro');
+      if (intro && !reduced){
+        gsap.to(intro, { yPercent: -10, ease: 'none',
+          scrollTrigger: { trigger: '.motion-showcase', start: 'top bottom', end: 'bottom top', scrub: true } });
+      }
+      window.addEventListener('load', () => ScrollTrigger.refresh());
     }
-
-    window.addEventListener('load', () => ScrollTrigger.refresh());
   }
 
   /* ---------- media.js binding (graceful; falls back to CSS placeholder) ---------- */
