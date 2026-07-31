@@ -507,31 +507,57 @@ img.media-img.loaded{display:block;}
 .compare-table .crit{font-weight:600;color:var(--black);}
 .compare-note{font-size:12px;color:var(--muted);margin-top:14px;}
 
-/* ==================== CRAFTED IN MOTION — SCROLL 3D SHOWCASE ==================== */
+/* ==================== CRAFTED IN MOTION — CINEMATIC 3D SCROLL-THROUGH ==================== */
 .motion-showcase{background:var(--black);padding:100px 0 40px;overflow:hidden;position:relative;}
 .motion-showcase::before{content:"";position:absolute;inset:0;background:
-  radial-gradient(circle at 15% 10%, rgba(23,162,168,0.12), transparent 40%),
-  radial-gradient(circle at 90% 80%, rgba(180,146,76,0.1), transparent 45%);pointer-events:none;}
-.motion-intro{max-width:620px;margin:0 auto 12vh;text-align:center;padding:0 40px;position:relative;z-index:2;}
+  radial-gradient(circle at 15% 10%, rgba(23,162,168,0.14), transparent 40%),
+  radial-gradient(circle at 90% 80%, rgba(14,106,111,0.16), transparent 45%);pointer-events:none;}
+.motion-intro{max-width:620px;margin:0 auto 10vh;text-align:center;padding:0 40px;position:relative;z-index:2;}
 .motion-intro .eyebrow{justify-content:center;color:var(--brass-light);}
 .motion-intro .eyebrow::before{background:var(--brass-light);}
 .motion-intro h2{color:#fff;font-size:clamp(28px,4vw,44px);margin:14px 0;}
 .motion-intro p{color:#B9C0C6;font-size:15px;line-height:1.75;margin:0;}
-.motion-panel{position:relative;z-index:2;max-width:1080px;margin:0 auto 16vh;padding:0 40px;display:flex;align-items:center;gap:60px;}
-.motion-panel:last-child{margin-bottom:6vh;}
-.motion-panel:nth-child(odd){flex-direction:row-reverse;}
-.motion-media{flex:1 1 54%;position:relative;aspect-ratio:4/5;max-width:520px;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.55);will-change:transform,filter,opacity;}
-.motion-media .media-slot{width:100%;height:100%;}
-.motion-media img{width:100%;height:100%;object-fit:cover;display:block;}
-.motion-media::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg, rgba(23,162,168,0.12), transparent 55%);pointer-events:none;}
-.motion-caption{flex:1 1 40%;color:#fff;}
-.motion-caption .mono{color:var(--brass-light);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;}
-.motion-caption h3{color:#fff;font-size:clamp(22px,2.6vw,32px);margin:12px 0 0;font-weight:600;line-height:1.2;}
-.motion-caption p{color:#9FA8AE;font-size:14px;line-height:1.7;margin:12px 0 0;max-width:340px;}
+
+/* ---- cinematic pinned video-scrub stages: each stage = one video = 2 scroll-scrubbed scenes ---- */
+.cine-stage{position:relative;z-index:2;height:220vh;}
+.cine-stage:last-of-type{margin-bottom:4vh;}
+.cine-viewport{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;perspective:1400px;}
+.cine-viewport::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(ellipse at center, transparent 40%, rgba(20,30,36,0.55) 100%);}
+.cine-frame{position:relative;width:min(1080px, 86vw);aspect-ratio:16/9;border-radius:20px;overflow:hidden;
+  box-shadow:0 40px 110px rgba(0,0,0,0.6), 0 0 0 1px rgba(23,162,168,0.18), 0 0 70px rgba(18,137,143,0.16);
+  transform-style:preserve-3d;will-change:transform,filter;background:var(--charcoal);}
+.cine-frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.cine-frame .cine-glow-edge{position:absolute;inset:0;border-radius:20px;pointer-events:none;
+  box-shadow:inset 0 0 60px rgba(23,162,168,0.15), inset 0 0 1px rgba(244,248,248,0.25);}
+.cine-frame .cine-scanline{position:absolute;inset:0;pointer-events:none;mix-blend-mode:overlay;opacity:0.35;
+  background:repeating-linear-gradient(180deg, rgba(244,248,248,0.04) 0px, rgba(244,248,248,0.04) 1px, transparent 2px, transparent 4px);}
+.cine-index{position:absolute;top:22px;left:26px;z-index:3;font-family:var(--f-mono);font-size:11px;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--brass-light);display:flex;align-items:center;gap:8px;}
+.cine-index .bar{width:26px;height:2px;background:var(--brass-light);box-shadow:0 0 8px rgba(23,162,168,0.7);}
+.cine-scenes{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:34px 34px 30px;
+  background:linear-gradient(0deg, rgba(20,30,36,0.92) 0%, rgba(20,30,36,0.55) 55%, transparent 100%);}
+.cine-scene-set{position:relative;}
+.cine-scene{position:absolute;inset:0;opacity:0;transform:translateY(14px);transition:none;}
+.cine-scene.is-active{position:relative;opacity:1;transform:translateY(0);}
+.cine-scene .mono{color:var(--clay-light);font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;}
+.cine-scene h3{color:#fff;font-size:clamp(20px,2.4vw,28px);margin:8px 0 0;font-weight:600;line-height:1.2;}
+.cine-scene p{color:#B9C0C6;font-size:13.5px;line-height:1.65;margin:8px 0 0;max-width:480px;}
+.cine-progress{position:absolute;bottom:0;left:0;height:3px;width:100%;background:rgba(244,248,248,0.08);z-index:3;}
+.cine-progress-bar{height:100%;width:0%;background:linear-gradient(90deg, var(--brass) 0%, var(--brass-light) 100%);
+  box-shadow:0 0 10px rgba(23,162,168,0.7);}
+.cine-dots{position:absolute;top:22px;right:26px;z-index:3;display:flex;gap:7px;}
+.cine-dots span{width:6px;height:6px;border-radius:50%;background:rgba(244,248,248,0.25);transition:background .25s,box-shadow .25s;}
+.cine-dots span.is-active{background:var(--brass-light);box-shadow:0 0 8px rgba(23,162,168,0.9);}
 @media (max-width:860px){
-  .motion-panel,.motion-panel:nth-child(odd){flex-direction:column !important;gap:24px;margin-bottom:12vh;}
-  .motion-media{max-width:100%;width:100%;}
-  .motion-intro{margin-bottom:9vh;}
+  .cine-stage{height:180vh;}
+  .cine-viewport{height:88vh;}
+  .cine-frame{width:92vw;aspect-ratio:4/5;}
+  .cine-scenes{padding:22px 20px 20px;}
+}
+@media (prefers-reduced-motion: reduce){
+  .cine-stage{height:auto;}
+  .cine-viewport{position:relative;height:auto;padding:40px 0;}
 }
 
 
@@ -727,69 +753,105 @@ img.media-img.loaded{display:block;}
   </div>
 </div>
 
-<!-- ============ CRAFTED IN MOTION — SCROLL-DRIVEN 3D SHOWCASE ============ -->
-<!-- Demo imagery for now (see motionShowcaseImages in SITE_MEDIA below) — swap in
-     real macro photography whenever it's ready, the layout and motion stay the same. -->
+<!-- ============ CRAFTED IN MOTION — CINEMATIC 3D SCROLL-THROUGH ============ -->
+<!-- Three pinned video stages, each holding two scroll-scrubbed scenes (6 scenes total).
+     As the user scrolls through a stage, the video's own playhead is scrubbed in sync with
+     scroll position (first half of the stage = scene A, second half = scene B), while the
+     frame itself gets a subtle 3D tilt/scale for a cinematic depth effect. See cineScrollFX(). -->
 <section class="motion-showcase anchor-offset" id="motion-showcase">
   <div class="motion-intro reveal">
     <span class="eyebrow">Scroll to Explore</span>
     <h2>Every Surface, Every Angle.</h2>
-    <p>A closer look at what leaves our floor &mdash; scroll through to see the veining, the print precision and the finish, up close.</p>
+    <p>Scroll through to move the film itself &mdash; from mark, to material, to the map we ship it across.</p>
   </div>
 
-  <div class="motion-panel">
-    <div class="motion-media">
-      <div class="frame media-slot">
-        <span class="ph-fallback"><span class="ic">&#9673;</span>Marble Detail</span>
-        <img class="media-img" data-media="motionShowcaseImages" data-media-index="0" alt="Marble slab veining detail" loading="lazy">
+  <!-- STAGE 1 / SCENES 01 &amp; 02 — brand mark -->
+  <div class="cine-stage" id="cine-stage-1" data-cine-stage>
+    <div class="cine-viewport">
+      <div class="cine-frame" data-cine-frame>
+        <span class="cine-index"><span class="bar"></span>Stage 01 &mdash; The Mark</span>
+        <div class="cine-dots"><span class="is-active" data-dot="0"></span><span data-dot="1"></span></div>
+        <video data-cine-video muted playsinline preload="auto" poster="assets/video/scene-mark-poster.jpg">
+          <source src="assets/video/scene-mark.mp4" type="video/mp4">
+        </video>
+        <div class="cine-glow-edge"></div>
+        <div class="cine-scanline"></div>
+        <div class="cine-scenes">
+          <div class="cine-scene-set">
+            <div class="cine-scene is-active" data-scene="0">
+              <span class="mono">Scene 01 &mdash; Forming the Mark</span>
+              <h3>Precision, Cast in Basalt and Teal</h3>
+              <p>Every export begins with a standard &mdash; the Koradiya mark, engineered the same way our tiles are: exact, deliberate, built to hold its shape.</p>
+            </div>
+            <div class="cine-scene" data-scene="1">
+              <span class="mono">Scene 02 &mdash; The Standard, Set</span>
+              <h3>Engineered Since Day One</h3>
+              <p>A WHO-grade manufacturing floor at Halvad, Morbi &mdash; the identity behind every box that leaves for 17+ countries.</p>
+            </div>
+          </div>
+        </div>
+        <div class="cine-progress"><div class="cine-progress-bar" data-cine-bar></div></div>
       </div>
-    </div>
-    <div class="motion-caption">
-      <span class="mono">01 &mdash; Marble Slabs</span>
-      <h3>Quarried Veining, Book-Matched</h3>
-      <p>Natural stone character, cut and matched for a continuous pattern across large-format slabs.</p>
-    </div>
-  </div>
-
-  <div class="motion-panel">
-    <div class="motion-media">
-      <div class="frame media-slot">
-        <span class="ph-fallback"><span class="ic">&#9673;</span>Digital Vitrified Detail</span>
-        <img class="media-img" data-media="motionShowcaseImages" data-media-index="1" alt="Digital vitrified tile print detail" loading="lazy">
-      </div>
-    </div>
-    <div class="motion-caption">
-      <span class="mono">02 &mdash; Digital Vitrified</span>
-      <h3>German Print, Zero Repeat</h3>
-      <p>High-resolution digital printing keeps every tile in a lot visually distinct, with no obvious repeat pattern.</p>
-    </div>
-  </div>
-
-  <div class="motion-panel">
-    <div class="motion-media">
-      <div class="frame media-slot">
-        <span class="ph-fallback"><span class="ic">&#9673;</span>Porcelain Detail</span>
-        <img class="media-img" data-media="motionShowcaseImages" data-media-index="2" alt="Porcelain tile texture close-up" loading="lazy">
-      </div>
-    </div>
-    <div class="motion-caption">
-      <span class="mono">03 &mdash; Porcelain Tiles</span>
-      <h3>Dimensionally Stable, Edge to Edge</h3>
-      <p>Fired for consistency &mdash; tight tolerances that keep grout lines even across the full installation.</p>
     </div>
   </div>
 
-  <div class="motion-panel">
-    <div class="motion-media">
-      <div class="frame media-slot">
-        <span class="ph-fallback"><span class="ic">&#9673;</span>Installed Finish</span>
-        <img class="media-img" data-media="motionShowcaseImages" data-media-index="3" alt="Finished interior flooring installation" loading="lazy">
+  <!-- STAGE 2 / SCENES 03 &amp; 04 — product showcase -->
+  <div class="cine-stage" id="cine-stage-2" data-cine-stage>
+    <div class="cine-viewport">
+      <div class="cine-frame" data-cine-frame>
+        <span class="cine-index"><span class="bar"></span>Stage 02 &mdash; The Material</span>
+        <div class="cine-dots"><span class="is-active" data-dot="0"></span><span data-dot="1"></span></div>
+        <video data-cine-video muted playsinline preload="auto" poster="assets/video/scene-product-poster.jpg">
+          <source src="assets/video/scene-product.mp4" type="video/mp4">
+        </video>
+        <div class="cine-glow-edge"></div>
+        <div class="cine-scanline"></div>
+        <div class="cine-scenes">
+          <div class="cine-scene-set">
+            <div class="cine-scene is-active" data-scene="0">
+              <span class="mono">Scene 03 &mdash; Every Slab, Book-Matched</span>
+              <h3>Quarried Veining, Turned to Light</h3>
+              <p>Natural stone character cut and matched for a continuous pattern across large-format marble slabs.</p>
+            </div>
+            <div class="cine-scene" data-scene="1">
+              <span class="mono">Scene 04 &mdash; Digitally Fired</span>
+              <h3>German Print, Zero Repeat</h3>
+              <p>High-resolution digital printing on porcelain vitrified tiles &mdash; every piece in a lot visually distinct, with no obvious repeat.</p>
+            </div>
+          </div>
+        </div>
+        <div class="cine-progress"><div class="cine-progress-bar" data-cine-bar></div></div>
       </div>
     </div>
-    <div class="motion-caption">
-      <span class="mono">04 &mdash; Installed</span>
-      <h3>From Our Floor to Yours</h3>
-      <p>The same batch, the same shade, from the container to the finished room.</p>
+  </div>
+
+  <!-- STAGE 3 / SCENES 05 &amp; 06 — global reach -->
+  <div class="cine-stage" id="cine-stage-3" data-cine-stage>
+    <div class="cine-viewport">
+      <div class="cine-frame" data-cine-frame>
+        <span class="cine-index"><span class="bar"></span>Stage 03 &mdash; The Map</span>
+        <div class="cine-dots"><span class="is-active" data-dot="0"></span><span data-dot="1"></span></div>
+        <video data-cine-video muted playsinline preload="auto" poster="assets/video/scene-global-poster.jpg">
+          <source src="assets/video/scene-global.mp4" type="video/mp4">
+        </video>
+        <div class="cine-glow-edge"></div>
+        <div class="cine-scanline"></div>
+        <div class="cine-scenes">
+          <div class="cine-scene-set">
+            <div class="cine-scene is-active" data-scene="0">
+              <span class="mono">Scene 05 &mdash; From Halvad, Outward</span>
+              <h3>One Floor, Every Coastline</h3>
+              <p>From our manufacturing hub in Gujarat, container lines run out to distributors and importers across the globe.</p>
+            </div>
+            <div class="cine-scene" data-scene="1">
+              <span class="mono">Scene 06 &mdash; The Network, Lit</span>
+              <h3>17+ Nations, One Standard</h3>
+              <p>Wherever the route ends, the batch, the shade and the finish stay identical to what left our floor.</p>
+            </div>
+          </div>
+        </div>
+        <div class="cine-progress"><div class="cine-progress-bar" data-cine-bar></div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -1802,62 +1864,94 @@ window.SITE_MEDIA = {
     backToTop();
     contactForm();
     tilt3D();
-    motionShowcaseFX();
+    cineScrollFX();
   }
 
-  /* ---------- "Crafted in Motion" — scroll-scrubbed zoom / position / 3D tilt ----------
-     Progressive enhancement: the section already looks good via the existing
-     .reveal-scale fade-in (see the "reveal" class on .motion-intro / bindMedia above).
-     If GSAP + ScrollTrigger loaded successfully and the user hasn't asked for
-     reduced motion, layer in a continuous scroll-scrubbed 3D effect: each image
-     zooms in from an oversized, blurred, tilted state as it enters, settles flat
-     and sharp mid-viewport, then tilts and recedes the opposite way as it exits. */
-  function motionShowcaseFX(){
-    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    gsap.registerPlugin(ScrollTrigger);
+  /* ---------- "Crafted in Motion" — cinematic 3D scroll-scrubbed video stages ----------
+     Each .cine-stage pins its .cine-frame for a tall scroll distance. As the user scrolls
+     through that distance, scroll progress (0→1) drives THREE things in lockstep:
+       1) the <video>'s own currentTime is scrubbed across its full duration — the footage
+          plays forward/backward exactly as fast as the user scrolls, never on its own clock.
+       2) a subtle 3D tilt / scale / depth-blur on the frame (perspective already set in CSS),
+          so the panel itself feels like it's rotating through space as it's pinned.
+       3) which of the two caption "scenes" is shown — progress < 0.5 = scene 0 (first half
+          of the video / first half of scroll), progress >= 0.5 = scene 1 — with a matching
+          progress bar and dot indicator.
+     Falls back gracefully: without GSAP/ScrollTrigger, or with reduced-motion on, the videos
+     simply autoplay muted on loop and both scenes stay readable via the .is-active class
+     already set in the markup (scene 0 shown, section is not pinned). */
+  function cineScrollFX(){
+    const stages = document.querySelectorAll('[data-cine-stage]');
+    if (!stages.length) return;
 
-    const panels = document.querySelectorAll('.motion-panel');
-    if (!panels.length) return;
-    const small = window.innerWidth < 700;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const hasGSAP = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
 
-    panels.forEach((panel, i) => {
-      const media = panel.querySelector('.motion-media');
-      const caption = panel.querySelector('.motion-caption');
-      if (!media) return;
-      const dir = i % 2 === 0 ? 1 : -1;
-      const tiltY = small ? 10 : 22;
-      const tiltX = small ? 4 : 9;
+    stages.forEach((stage) => {
+      const video = stage.querySelector('[data-cine-video]');
+      const frame = stage.querySelector('[data-cine-frame]');
+      const bar = stage.querySelector('[data-cine-bar]');
+      const scenes = stage.querySelectorAll('[data-scene]');
+      const dots = stage.querySelectorAll('[data-dot]');
+      if (!video || !frame) return;
 
-      gsap.set(media, { transformPerspective: 900, transformStyle: 'preserve-3d' });
+      const setScene = (idx) => {
+        scenes.forEach(s => s.classList.toggle('is-active', +s.getAttribute('data-scene') === idx));
+        dots.forEach(d => d.classList.toggle('is-active', +d.getAttribute('data-dot') === idx));
+      };
 
-      /* entrance: oversized + blurred + tilted -> flat, sharp, in place */
-      gsap.fromTo(media,
-        { scale: 1.32, rotateY: tiltY * dir, rotateX: tiltX, opacity: 0.2, filter: 'blur(14px)' },
-        {
-          scale: 1, rotateY: 0, rotateX: 0, opacity: 1, filter: 'blur(0px)', ease: 'none',
-          scrollTrigger: { trigger: panel, start: 'top 92%', end: 'top 42%', scrub: 0.6 }
-        }
-      );
-      /* exit: tilts the opposite way and recedes as it leaves through the top */
-      gsap.to(media, {
-        scale: 0.9, rotateY: -tiltY * 0.6 * dir, opacity: 0.35, filter: 'blur(5px)', ease: 'none',
-        scrollTrigger: { trigger: panel, start: 'top 20%', end: 'top -30%', scrub: 0.6 }
-      });
-      if (caption){
-        gsap.fromTo(caption, { opacity: 0, y: 36 },
-          { opacity: 1, y: 0, ease: 'none',
-            scrollTrigger: { trigger: panel, start: 'top 88%', end: 'top 48%', scrub: 0.6 } });
+      /* No GSAP/ScrollTrigger, or reduced motion: static fallback, video just plays through. */
+      if (!hasGSAP || reduced){
+        video.loop = true;
+        video.autoplay = true;
+        video.play().catch(() => {});
+        return;
       }
+
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.set(frame, { transformPerspective: 1200, transformStyle: 'preserve-3d' });
+
+      let ready = false;
+      const onReady = () => {
+        if (ready || !video.duration || !isFinite(video.duration)) return;
+        ready = true;
+
+        video.pause();
+
+        /* The sticky .cine-viewport (CSS) already holds the frame in place on screen while
+           the tall .cine-stage scrolls underneath it — that's the "pin". ScrollTrigger here
+           only measures progress across that same range to scrub the video/3D tilt, so we
+           deliberately don't also set pin:true (that would double-pin via a second mechanism
+           and fight the CSS sticky positioning). */
+        ScrollTrigger.create({
+          trigger: stage,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 0.4,
+          onUpdate: (self) => {
+            const p = self.progress; // 0 -> 1 across this stage
+            /* scrub the footage itself to scroll position */
+            video.currentTime = Math.min(video.duration - 0.05, Math.max(0, p * video.duration));
+            /* progress bar + scene crossfade at the halfway mark */
+            if (bar) bar.style.width = (p * 100).toFixed(2) + '%';
+            setScene(p < 0.5 ? 0 : 1);
+            /* cinematic depth: settles flat/sharp near the middle, tilts + recedes at the edges */
+            const edge = Math.min(1, Math.abs(p - 0.5) * 2.15);
+            gsap.set(frame, {
+              scale: 1 - edge * 0.08,
+              rotateX: (p < 0.5 ? 1 : -1) * edge * 5,
+              rotateY: (p < 0.5 ? -1 : 1) * edge * 7,
+              filter: `blur(${edge * 3}px) brightness(${1 - edge * 0.12})`
+            });
+          }
+        });
+      };
+
+      if (video.readyState >= 1) onReady();
+      else video.addEventListener('loadedmetadata', onReady, { once: true });
     });
 
-    const intro = document.querySelector('.motion-intro');
-    if (intro){
-      gsap.to(intro, { yPercent: -10, ease: 'none',
-        scrollTrigger: { trigger: '.motion-showcase', start: 'top bottom', end: 'bottom top', scrub: true } });
-    }
-
-    window.addEventListener('load', () => ScrollTrigger.refresh());
+    window.addEventListener('load', () => { if (hasGSAP) ScrollTrigger.refresh(); });
   }
 
   /* ---------- media.js binding (graceful; falls back to CSS placeholder) ---------- */
