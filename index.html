@@ -507,44 +507,48 @@ img.media-img.loaded{display:block;}
 .compare-table .crit{font-weight:600;color:var(--black);}
 .compare-note{font-size:12px;color:var(--muted);margin-top:14px;}
 
-/* ==================== CRAFTED IN MOTION — CINEMATIC 3D SCROLL-THROUGH ==================== */
-.motion-showcase{background:var(--black);padding:100px 0 40px;overflow:hidden;position:relative;}
-.motion-showcase::before{content:"";position:absolute;inset:0;background:
-  radial-gradient(circle at 15% 10%, rgba(23,162,168,0.14), transparent 40%),
-  radial-gradient(circle at 90% 80%, rgba(14,106,111,0.16), transparent 45%);pointer-events:none;}
-/* faint scanning grid — reinforces the "spec sheet meets cinema" mood without adding warm tones */
-.motion-showcase::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0.5;
-  background-image:linear-gradient(rgba(23,162,168,0.05) 1px, transparent 1px);background-size:100% 84px;}
-.motion-intro{max-width:640px;margin:0 auto 10vh;text-align:center;padding:0 40px;position:relative;z-index:2;}
-.motion-intro .eyebrow{justify-content:center;color:var(--brass-light);}
-.motion-intro .eyebrow::before{background:var(--brass-light);}
-.motion-intro h2{color:#fff;font-size:clamp(28px,4vw,44px);margin:14px 0;}
-.motion-intro p{color:#B9C0C6;font-size:15px;line-height:1.75;margin:0;}
+/* ==================== CRAFTED IN MOTION — PINNED FRAME-BY-FRAME SCROLL ====================
+   The whole section is one tall scroll track (.cinema-scroll). Its inner .cinema-pin
+   is CSS position:sticky, so it stays locked full-viewport while you scroll through the
+   track — and scroll position is mapped directly to video currentTime, so the footage
+   advances frame-by-frame with the scrollbar (forward scroll = forward frames, reverse
+   scroll = rewinds), exactly like a native scroll-scrubbed hero. Three clips run back to
+   back across one continuous scroll; captions and the progress rail change with them. */
+.cinema-scroll{position:relative;height:600vh;background:var(--black);}
+.cinema-pin{position:sticky;top:0;left:0;width:100%;height:100vh;overflow:hidden;background:var(--black);}
+.cinema-videos{position:absolute;inset:0;}
+.cine-v{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;pointer-events:none;}
+.cine-v.active{opacity:1;}
+/* teal-only vignette + wash — no warm tones */
+.cinema-overlay{position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:
+    linear-gradient(180deg, rgba(20,30,36,0.55) 0%, rgba(20,30,36,0.05) 22%, rgba(20,30,36,0.1) 70%, rgba(20,30,36,0.75) 100%),
+    radial-gradient(circle at 12% 15%, rgba(23,162,168,0.16), transparent 42%),
+    radial-gradient(circle at 88% 85%, rgba(14,106,111,0.18), transparent 46%);}
+.cinema-topline{position:absolute;top:0;left:0;right:0;z-index:6;padding:26px 40px 0;display:flex;align-items:center;justify-content:space-between;font-family:var(--f-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(244,248,248,0.65);}
+.cinema-topline .dot{color:var(--brass-light);margin:0 6px;}
 
-/* progress rail — six ticks, one per scene, fills in teal as the user scrolls */
-.motion-rail{position:sticky;top:50%;transform:translateY(-50%);float:right;margin-right:6px;display:flex;flex-direction:column;gap:14px;z-index:5;padding-right:34px;}
-.motion-rail .tick{width:7px;height:7px;border-radius:50%;background:rgba(244,248,248,0.16);border:1px solid rgba(23,162,168,0.3);transition:background .3s ease, box-shadow .3s ease, transform .3s ease;}
-.motion-rail .tick.active{background:var(--brass-light);box-shadow:0 0 14px 2px rgba(23,162,168,0.65);transform:scale(1.35);}
-@media (max-width:860px){.motion-rail{display:none;}}
+.cinema-progress{position:absolute;top:0;left:0;right:0;height:3px;z-index:7;background:rgba(244,248,248,0.1);}
+.cinema-progress .bar{height:100%;width:0%;background:linear-gradient(90deg, var(--brass), var(--brass-light));box-shadow:0 0 10px rgba(23,162,168,0.6);}
 
-.motion-panel{position:relative;z-index:2;max-width:1080px;margin:0 auto 16vh;padding:0 40px;display:flex;align-items:center;gap:60px;}
-.motion-panel:last-child{margin-bottom:6vh;}
-.motion-panel:nth-child(odd){flex-direction:row-reverse;}
-.motion-media{flex:1 1 54%;position:relative;aspect-ratio:16/10;max-width:560px;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(23,162,168,0.14);will-change:transform,filter,opacity;background:var(--charcoal);}
-.motion-media .media-slot{width:100%;height:100%;}
-.motion-media video{width:100%;height:100%;object-fit:cover;display:block;}
-.motion-media::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg, rgba(23,162,168,0.16), transparent 55%);pointer-events:none;}
-.motion-media .scene-tag{position:absolute;top:16px;left:16px;z-index:3;font-family:var(--f-mono);font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--brass-light);background:rgba(20,30,36,0.55);border:1px solid rgba(23,162,168,0.35);padding:5px 10px;border-radius:3px;backdrop-filter:blur(4px);}
-.motion-caption{flex:1 1 40%;color:#fff;}
-.motion-caption .mono{color:var(--brass-light);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;}
-.motion-caption h3{color:#fff;font-size:clamp(22px,2.6vw,32px);margin:12px 0 0;font-weight:600;line-height:1.2;}
-.motion-caption p{color:#9FA8AE;font-size:14px;line-height:1.7;margin:12px 0 0;max-width:340px;}
-.motion-caption .btn{margin-top:20px;}
-@media (max-width:860px){
-  .motion-panel,.motion-panel:nth-child(odd){flex-direction:column !important;gap:24px;margin-bottom:12vh;}
-  .motion-media{max-width:100%;width:100%;}
-  .motion-intro{margin-bottom:9vh;}
-}
+.cinema-rail{position:absolute;top:50%;right:34px;transform:translateY(-50%);z-index:6;display:flex;flex-direction:column;gap:14px;}
+.cinema-rail .tick{width:7px;height:7px;border-radius:50%;background:rgba(244,248,248,0.18);border:1px solid rgba(23,162,168,0.32);transition:background .3s ease, box-shadow .3s ease, transform .3s ease;}
+.cinema-rail .tick.active{background:var(--brass-light);box-shadow:0 0 14px 2px rgba(23,162,168,0.7);transform:scale(1.4);}
+@media (max-width:860px){.cinema-rail{right:16px;gap:10px;}}
+
+.cinema-captions{position:absolute;inset:0;z-index:5;display:flex;align-items:flex-end;pointer-events:none;}
+.cine-cap{position:absolute;left:0;right:0;bottom:0;padding:0 40px 90px;max-width:640px;margin:0 auto;opacity:0;transform:translateY(28px);transition:opacity .5s ease, transform .6s ease;}
+.cine-cap.active{opacity:1;transform:translateY(0);}
+.cine-cap .mono{color:var(--brass-light);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;}
+.cine-cap h3{color:#fff;font-size:clamp(26px,4.4vw,48px);margin:14px 0 0;font-weight:600;line-height:1.12;}
+.cine-cap p{color:#C7D0D3;font-size:15.5px;line-height:1.7;margin:14px 0 0;max-width:460px;}
+.cine-cap .btn{margin-top:22px;pointer-events:auto;}
+@media (max-width:700px){.cine-cap{padding:0 24px 70px;}}
+
+.cinema-scrolltip{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:6;font-family:var(--f-mono);font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(244,248,248,0.55);display:flex;flex-direction:column;align-items:center;gap:6px;}
+.cinema-scrolltip .line{width:1px;height:26px;background:linear-gradient(180deg, var(--brass-light), transparent);animation:cineTipPulse 1.8s ease-in-out infinite;}
+@keyframes cineTipPulse{0%,100%{opacity:.3;}50%{opacity:1;}}
+.cinema-scroll.at-end .cinema-scrolltip{opacity:0;}
 
 
 /* ==================== RESPONSIVE ==================== */
@@ -739,115 +743,67 @@ img.media-img.loaded{display:block;}
   </div>
 </div>
 
-<!-- ============ CRAFTED IN MOTION — CINEMATIC 3D SCROLL-THROUGH ============ -->
-<!-- 6 scenes / 3 source videos (each video is scrubbed across two consecutive scenes —
-     scene N plays the first half of its clip, scene N+1 the second half — driven by
-     scroll position via ScrollTrigger, see videoScrollScrub() below). Palette is fixed
-     to basalt black / charcoal / paper-white with deep-teal + teal-cyan + clay-teal
-     accents only — no gold, orange or brown anywhere in this section. -->
-<section class="motion-showcase anchor-offset" id="motion-showcase">
-  <div class="motion-rail" aria-hidden="true">
-    <span class="tick" data-tick="0"></span><span class="tick" data-tick="1"></span>
-    <span class="tick" data-tick="2"></span><span class="tick" data-tick="3"></span>
-    <span class="tick" data-tick="4"></span><span class="tick" data-tick="5"></span>
-  </div>
+<!-- ============ CRAFTED IN MOTION — PINNED, FRAME-BY-FRAME SCROLL ============ -->
+<!-- One long scroll track. The viewport-filling stage pins in place (position:sticky)
+     while the scrollbar drives video.currentTime directly, frame by frame, across three
+     back-to-back clips (10s each = 30s of footage mapped to the full track). Scroll down
+     to play forward, scroll up to rewind — nothing plays on its own. -->
+<section class="cinema-scroll" id="motion-showcase">
+  <div class="cinema-pin">
+    <div class="cinema-videos">
+      <video class="cine-v active" data-idx="0" src="videos/scene-01-02-precision.mp4" muted playsinline preload="auto" aria-hidden="true"></video>
+      <video class="cine-v" data-idx="1" src="videos/scene-03-04-product.mp4" muted playsinline preload="auto" aria-hidden="true"></video>
+      <video class="cine-v" data-idx="2" src="videos/scene-05-06-global.mp4" muted playsinline preload="auto" aria-hidden="true"></video>
+    </div>
+    <div class="cinema-overlay"></div>
 
-  <div class="motion-intro reveal">
-    <span class="eyebrow">Scroll to Explore &mdash; 6 Scenes</span>
-    <h2>Precision. Product. Global Reach.</h2>
-    <p>A cinematic pass through what we build and where it goes &mdash; scroll to move through each scene at your own pace.</p>
-  </div>
+    <div class="cinema-topline">
+      <span>Koradiya Group Impex <span class="dot">&#9670;</span> Scroll Film</span>
+      <span id="cineSceneLabel">Scene 01 / 06</span>
+    </div>
+    <div class="cinema-progress"><div class="bar" id="cineBar"></div></div>
+    <div class="cinema-rail" aria-hidden="true">
+      <span class="tick active" data-tick="0"></span><span class="tick" data-tick="1"></span>
+      <span class="tick" data-tick="2"></span><span class="tick" data-tick="3"></span>
+      <span class="tick" data-tick="4"></span><span class="tick" data-tick="5"></span>
+    </div>
 
-  <!-- SCENE 01 — video 1, first half -->
-  <div class="motion-panel" data-scene="0">
-    <div class="motion-media">
-      <span class="scene-tag">Scene 01 / 06</span>
-      <div class="frame media-slot">
-        <video class="scroll-video" data-src="videos/scene-01-02-precision.mp4" data-t0="0" data-t1="5" muted playsinline preload="auto" aria-hidden="true"></video>
+    <div class="cinema-captions">
+      <div class="cine-cap active" data-scene="0">
+        <span class="mono">01 &mdash; Origin</span>
+        <h3>Forged From Basalt, Built on Precision</h3>
+        <p>Every export begins on our own floor in Halvad &mdash; engineered to a single, repeatable standard before it ever leaves Gujarat.</p>
+      </div>
+      <div class="cine-cap" data-scene="1">
+        <span class="mono">02 &mdash; Identity</span>
+        <h3>One Mark, One Quality Standard</h3>
+        <p>800+ designs, one benchmark &mdash; every batch checked before it's cleared to carry the Koradiya Group Impex name.</p>
+      </div>
+      <div class="cine-cap" data-scene="2">
+        <span class="mono">03 &mdash; Product</span>
+        <h3>Every Slab, Suspended in Light</h3>
+        <p>Marble and porcelain, shown the way they're specified &mdash; true veining, true finish, true dimension.</p>
+      </div>
+      <div class="cine-cap" data-scene="3">
+        <span class="mono">04 &mdash; Range</span>
+        <h3>Porcelain Tiles, Digital Vitrified, Marble Slabs</h3>
+        <p>A single catalogue built for architects, distributors and importers who need consistency at scale.</p>
+        <a href="#products" class="btn btn-clay">View Products</a>
+      </div>
+      <div class="cine-cap" data-scene="4">
+        <span class="mono">05 &mdash; Global Reach</span>
+        <h3>17+ Countries, One Supply Chain</h3>
+        <p>From Halvad and Morbi to ports across the world &mdash; the same finish, the same shade, on arrival.</p>
+      </div>
+      <div class="cine-cap" data-scene="5">
+        <span class="mono">06 &mdash; Export</span>
+        <h3>From Our Floor to Your Ports</h3>
+        <p>Ready to bring Koradiya Group Impex into your next order? Let's talk specification, volume and timelines.</p>
+        <a href="#export" class="btn btn-clay">Start an Export Enquiry</a>
       </div>
     </div>
-    <div class="motion-caption">
-      <span class="mono">01 &mdash; Origin</span>
-      <h3>Forged From Basalt, Built on Precision</h3>
-      <p>Every export begins on our own floor in Halvad &mdash; engineered to a single, repeatable standard before it ever leaves Gujarat.</p>
-    </div>
-  </div>
 
-  <!-- SCENE 02 — video 1, second half -->
-  <div class="motion-panel" data-scene="1">
-    <div class="motion-media">
-      <span class="scene-tag">Scene 02 / 06</span>
-      <div class="frame media-slot">
-        <video class="scroll-video" data-src="videos/scene-01-02-precision.mp4" data-t0="5" data-t1="10" muted playsinline preload="auto" aria-hidden="true"></video>
-      </div>
-    </div>
-    <div class="motion-caption">
-      <span class="mono">02 &mdash; Identity</span>
-      <h3>One Mark, One Quality Standard</h3>
-      <p>800+ designs, one benchmark &mdash; every batch checked before it's cleared to carry the Koradiya Group Impex name.</p>
-    </div>
-  </div>
-
-  <!-- SCENE 03 — video 2, first half -->
-  <div class="motion-panel" data-scene="2">
-    <div class="motion-media">
-      <span class="scene-tag">Scene 03 / 06</span>
-      <div class="frame media-slot">
-        <video class="scroll-video" data-src="videos/scene-03-04-product.mp4" data-t0="0" data-t1="5" muted playsinline preload="auto" aria-hidden="true"></video>
-      </div>
-    </div>
-    <div class="motion-caption">
-      <span class="mono">03 &mdash; Product</span>
-      <h3>Every Slab, Suspended in Light</h3>
-      <p>Marble and porcelain, shown the way they're specified &mdash; true veining, true finish, true dimension.</p>
-    </div>
-  </div>
-
-  <!-- SCENE 04 — video 2, second half -->
-  <div class="motion-panel" data-scene="3">
-    <div class="motion-media">
-      <span class="scene-tag">Scene 04 / 06</span>
-      <div class="frame media-slot">
-        <video class="scroll-video" data-src="videos/scene-03-04-product.mp4" data-t0="5" data-t1="10" muted playsinline preload="auto" aria-hidden="true"></video>
-      </div>
-    </div>
-    <div class="motion-caption">
-      <span class="mono">04 &mdash; Range</span>
-      <h3>Porcelain Tiles, Digital Vitrified, Marble Slabs</h3>
-      <p>A single catalogue built for architects, distributors and importers who need consistency at scale.</p>
-      <a href="#products" class="btn btn-clay">View Products</a>
-    </div>
-  </div>
-
-  <!-- SCENE 05 — video 3, first half -->
-  <div class="motion-panel" data-scene="4">
-    <div class="motion-media">
-      <span class="scene-tag">Scene 05 / 06</span>
-      <div class="frame media-slot">
-        <video class="scroll-video" data-src="videos/scene-05-06-global.mp4" data-t0="0" data-t1="5" muted playsinline preload="auto" aria-hidden="true"></video>
-      </div>
-    </div>
-    <div class="motion-caption">
-      <span class="mono">05 &mdash; Global Reach</span>
-      <h3>17+ Countries, One Supply Chain</h3>
-      <p>From Halvad and Morbi to ports across the world &mdash; the same finish, the same shade, on arrival.</p>
-    </div>
-  </div>
-
-  <!-- SCENE 06 — video 3, second half -->
-  <div class="motion-panel" data-scene="5">
-    <div class="motion-media">
-      <span class="scene-tag">Scene 06 / 06</span>
-      <div class="frame media-slot">
-        <video class="scroll-video" data-src="videos/scene-05-06-global.mp4" data-t0="5" data-t1="10" muted playsinline preload="auto" aria-hidden="true"></video>
-      </div>
-    </div>
-    <div class="motion-caption">
-      <span class="mono">06 &mdash; Export</span>
-      <h3>From Our Floor to Your Ports</h3>
-      <p>Ready to bring Koradiya Group Impex into your next order? Let's talk specification, volume and timelines.</p>
-      <a href="#export" class="btn btn-clay">Start an Export Enquiry</a>
-    </div>
+    <div class="cinema-scrolltip"><span>Scroll</span><span class="line"></span></div>
   </div>
 </section>
 
@@ -1859,93 +1815,90 @@ window.SITE_MEDIA = {
     backToTop();
     contactForm();
     tilt3D();
-    motionShowcaseFX();
+    cinemaScrollFX();
   }
 
-  /* ---------- "Crafted in Motion" — cinematic 3D scroll-through (6 scenes / 3 videos) ----------
-     Each .motion-panel holds one <video>. Two consecutive scenes share one source clip —
-     scene N scrubs the first half of the clip's timeline, scene N+1 the second half —
-     so scrolling forward always plays the video forward, never backward, across the pair.
-     The video never "plays" on its own: currentTime is driven entirely by scroll progress
-     (scrub), giving a true frame-by-frame scroll-through rather than a looping background.
-     Falls back gracefully (video sits on its poster frame) if GSAP/ScrollTrigger are
-     unavailable or the user has requested reduced motion. */
-  function motionShowcaseFX(){
-    const panels = document.querySelectorAll('.motion-panel');
-    if (!panels.length) return;
+  /* ---------- "Crafted in Motion" — PINNED, frame-by-frame scroll film ----------
+     .cinema-pin is CSS position:sticky inside a 600vh track (.cinema-scroll), so it
+     stays locked full-viewport for the whole track. As the user scrolls through that
+     track, overall progress (0..1) is mapped straight onto a 30-second combined
+     timeline (3 clips x 10s). Scrolling down = playing forward frame by frame;
+     scrolling up = rewinding — the video never advances on its own. Captions, the
+     top progress bar and the 6-dot rail all switch in step with the same progress
+     value, so everything is locked to the scrollbar, not to a timer. */
+  function cinemaScrollFX(){
+    const track = document.querySelector('.cinema-scroll');
+    const pin = document.querySelector('.cinema-pin');
+    if (!track || !pin) return;
+
+    const videos = Array.from(document.querySelectorAll('.cine-v'));
+    const caps = Array.from(document.querySelectorAll('.cine-cap'));
+    const ticks = Array.from(document.querySelectorAll('.cinema-rail .tick'));
+    const bar = document.getElementById('cineBar');
+    const label = document.getElementById('cineSceneLabel');
+    if (!videos.length) return;
+
+    const CLIP_LEN = 10;          // seconds per source clip
+    const SCENES_PER_CLIP = 2;    // each clip is split into 2 scenes
+    const SCENES = videos.length * SCENES_PER_CLIP; // 6
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const hasGSAP = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
     if (hasGSAP) gsap.registerPlugin(ScrollTrigger);
-    const small = window.innerWidth < 700;
 
-    /* wire up each scene's <video>: load its real src, seed the first frame,
-       then scrub currentTime across its assigned [t0,t1] window as its panel
-       crosses the viewport. */
-    panels.forEach((panel, i) => {
-      const media = panel.querySelector('.motion-media');
-      const caption = panel.querySelector('.motion-caption');
-      const video = panel.querySelector('.scroll-video');
-      if (!media) return;
-
-      if (video){
-        const src = video.getAttribute('data-src');
-        const t0 = parseFloat(video.getAttribute('data-t0')) || 0;
-        const t1 = parseFloat(video.getAttribute('data-t1')) || (t0 + 5);
-        if (src && !video.getAttribute('src')) video.setAttribute('src', src);
-        video.addEventListener('loadedmetadata', () => { try { video.currentTime = t0; } catch(e){} }, { once:true });
-
-        if (hasGSAP && !reduced){
-          ScrollTrigger.create({
-            trigger: panel, start: 'top 85%', end: 'bottom 15%', scrub: 0.4,
-            onUpdate(self){
-              if (video.readyState < 1) return; // wait for metadata
-              const t = t0 + (t1 - t0) * self.progress;
-              try { video.currentTime = t; } catch(e){}
-            },
-            onToggle(self){
-              document.querySelectorAll('.motion-rail .tick').forEach((tick, idx) => {
-                tick.classList.toggle('active', self.isActive && idx === i);
-              });
-            }
-          });
-        }
-      }
-
-      if (!hasGSAP || reduced) return;
-
-      const dir = i % 2 === 0 ? 1 : -1;
-      const tiltY = small ? 10 : 22;
-      const tiltX = small ? 4 : 9;
-
-      gsap.set(media, { transformPerspective: 900, transformStyle: 'preserve-3d' });
-
-      /* entrance: oversized + blurred + tilted -> flat, sharp, in place */
-      gsap.fromTo(media,
-        { scale: 1.32, rotateY: tiltY * dir, rotateX: tiltX, opacity: 0.2, filter: 'blur(14px)' },
-        {
-          scale: 1, rotateY: 0, rotateX: 0, opacity: 1, filter: 'blur(0px)', ease: 'none',
-          scrollTrigger: { trigger: panel, start: 'top 92%', end: 'top 42%', scrub: 0.6 }
-        }
-      );
-      /* exit: tilts the opposite way and recedes as it leaves through the top */
-      gsap.to(media, {
-        scale: 0.9, rotateY: -tiltY * 0.6 * dir, opacity: 0.35, filter: 'blur(5px)', ease: 'none',
-        scrollTrigger: { trigger: panel, start: 'top 20%', end: 'top -30%', scrub: 0.6 }
-      });
-      if (caption){
-        gsap.fromTo(caption, { opacity: 0, y: 36 },
-          { opacity: 1, y: 0, ease: 'none',
-            scrollTrigger: { trigger: panel, start: 'top 88%', end: 'top 48%', scrub: 0.6 } });
-      }
+    let ready = videos.map(() => false);
+    videos.forEach((v, i) => {
+      v.addEventListener('loadedmetadata', () => { ready[i] = true; try { v.currentTime = 0; } catch(e){} }, { once:true });
     });
 
-    if (hasGSAP){
-      const intro = document.querySelector('.motion-intro');
-      if (intro && !reduced){
-        gsap.to(intro, { yPercent: -10, ease: 'none',
-          scrollTrigger: { trigger: '.motion-showcase', start: 'top bottom', end: 'bottom top', scrub: true } });
+    let activeIdx = 0;
+    let lastScene = -1;
+
+    function render(progress){
+      const sceneFloat = Math.min(SCENES - 0.0001, Math.max(0, progress * SCENES));
+      const scene = Math.floor(sceneFloat);
+      const localP = sceneFloat - scene;                 // 0..1 within this scene
+      const videoIdx = Math.floor(scene / SCENES_PER_CLIP);
+      const withinClip = scene % SCENES_PER_CLIP;          // 0 or 1 half of the clip
+      const t = (withinClip * (CLIP_LEN / SCENES_PER_CLIP)) + localP * (CLIP_LEN / SCENES_PER_CLIP);
+
+      if (videoIdx !== activeIdx){
+        videos[activeIdx] && videos[activeIdx].classList.remove('active');
+        videos[videoIdx] && videos[videoIdx].classList.add('active');
+        activeIdx = videoIdx;
       }
+      const v = videos[videoIdx];
+      if (v && ready[videoIdx]){
+        try { v.currentTime = t; } catch(e){}
+      }
+
+      if (scene !== lastScene){
+        lastScene = scene;
+        caps.forEach((c, i) => c.classList.toggle('active', i === scene));
+        ticks.forEach((tk, i) => tk.classList.toggle('active', i === scene));
+        if (label) label.textContent = 'Scene ' + String(scene + 1).padStart(2,'0') + ' / ' + String(SCENES).padStart(2,'0');
+      }
+      if (bar) bar.style.width = (progress * 100) + '%';
+      track.classList.toggle('at-end', progress > 0.985);
+    }
+
+    render(0);
+
+    if (hasGSAP && !reduced){
+      ScrollTrigger.create({
+        trigger: track, start: 'top top', end: 'bottom bottom', scrub: 0.35,
+        onUpdate(self){ render(self.progress); }
+      });
       window.addEventListener('load', () => ScrollTrigger.refresh());
+    } else {
+      /* fallback for reduced-motion / no GSAP: derive progress from native scroll */
+      const onScroll = () => {
+        const rect = track.getBoundingClientRect();
+        const total = track.offsetHeight - window.innerHeight;
+        const scrolled = Math.min(total, Math.max(0, -rect.top));
+        render(total > 0 ? scrolled / total : 0);
+      };
+      window.addEventListener('scroll', onScroll, { passive:true });
+      onScroll();
     }
   }
 
